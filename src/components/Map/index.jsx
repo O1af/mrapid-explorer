@@ -119,7 +119,7 @@ function createTileUrl(store) {
       .join(',');
     providers_ids = `&providers_id=${providers}`;
   }
-
+  
   return `${
     import.meta.env.VITE_API_BASE_URL
   }/v3/locations/tiles/{z}/{x}/{y}.pbf?${parameters}${isMonitor}${excludeInactive}${providers_ids}`;
