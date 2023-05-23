@@ -220,13 +220,16 @@ export function Map() {
         style: import.meta.env.VITE_MAPBOX_STYLE,
         touchZoomRotate: false,
         dragRotate: false,
-        minZoom: 1,
-        maxZoom: 20,
+        minZoom: 9,
+        maxZoom: 14,
+        zoom: 12
       }}
       cursorStyle={cursorStyle()}
       onMouseOver={{ locations: () => setCursorStyle('pointer') }}
       onMouseLeave={{ locations: () => setCursorStyle('') }}
-      viewport={store.viewport}
+      viewport={{
+        center: [-83.04960, 42.33379],
+      }}
       onViewportChange={(e) => {
         return setViewport(e);
       }}
