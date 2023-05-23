@@ -1,16 +1,18 @@
 import imgSvg from '../../assets/logo.svg';
+import {Link} from 'react-router-dom';
 
 export default function Header() {
   return (
     <header class="header">
       <div class="header-contents">
-        <a href="/" class="header-logo" aria-label="openaq logo">
-          <img src={imgSvg} alt="openaq logo" />
+        <a href="/" class="header-logo" aria-label="logo">
+          {/*<img src={imgSvg} alt="logo" />*/}
+          M-RAPID
         </a>
         <div class="spacer" />
         <nav class="nav">
+          <input id="menu-toggle" type="checkbox"></input>
           <label class="menu-button-container" for="menu-toggle">
-            <input id="menu-toggle" type="checkbox" />
             <div class="menu-button">
               <span class="material-symbols-outlined">menu</span>
             </div>
@@ -21,7 +23,7 @@ export default function Header() {
                 class="nav__item nav__item--active explore-data-tab"
                 href="https://explore.openaq.org"
               >
-                Explore the data (Beta)
+                Pollution Map
               </a>
             </li>
             <li>
@@ -29,7 +31,7 @@ export default function Header() {
                 href="https://openaq.org/why-air-quality"
                 class="nav__item air-quality-tab"
               >
-                Why air quality?
+                Sensors
               </a>
             </li>
             <li>
@@ -37,24 +39,16 @@ export default function Header() {
                 href="https://openaq.org/why-open-data"
                 class="nav__item open-data-tab"
               >
-                Why open data?
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://openaq.org/partners"
-                class="nav__item partners-tab"
-              >
-                Partners
+                Emission Sources
               </a>
             </li>
             <li class="dropdown">
               <a
-                href="https://openaq.org/developers/platform-overview/"
+                href="file:/pages.Data.jsx"            //FIX THIS!!!!
                 aria-haspopup="true"
                 class="nav__item"
               >
-                Developers
+                Data
               </a>
               <ul class="submenu" aria-label="submenu">
                 <li class="submenu__item">
@@ -62,7 +56,7 @@ export default function Header() {
                     class="nav__item api-overview-nav"
                     href="https://openaq.org/developers/platform-overview/"
                   >
-                    Platform Overview
+                    Data by sensor
                   </a>
                 </li>
                 <li class="submenu__item">
@@ -70,95 +64,44 @@ export default function Header() {
                     class="nav__item documentation-nav js-header-docs-link"
                     href="https://docs.openaq.org"
                   >
-                    Developer Documentation
-                  </a>
-                </li>
-                <li class="submenu__item">
-                  <a
-                    class="nav__item dev-use-case-nav"
-                    href="https://openaq.org/use-cases/developer/"
-                  >
-                    Developer Use Cases
-                  </a>
-                </li>
-                <li class="submenu__item">
-                  <a
-                    class="nav__item help-nav"
-                    href="https://openaq.org/developers/help/"
-                  >
-                    Help
+                    Data by zip code
                   </a>
                 </li>
               </ul>
             </li>
-            <li class="dropdown">
+            <li>
+              <a
+                href="https://openaq.org/partners"
+                class="nav__item partners-tab"
+              >
+                Register
+              </a>
+            </li>
+            <li>
               <a
                 href="https://openaq.org/about/"
                 aria-haspopup="true"
                 class="nav__item"
               >
-                About
+                Profile
               </a>
-              <ul class="submenu" aria-label="submenu">
-                <li class="submenu__item">
-                  <a
-                    class="nav__item about-nav"
-                    href="https://openaq.org/about/"
-                  >
-                    About Us
-                  </a>
-                </li>
-                <li class="submenu__item">
-                  <a
-                    class="nav__item initiatives-nav"
-                    href="https://openaq.org/about/initiatives/"
-                  >
-                    Initiatives
-                  </a>
-                </li>
-                <li class="submenu__item">
-                  <a
-                    class="nav__item people-nav"
-                    href="https://openaq.org/about/people/"
-                  >
-                    People
-                  </a>
-                </li>
-                <li class="submenu__item">
-                  <a
-                    class="nav__item"
-                    href="https://openaq.org/about/blog"
-                  >
-                    Blog
-                  </a>
-                </li>
-                <li class="submenu__item">
-                  <a
-                    class="nav__item use-cases-nav"
-                    href="https://openaq.org/use-cases/"
-                  >
-                    Use Cases
-                  </a>
-                </li>
-                <li class="submenu__item">
-                  <a
-                    class="nav__item reporting-nav"
-                    href="https://openaq.org/about/legal/"
-                  >
-                    Legal & Policies
-                  </a>
-                </li>
-              </ul>
             </li>
           </ul>
         </nav>
-        <a
-          href="https://secure.givelively.org/donate/openaq-inc/"
-          class="btn btn-primary donate-btn js-header-donate-btn"
-        >
-          Donate
-        </a>
       </div>
     </header>
   );
+}
+
+function CustomLink({ to, children, ...props }) {
+  const resolvedPath = useResolvedPath(to)
+  const isActive = useMatch({ path: resolvedPath.pathname, end: true })
+
+  return (
+    <li className={isActive ? "active" : ""}>
+      <Link to={to} {...props}>
+        {children}
+      </Link>
+    </li>
+  )
 }
