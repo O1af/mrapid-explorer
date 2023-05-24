@@ -119,7 +119,7 @@ function createTileUrl(store) {
       .join(',');
     providers_ids = `&providers_id=${providers}`;
   }
-  
+
   return `${
     import.meta.env.VITE_API_BASE_URL
   }/v3/locations/tiles/{z}/{x}/{y}.pbf?${parameters}${isMonitor}${excludeInactive}${providers_ids}`;
@@ -220,9 +220,8 @@ export function Map() {
         style: import.meta.env.VITE_MAPBOX_STYLE,
         touchZoomRotate: false,
         dragRotate: false,
-        minZoom: 9,
+        minZoom: 10,
         maxZoom: 14,
-        zoom: 12
       }}
       cursorStyle={cursorStyle()}
       onMouseOver={{ locations: () => setCursorStyle('pointer') }}
