@@ -12,6 +12,10 @@
   @include card;
 }
 
+.expandable-card {
+  background-color: #ca6ebe;
+}
+
 .dismissable-card {
   @include card;
   transform: none;
@@ -38,7 +42,7 @@
   &__header {
     @include mixins.heading3;
     height: 58px;
-    background: #1e64ab;
+    background: #ca6ebe;
     padding: 0 20px;
     color: white;
     display: flex;
