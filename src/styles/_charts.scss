@@ -1,5 +1,5 @@
-@use 'openaq-design-system/scss/variables' as variables;
-@use 'openaq-design-system/scss/mixins/index' as mixins;
+@use './variables' as variables;
+@use './mixins/index' as mixins;
 
 .chart-help {
   @include mixins.link2;

@@ -1,5 +1,5 @@
-@use 'openaq-design-system/scss/variables' as variables;
-@use 'openaq-design-system/scss/mixins/index' as mixins;
+@use './variables' as variables;
+@use './mixins/index' as mixins;
 
 @import 'cards';
 
@@ -109,7 +109,7 @@
   &__header {
     @include mixins.heading3;
     height: 57px;
-    background: #1e64ab;
+    //background: #1e64ab;
     padding: 0 20px;
     color: white;
     display: flex;

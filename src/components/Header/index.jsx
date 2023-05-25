@@ -7,7 +7,7 @@ export default function Header() {
       <div class="header-contents">
         <a href="/" class="header-logo" aria-label="logo">
           {/*<img src={imgSvg} alt="logo" />*/}
-          M-RAPID
+          M-RAPID Maps
         </a>
         <div class="spacer" />
         <nav class="nav">

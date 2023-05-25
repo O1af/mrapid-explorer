@@ -1,13 +1,14 @@
-@use 'openaq-design-system/scss/variables' as variables;
-@use 'openaq-design-system/scss/badges';
-@use 'openaq-design-system/scss/buttons';
-@use 'openaq-design-system/scss/inputs';
-@use 'openaq-design-system/scss/resets';
-@use 'openaq-design-system/scss/bubbles';
-@use 'openaq-design-system/scss/utilities';
-@use 'openaq-design-system/scss/mixins/index' as mixins;
-@use 'openaq-design-system/scss/horizontal-rule';
-@use 'location-detail-card';
+@use './variables' as variables;
+@use './badges';
+@use './buttons-2';
+@use './inputs/index';
+@use './resets';
+@use './bubbles';
+@use './utils';
+@use './mixins/index' as mixins;
+@use './horizontal-rule';
+@use './location-detail-card';
+
 
 @use 'flip-card';
 @use 'breadcrumbs';

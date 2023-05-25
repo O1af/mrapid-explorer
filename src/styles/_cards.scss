@@ -1,4 +1,7 @@
-@use 'openaq-design-system/scss/mixins/index' as mixins;
+@use './mixins/index' as mixins;
+
+$sky60: #585560;
+
 
 @mixin card {
   width: 300px;
@@ -42,12 +45,12 @@
   &__header {
     @include mixins.heading3;
     height: 58px;
-    background: #ca6ebe;
+    background-color: $sky60;
     padding: 0 20px;
-    color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    color:white;
 
     .map-card-title {
       margin: 0;

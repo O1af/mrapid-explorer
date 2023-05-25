@@ -1,4 +1,4 @@
-@use 'openaq-design-system/scss/variables' as variables;
+@use './variables' as variables;
 
 .map-legend {
   background: #ffffff;
@@ -20,6 +20,7 @@
 .map-legend-title {
   display: flex;
   gap: 10px;
+  font-size:14px;
 }
 
 .map-legend-section {
@@ -38,6 +39,7 @@
     display: flex;
     justify-content: space-between;
     margin: 0 18px;
+    font-size:12px;
   }
 }
 

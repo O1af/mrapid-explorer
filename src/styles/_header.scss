@@ -1,6 +1,7 @@
-@use 'openaq-design-system/scss/variables';
-@use 'openaq-design-system/scss/mixins/index.scss' as mixins;
+@use './mixins/index' as mixins;
 @use 'openaq-design-system/scss/header';
+@use './variables' as variables;
+
 
 .header {
   padding: 0 40px;
@@ -151,7 +152,7 @@
   .header-logo {
     order: 2;
     text-decoration: none;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    //font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     color: white;
   }
   .nav {

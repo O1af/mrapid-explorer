@@ -1,5 +1,5 @@
-@use 'openaq-design-system/scss/mixins/index' as mixins;
-@use 'openaq-design-system/scss/variables' as variables;
+@use './variables' as variables;
+@use './mixins/index' as mixins;
 
 @mixin background-opacity($color, $opacity: 1) {
   background: $color;
@@ -44,7 +44,7 @@
     background: variables.$lavender100;
     padding: 0 20px;
     cursor: pointer;
-    color: white;
+    //color: white;
   }
 
   &__body {
