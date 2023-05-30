@@ -18,11 +18,11 @@ export const hexValues = [
 ];
 
 export const percentHexValues = [
-  '#DEDAFB',
-  '#BCB2FE',
-  '#8F81EE',
-  '#6A5CD8',
-  '#241050',
+  '#e8b0e5',
+  '#db85cd',
+  '#c23fb5',
+  '#a333a1',
+  '#4F1048',
 ];
 
 export const aqiHexValues = [

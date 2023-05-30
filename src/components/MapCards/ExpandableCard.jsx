@@ -4,6 +4,7 @@ import {
   LowCostSensorMarker,
   NoRecentUpdateMarker,
   ReferenceGradeMarker,
+  AQIMarker, //new
 } from '../LocationMarker';
 import Accordion from './Accordion';
 
@@ -47,12 +48,14 @@ export default function FilterOverlayCard() {
       toggleProviderList,
       toggleMonitor,
       toggleAirSensor,
+      toggleAQI, // new
       toggleInactive,
     },
   ] = useStore();
 
   const [showMonitors, setShowMonitors] = createSignal(true);
-  const [showAirSensors, setShowAirSensors] = createSignal(true);
+  const [showAQI, setShowAQI] = createSignal(true);
+  const [showAirSensors, setShowAirSensors] = createSignal(true); //new
 
   const monitorCheck = (e) => {
     setShowMonitors(e.target.checked);
@@ -63,6 +66,11 @@ export default function FilterOverlayCard() {
     setShowAirSensors(e.target.checked);
     toggleAirSensor(e.target.checked);
   };
+
+  const aqiCheck = (e) => {          //new
+    setShowAQI(e.target.checked);
+    toggleAQI(e.target.checked);
+  }
 
   const noRecentUpdatesCheck = (e) => {
     toggleInactive(e.target.checked);
@@ -108,6 +116,21 @@ export default function FilterOverlayCard() {
                 disabled={!showMonitors()}
               />
             </label>
+
+            <AQIMarker /> 
+            <label class="marker-legend-item" for="aqi">
+              Air Quality Index (AQI)
+              <input
+                type="checkbox"
+                name="aqi"
+                id="aqi"
+                class="checkbox"
+                checked={store.mapFilters.aqi}
+                onChange={aqiCheck}
+                disabled={!showAQI()}
+              />
+            </label>
+
             <NoRecentUpdateMarker />
             <label class="marker-legend-item" for="no-recent-updates">
               Show locations with no recent updates

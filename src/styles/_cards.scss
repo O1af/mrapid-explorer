@@ -29,6 +29,9 @@ $sky60: #585560;
     transform: translateX(120%);
     transition: transform 0.3s cubic-bezier(0, 0, 0.3, 1);
   }
+  .map-card-title {
+    color:black;
+  }
 }
 
 .explore-card {

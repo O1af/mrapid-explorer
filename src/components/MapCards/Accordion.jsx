@@ -13,7 +13,7 @@ const AccordionContext = createContext();
 
 function AccordionProvider(props) {
   const [activePanel, setActivePanel] = createStore({
-      name: 'pollutants',
+      name: 'aqi',
     }),
     accordion = [
       activePanel,
@@ -232,11 +232,18 @@ export default function Accordion() {
   return (
     <AccordionProvider>
       <AccordionPanel
+        name="aqi"
+        title="Air Quality Index"
+        contentKey="aqi"
+        active={!store.mapThreshold.active}
+        open={true}
+      >
+      </AccordionPanel>
+      <AccordionPanel
         name="pollutants"
         title="Pollutant"
         contentKey="pollutants"
-        active={!store.mapThreshold.active}
-        open={true}
+        active={store.mapThreshold.active}
       >
         <select
           name=""

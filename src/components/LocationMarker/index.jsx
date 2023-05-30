@@ -15,6 +15,14 @@ export function LowCostSensorMarker() {
   );
 }
 
+export function AQIMarker() {
+  return (
+    <div class="aqi-marker">
+      <div class="aqi-marker__fill" />
+    </div>
+  );
+}
+
 export function NoRecentUpdateMarker() {
   return (
     <div class="no-recent-data-marker">
