@@ -4,6 +4,8 @@ import {
   createContext,
   useContext,
   For,
+  on,
+  onMount,
 } from 'solid-js';
 import { createStore } from 'solid-js/store';
 import { useStore } from '../../stores';
@@ -229,6 +231,19 @@ export default function Accordion() {
   const [store, { loadParameter, setMapThresholdActive }] =
     useStore();
 
+  //on load get aqi value from openweathermap api and store
+  const [aqi, setAqi] = createSignal(0); 
+  const api_key = '69c74c1baa5a315002de22b050a3f4f6';
+  onMount(async () => {
+    const response = await fetch(
+      `https://api.openweathermap.org/data/2.5/air_pollution?lat=-83.04960&lon=42.33379&appid=${api_key}`
+    );
+    const data = await response.json();
+    const aqi1 = data.list[0].main.aqi;
+    console.log(data);
+    setAqi(aqi1);
+  });
+
   return (
     <AccordionProvider>
       <AccordionPanel
@@ -238,6 +253,10 @@ export default function Accordion() {
         active={!store.mapThreshold.active}
         open={true}
       >
+        <p>AQI: {aqi}</p>
+        <p>1 = Good, 2 = Fair, 3 = Moderate, 4 = Poor, 5 = Very Poor.
+        </p>
+
       </AccordionPanel>
       <AccordionPanel
         name="pollutants"
