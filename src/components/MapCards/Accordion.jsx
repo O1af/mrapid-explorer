@@ -235,6 +235,9 @@ export default function Accordion() {
   const [aqi, setAqi] = createSignal(0); 
   const api_key = '69c74c1baa5a315002de22b050a3f4f6';
   onMount(async () => {
+    const lat = 0;
+    const long = 0;
+
     const response = await fetch(
       `https://api.openweathermap.org/data/2.5/air_pollution?lat=-83.04960&lon=42.33379&appid=${api_key}`
     );
@@ -243,6 +246,7 @@ export default function Accordion() {
     console.log(data);
     setAqi(aqi1);
   });
+  
 
   return (
     <AccordionProvider>
@@ -253,7 +257,19 @@ export default function Accordion() {
         active={!store.mapThreshold.active}
         open={true}
       >
-        <p>AQI: {aqi}</p>
+        <meter
+          class="aqi-bar"
+          min="0"
+          max="5"
+          value={aqi()}
+        />
+        <meter
+          class="aqi-arrow"
+          min="0"
+          max="5"
+          value={aqi()}
+        />
+        <p>AQI: {aqi()}</p>
         <p>1 = Good, 2 = Fair, 3 = Moderate, 4 = Poor, 5 = Very Poor.
         </p>
 
