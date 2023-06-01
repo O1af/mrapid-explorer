@@ -112,7 +112,7 @@ svg {
   cursor: pointer;
 }
 
-.aqi-bar{
+.aqi-bar, .aqi-bar::-webkit-meter-bar{
   margin:0;
   padding:0;
   background-image: linear-gradient(
@@ -127,5 +127,45 @@ svg {
     red 80%,
     purple 80%,
     purple 100%,
+  );
+  width:100%;
+}
+
+.aqi-bar::-webkit-meter-optimum-value, .aqi-bar::-webkit-meter-suboptimum-value, .aqi-bar::-webkit-meter-even-less-good-value {
+  background: transparent;
+  border-right: 5px solid black;
+}
+
+.aqi-bar::-moz-meter-bar {
+background: transparent;
+border-right: 5px solid black;
+}
+
+.aqi-arrow, .aqi-arrow::-webkit-meter-bar {
+  margin:0;
+  padding:0;
+  background-image: linear-gradient(
+    90deg,
+    transparent 0%, 
+    transparent 100%,
+  );
+  width:100%;
+}
+
+.aqi-arrow::-webkit-meter-optimum-value {
+  border-right: 3px solid black;
+  background-image: linear-gradient(
+    90deg,
+    transparent 0%, 
+    transparent 100%,
+  );
+}
+
+.aqi-arrow::-moz-meter-bar {
+  border-right: 3px solid black;
+  background-image: linear-gradient(
+    90deg,
+    transparent 0%, 
+    transparent 100%,
   );
 }
