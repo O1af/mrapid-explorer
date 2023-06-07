@@ -226,9 +226,7 @@ export function Map() {
       cursorStyle={cursorStyle()}
       onMouseOver={{ locations: () => setCursorStyle('pointer') }}
       onMouseLeave={{ locations: () => setCursorStyle('') }}
-      viewport={{
-        center: [-83.04960, 42.33379],
-      }}
+      viewport={store.viewport}
       onViewportChange={(e) => {
         return setViewport(e);
       }}
