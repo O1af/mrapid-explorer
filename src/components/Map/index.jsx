@@ -212,6 +212,26 @@ export function Map() {
     return features[0].geometry.coordinates;
   }
 
+  const URL = 'https://clarity-data-api.clarity.io/v1/measurements?code=AT9BM6VV,ALQ1TJN6,AXPPQ0QF,AW2JHDG8&startTime=2023-06-01T00:00:00Z&endTime=2023-06-01T1:00:00Z';
+  const APIkey = 'WIISszA2VDYFNB37ZdpkHoX07UHIvPSBkxc2npSR';
+  async function getClarityData() {
+    let res = await fetch(URL, {
+      method: 'GET',
+      headers: {
+        'x-api-key': APIkey,
+      },
+    })
+    let data = await res.json();
+    return data;
+  }
+  const [clarityData, setClarityData] = createSignal();
+  createEffect(async () => {
+    const data = await getClarityData();
+    setClarityData(data);
+    console.log(data);
+  });
+  
+
   return (
     <MapGL
       class="map"
@@ -504,6 +524,15 @@ export function Map() {
           }}
         />
       </Source>
+      <Source
+        id= "clarity"
+        source = {{
+          type: 'geojson',
+          data: clarityData
+        }}
+      >
+      </Source>
+
       <Bounds />
     </MapGL>
   );
