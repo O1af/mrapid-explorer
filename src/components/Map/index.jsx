@@ -8,13 +8,13 @@ function calculateFlyToDuration(zoom) {
   return 2500 / (zoom / 5);
 }
 export const hexValues = [
-  '#c7ffca',
-  '#97fca2',
-  '#89ed80',
-  '#6ceb67',
-  '#5dd95d',
-  '#4ead4c',
-  '#104f15',
+  'green',
+  'limegreen',
+  'gold',
+  'orange',
+  'red',
+  'purple',
+  'maroon',
 ];
 
 export const percentHexValues = [
