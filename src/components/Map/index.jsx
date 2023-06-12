@@ -224,13 +224,34 @@ export function Map() {
     let data = await res.json();
     return data;
   }
-  const [clarityData, setClarityData] = createSignal();
+  function getAllCoordinatesAsGeoJSON(jsonArray) {
+    let coordinatesArray = [];
+    for (let i = 0; i < jsonArray.length; i++) {
+        let jsonObject = jsonArray[i];
+        if (jsonObject && jsonObject.location && jsonObject.location.coordinates) {
+            coordinatesArray.push(jsonObject.location.coordinates);
+        }
+    }
+    let geojson = {
+      "type": "Feature",
+      "geometry": {
+          "type": "Point",
+          "coordinates": coordinatesArray
+      }
+  }
+    return geojson;
+}
+
+  const [clarityData, setClarityData] = createSignal(getAllCoordinatesAsGeoJSON(getClarityData()));
+  
   createEffect(async () => {
     const data = await getClarityData();
-    setClarityData(data);
+    await setClarityData(getAllCoordinatesAsGeoJSON(data));
     console.log(data);
+    console.log(clarityData());
   });
   
+  console.log(clarityData());
 
   return (
     <MapGL
@@ -528,7 +549,7 @@ export function Map() {
         id= "clarity"
         source = {{
           type: 'geojson',
-          data: clarityData
+          data: clarityData()
         }}
       >
       </Source>
