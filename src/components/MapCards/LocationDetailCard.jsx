@@ -191,7 +191,7 @@ export default function LocationDetailCard() {
                         left: 1,
                       }}
                       style={{
-                        color: '#5d48f4',
+                        color: '#5d48f4', //changes plot color?
                         width: '3',
                         fill: 'none',
                       }}

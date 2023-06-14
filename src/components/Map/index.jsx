@@ -151,6 +151,19 @@ function createThresholdTileUrl(store) {
     import.meta.env.VITE_API_BASE_URL
   }/v3/thresholds/tiles/{z}/{x}/{y}.pbf?period=${period}&threshold=${threshold}&${parameters}${isMonitor}${excludeInactive}${providers_ids}`;
 }
+/*const [store, { clearLocation }] = useStore();
+const seriesData = () => {
+  if (store.recentMeasurements()) {
+    const groups = group(
+      store.recentMeasurements(),
+      (d) => d.parameter.name
+    );
+    const values = Array.from(groups, (item) => {
+      return { key: item[0], values: item[1] };
+    });
+    return values;
+  }
+};*/
 
 function Bounds() {
   const map = useMap();
@@ -544,15 +557,62 @@ export function Map() {
             },
           }}
         />
+        <Layer
+          id="amount-label"
+          style={{
+            type: 'symbol',
+            source: "locations",
+            layout: {
+              'text-field': ['get', 'point_count_abbreviated'],
+              'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
+              'text-size': 12
+              }
+
+          }}
+
+        />
       </Source>
       <Source
-        id= "clarity"
         source = {{
+          id:'clarity',
           type: 'geojson',
           data: clarityData()
         }}
       >
-      </Source>
+      <Layer
+          id="clarity-data"
+          style={{
+            type: 'circle',
+            source: 'clarity',
+            'source-layer': 'default',
+            paint: {
+              'circle-color': 'purple', // circle colors currently not dependent on anything, just trying to get visible
+              'circle-stroke-color': 'white',
+              'circle-stroke-width': [
+                'interpolate',
+                ['linear'],
+                ['zoom'],
+                2,
+                ['case', ['==', ['get', 'ismonitor'], true], 1, 0.25],
+                14,
+                ['case', ['==', ['get', 'ismonitor'], true], 6, 0],
+              ],
+              'circle-stroke-opacity': 1,
+              'circle-opacity': 1,
+              'circle-radius': [
+                'interpolate',
+                ['linear'],
+                ['zoom'],
+                1,
+                [2],
+                14,
+                [13],
+              ],
+            },
+          }}
+        />
+        </Source>
+      
 
       <Bounds />
     </MapGL>
