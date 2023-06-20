@@ -1,7 +1,7 @@
 /* eslint-disable solid/style-prop */
 import MapGL, { Source, Layer, Control, useMap } from 'solid-map-gl';
 import Geocoder from '../Geocoder';
-import { createEffect, createSignal, on } from 'solid-js';
+import { Show, createEffect, createSignal, on } from 'solid-js';
 import { useStore } from '../../stores';
 
 function calculateFlyToDuration(zoom) {
@@ -238,22 +238,26 @@ export function Map() {
     return data;
   }
   function getAllCoordinatesAsGeoJSON(jsonArray) {
-    let coordinatesArray = [];
+    let geojson = {
+        "type": "FeatureCollection",
+        "features": []
+    };
     for (let i = 0; i < jsonArray.length; i++) {
         let jsonObject = jsonArray[i];
         if (jsonObject && jsonObject.location && jsonObject.location.coordinates) {
-            coordinatesArray.push(jsonObject.location.coordinates);
+            let feature = {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": jsonObject.location.coordinates
+                }
+            };
+            geojson.features.push(feature);
         }
     }
-    let geojson = {
-      "type": "Feature",
-      "geometry": {
-          "type": "Point",
-          "coordinates": coordinatesArray
-      }
-  }
     return geojson;
 }
+
 
   const [clarityData, setClarityData] = createSignal(getAllCoordinatesAsGeoJSON(getClarityData()));
   
@@ -557,62 +561,24 @@ export function Map() {
             },
           }}
         />
-        <Layer
-          id="amount-label"
-          style={{
-            type: 'symbol',
-            source: "locations",
-            layout: {
-              'text-field': ['get', 'point_count_abbreviated'],
-              'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
-              'text-size': 12
-              }
-
-          }}
-
-        />
       </Source>
       <Source
-        source = {{
-          id:'clarity',
+        source={{
           type: 'geojson',
-          data: clarityData()
+          data: 'https://mocki.io/v1/12b20a97-4350-4c91-956f-53bbffad9abf',
         }}
       >
-      <Layer
-          id="clarity-data"
+        <Layer
           style={{
             type: 'circle',
-            source: 'clarity',
-            'source-layer': 'default',
+            source: 'earthquakes',
             paint: {
-              'circle-color': 'purple', // circle colors currently not dependent on anything, just trying to get visible
-              'circle-stroke-color': 'white',
-              'circle-stroke-width': [
-                'interpolate',
-                ['linear'],
-                ['zoom'],
-                2,
-                ['case', ['==', ['get', 'ismonitor'], true], 1, 0.25],
-                14,
-                ['case', ['==', ['get', 'ismonitor'], true], 6, 0],
-              ],
-              'circle-stroke-opacity': 1,
-              'circle-opacity': 1,
-              'circle-radius': [
-                'interpolate',
-                ['linear'],
-                ['zoom'],
-                1,
-                [2],
-                14,
-                [13],
-              ],
+              'circle-radius': 10,
+              'circle-color': 'purple',
             },
           }}
         />
-        </Source>
-      
+      </Source>
 
       <Bounds />
     </MapGL>
