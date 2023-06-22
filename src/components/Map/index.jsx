@@ -250,6 +250,10 @@ export function Map() {
                 "geometry": {
                     "type": "Point",
                     "coordinates": jsonObject.location.coordinates
+                },
+                "properties": {
+                  "characteristics" : jsonObject.characteristics,
+                  "id" : jsonObject._id,
                 }
             };
             geojson.features.push(feature);
