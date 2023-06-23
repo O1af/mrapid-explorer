@@ -570,7 +570,7 @@ export function Map() {
         id='clarityData' //idk if this needs to be here. trying to add an id to this source layer
         source={{
           type: 'geojson',
-          data: 'https://mocki.io/v1/12b20a97-4350-4c91-956f-53bbffad9abf',
+          data: 'https://mocki.io/v1/a312ed2e-fbb7-48c0-8777-ae5c61efc8ba',
         }}
       >
         <Layer
