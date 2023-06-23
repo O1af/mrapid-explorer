@@ -9,7 +9,7 @@ function calculateFlyToDuration(zoom) {
 }
 export const hexValues = [
   'green',
-  'limegreen',
+  'yellowgreen',
   'gold',
   'orange',
   'red',
@@ -567,18 +567,38 @@ export function Map() {
         />
       </Source>
       <Source
+        id='clarityData' //idk if this needs to be here. trying to add an id to this source layer
         source={{
           type: 'geojson',
           data: 'https://mocki.io/v1/12b20a97-4350-4c91-956f-53bbffad9abf',
         }}
       >
         <Layer
+          onMouseOver={{'clarityData': () => setCursorStyle('pointer') }} //not working
+          onClick={(e) => {
+            const coordinates = getFeature(e);
+            e.target.flyTo({
+              center: coordinates,
+              zoom: e.target.getZoom() > 12 ? e.target.getZoom() : 12,
+              duration: calculateFlyToDuration(e.target.getZoom()),
+              essential: true,
+            });
+          }}
           style={{
+            id: 'clarity-locations',
             type: 'circle',
-            source: 'earthquakes',
+            source: 'clarityData',
             paint: {
               'circle-radius': 10,
-              'circle-color': 'purple',
+              'circle-color': 
+              [
+                'interpolate',
+                ['linear'],
+                getField(store),
+                -1,
+                '#ddd', // light gray
+                ...getColorScale(store),
+              ],
             },
           }}
         />
