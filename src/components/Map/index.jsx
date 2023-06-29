@@ -589,17 +589,29 @@ export function Map() {
             type: 'circle',
             source: 'clarityData',
             paint: {
-              'circle-radius': 10,
+              'circle-radius': 20,
               'circle-color': 
               [
-                'interpolate',
-                ['linear'],
-                getField(store),
+                "interpolate",
+  ["linear"],
+  ["get", "raw", ["get", "pm2_5ConcMass", ["get", "characteristics", ["properties"]]]],
                 -1,
                 '#ddd', // light gray
                 ...getColorScale(store),
               ],
             },
+          }}
+        />
+        <Layer
+          style={{
+            id: 'clarity-text',
+            type: 'symbol',
+            source: 'clarityData',
+            layout: {
+              "text-field": ["get", "raw", ["get", "pm2_5ConcMass", ["get", "characteristics", ["properties"]]]]              ,
+              "text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
+              "text-size": 20
+              }
           }}
         />
       </Source>
