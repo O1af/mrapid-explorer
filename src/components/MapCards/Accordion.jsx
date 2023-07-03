@@ -15,7 +15,7 @@ const AccordionContext = createContext();
 
 function AccordionProvider(props) {
   const [activePanel, setActivePanel] = createStore({
-      name: 'aqi',
+      name: 'pollutants',
     }),
     accordion = [
       activePanel,
@@ -232,25 +232,25 @@ export default function Accordion() {
     useStore();
 
   //on load get aqi value from openweathermap api and store
-  const [aqi, setAqi] = createSignal(0); 
-  const api_key = '69c74c1baa5a315002de22b050a3f4f6';
-  onMount(async () => {
-    const lat = 0;
-    const long = 0;
+  // const [aqi, setAqi] = createSignal(0); 
+  // const api_key = '69c74c1baa5a315002de22b050a3f4f6';
+  // onMount(async () => {
+  //   const lat = 0;
+  //   const long = 0;
 
-    const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/air_pollution?lat=-83.04960&lon=42.33379&appid=${api_key}`
-    );
-    const data = await response.json();
-    const aqi1 = data.list[0].main.aqi;
-    console.log(data);
-    setAqi(aqi1);
-  });
+  //   const response = await fetch(
+  //     `https://api.openweathermap.org/data/2.5/air_pollution?lat=-83.04960&lon=42.33379&appid=${api_key}`
+  //   );
+  //   const data = await response.json();
+  //   const aqi1 = data.list[0].main.aqi;
+  //   console.log(data);
+  //   setAqi(aqi1);
+  // });
   
 
   return (
     <AccordionProvider>
-      <AccordionPanel
+      {/* <AccordionPanel
         name="aqi"
         title="Air Quality Index"
         contentKey="aqi"
@@ -273,12 +273,13 @@ export default function Accordion() {
         <p>1 = Good, 2 = Fair, 3 = Moderate, 4 = Poor, 5 = Very Poor.
         </p>
 
-      </AccordionPanel>
+      </AccordionPanel> */}
       <AccordionPanel
         name="pollutants"
         title="Pollutant"
         contentKey="pollutants"
-        active={store.mapThreshold.active}
+        active={!store.mapThreshold.active}
+        open={true}
       >
         <select
           name=""

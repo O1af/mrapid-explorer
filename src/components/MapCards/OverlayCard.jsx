@@ -102,7 +102,7 @@ export default function OverlayCard() {
           </For>
         </select>
       </Accordion>
-      <Accordion title="Air Quality Index" contentKey="aqi">
+      {/* <Accordion title="Air Quality Index" contentKey="aqi">
         <select
           name="aqi"
           id="aqi"
@@ -112,7 +112,7 @@ export default function OverlayCard() {
           <option value="nowcast">US EPA PM NowCast</option>
           <option value="nowcast">US EPA Ozone NowCast</option>
         </select>
-      </Accordion>
+      </Accordion> */}
       <Accordion title="Thresholds" contentKey="thresholds">
         <div>
           <select

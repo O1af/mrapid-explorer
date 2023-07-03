@@ -67,10 +67,10 @@ export default function FilterOverlayCard() {
     toggleAirSensor(e.target.checked);
   };
 
-  const aqiCheck = (e) => {          //new
-    setShowAQI(e.target.checked);
-    toggleAQI(e.target.checked);
-  }
+  // const aqiCheck = (e) => {          //new
+  //   setShowAQI(e.target.checked);
+  //   toggleAQI(e.target.checked);
+  // }
 
   const noRecentUpdatesCheck = (e) => {
     toggleInactive(e.target.checked);
@@ -117,7 +117,7 @@ export default function FilterOverlayCard() {
               />
             </label>
 
-            <AQIMarker /> 
+            {/* <AQIMarker /> 
             <label class="marker-legend-item" for="aqi">
               Air Quality Index (AQI)
               <input
@@ -129,7 +129,7 @@ export default function FilterOverlayCard() {
                 onChange={aqiCheck}
                 disabled={!showAQI()}
               />
-            </label>
+            </label> */}
 
             <NoRecentUpdateMarker />
             <label class="marker-legend-item" for="no-recent-updates">

@@ -286,8 +286,10 @@ export function Map() {
         maxZoom: 14,
       }}
       cursorStyle={cursorStyle()}
-      onMouseOver={{ locations: () => setCursorStyle('pointer') }}
-      onMouseLeave={{ locations: () => setCursorStyle('') }}
+      onMouseOver={{ locations: () => setCursorStyle('pointer'),
+                    clarityData: () => setCursorStyle('pointer')}} //not working yet
+      onMouseLeave={{ locations: () => setCursorStyle(''),
+                    clarityData: () => setCursorStyle('')}}
       viewport={store.viewport}
       onViewportChange={(e) => {
         return setViewport(e);
@@ -346,9 +348,9 @@ export function Map() {
                 ['linear'],
                 ['zoom'],
                 1,
-                ['case', ['==', ['get', 'ismonitor'], true], 4, 2],
+                ['case', ['==', ['get', 'ismonitor'], true], 2, 2],
                 14,
-                ['case', ['==', ['get', 'ismonitor'], true], 32, 15],
+                ['case', ['==', ['get', 'ismonitor'], true], 15, 15],
               ],
             },
           }}
@@ -394,9 +396,9 @@ export function Map() {
                 ['linear'],
                 ['zoom'],
                 2,
-                ['case', ['==', ['get', 'ismonitor'], true], 1, 0.25],
+                ['case', ['==', ['get', 'ismonitor'], true], 0.25, 0.25],
                 14,
-                ['case', ['==', ['get', 'ismonitor'], true], 6, 0],
+                ['case', ['==', ['get', 'ismonitor'], true], 0, 0],
               ],
               'circle-stroke-opacity':
                 locationsCircleOpacityExpression(store),
@@ -407,9 +409,9 @@ export function Map() {
                 ['linear'],
                 ['zoom'],
                 1,
-                ['case', ['==', ['get', 'ismonitor'], true], 3, 2],
+                ['case', ['==', ['get', 'ismonitor'], true], 3, 3],
                 14,
-                ['case', ['==', ['get', 'ismonitor'], true], 22, 13],
+                ['case', ['==', ['get', 'ismonitor'], true], 22, 22],
               ],
             },
           }}
@@ -477,9 +479,9 @@ export function Map() {
                 ['linear'],
                 ['zoom'],
                 1,
-                ['case', ['==', ['get', 'ismonitor'], true], 5, 4],
+                ['case', ['==', ['get', 'ismonitor'], true], 4, 4],
                 14,
-                ['case', ['==', ['get', 'ismonitor'], true], 25, 17],
+                ['case', ['==', ['get', 'ismonitor'], true], 17, 17],
               ],
             },
           }}
@@ -510,18 +512,18 @@ export function Map() {
                 ['linear'],
                 ['zoom'],
                 1,
-                ['case', ['==', ['get', 'ismonitor'], true], 3, 2],
+                ['case', ['==', ['get', 'ismonitor'], true], 2, 2],
                 14,
-                ['case', ['==', ['get', 'ismonitor'], true], 22, 13],
+                ['case', ['==', ['get', 'ismonitor'], true], 13, 13],
               ],
               'circle-stroke-width': [
                 'interpolate',
                 ['linear'],
                 ['zoom'],
                 2,
-                ['case', ['==', ['get', 'ismonitor'], true], 2, 1],
+                ['case', ['==', ['get', 'ismonitor'], true], 1, 1],
                 14,
-                ['case', ['==', ['get', 'ismonitor'], true], 6, 4],
+                ['case', ['==', ['get', 'ismonitor'], true], 4, 4],
               ],
               'circle-stroke-color': '#85DBD9',
             },
@@ -534,12 +536,11 @@ export function Map() {
             source: 'locations',
             minzoom: 11,
             maxzoom: 24,
-            'source-layer': 'default',
             layout: {
-              'text-field': ['get', 'exceedance'],
-              'text-font': [
-                'Space Grotesk Regular',
-                'Arial Unicode MS Regular',
+              'text-field': [
+                'case',
+                  ['==', ['get', 'active'], true],
+                    ['get', 'exceedance']
               ],
               'text-size': [
                 'interpolate',
@@ -550,18 +551,10 @@ export function Map() {
                 24,
                 18,
               ],
-              'text-transform': 'uppercase',
-              'text-allow-overlap': true,
-              'text-letter-spacing': 0,
-              'text-offset': [0, 0],
             },
             paint: {
-              'text-color': [
-                'case',
-                ['==', ['get', 'active'], true],
-                'white',
-                'black',
-              ],
+              'text-color': 'black',
+              'text-opacity': 1,
             },
           }}
         />
@@ -574,7 +567,6 @@ export function Map() {
         }}
       >
         <Layer
-          onMouseOver={{'clarityData': () => setCursorStyle('pointer') }} //not working
           onClick={(e) => {
             const coordinates = getFeature(e);
             e.target.flyTo({
@@ -589,7 +581,15 @@ export function Map() {
             type: 'circle',
             source: 'clarityData',
             paint: {
-              'circle-radius': 20,
+              'circle-radius': [
+                'interpolate',
+                ['linear'],
+                ['zoom'],
+                1,
+                ['case', ['==', ['get', 'ismonitor'], true], 3, 3],
+                14,
+                ['case', ['==', ['get', 'ismonitor'], true], 22, 22],
+              ],
               'circle-color': 
               [
                 "interpolate",
