@@ -4,7 +4,7 @@ import {
   LowCostSensorMarker,
   NoRecentUpdateMarker,
   ReferenceGradeMarker,
-  AQIMarker, //new
+  TextMarker, //new
 } from '../LocationMarker';
 import Accordion from './Accordion';
 
@@ -48,14 +48,14 @@ export default function FilterOverlayCard() {
       toggleProviderList,
       toggleMonitor,
       toggleAirSensor,
-      toggleAQI, // new
+      toggleText, // new
       toggleInactive,
     },
   ] = useStore();
 
   const [showMonitors, setShowMonitors] = createSignal(true);
-  const [showAQI, setShowAQI] = createSignal(true);
-  const [showAirSensors, setShowAirSensors] = createSignal(true); //new
+  const [showText, setShowText] = createSignal(true); //new
+  const [showAirSensors, setShowAirSensors] = createSignal(true);
 
   const monitorCheck = (e) => {
     setShowMonitors(e.target.checked);
@@ -67,10 +67,10 @@ export default function FilterOverlayCard() {
     toggleAirSensor(e.target.checked);
   };
 
-  // const aqiCheck = (e) => {          //new
-  //   setShowAQI(e.target.checked);
-  //   toggleAQI(e.target.checked);
-  // }
+  const textCheck = (e) => {          //new
+    //setShowText(e.target.checked);
+    toggleText(e.target.checked);
+  }
 
   const noRecentUpdatesCheck = (e) => {
     toggleInactive(e.target.checked);
@@ -117,19 +117,19 @@ export default function FilterOverlayCard() {
               />
             </label>
 
-            {/* <AQIMarker /> 
-            <label class="marker-legend-item" for="aqi">
-              Air Quality Index (AQI)
+            <TextMarker /> 
+            <label class="marker-legend-item" for="data-text">
+              Show Text
               <input
                 type="checkbox"
-                name="aqi"
-                id="aqi"
+                name="data-text"
+                id="data-text"
                 class="checkbox"
-                checked={store.mapFilters.aqi}
-                onChange={aqiCheck}
-                disabled={!showAQI()}
+                checked={store.mapFilters.dataText}
+                onChange={textCheck}
+                disabled={!showText()}
               />
-            </label> */}
+            </label>
 
             <NoRecentUpdateMarker />
             <label class="marker-legend-item" for="no-recent-updates">

@@ -98,6 +98,7 @@ test.describe('explore page', () => {
     await expect(page.getByLabel('Low-cost sensors locations')).toBeChecked();
     await expect(page.getByLabel('Show locations with no recent updates')).toBeChecked();
     await expect(page.getByLabel('Show locations with Poor data coverage')).toBeChecked();
+    await expect(page.getByLabel('Show Text')).toBeChecked(); //new
   });
 
   test('Select PM10, assert network call and legend text', async ({ page }) => { 

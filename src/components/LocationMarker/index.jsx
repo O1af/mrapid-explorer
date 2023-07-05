@@ -15,10 +15,10 @@ export function LowCostSensorMarker() {
   );
 }
 
-export function AQIMarker() {
+export function TextMarker() {
   return (
-    <div class="aqi-marker">
-      <div class="aqi-marker__fill" />
+    <div class="data-text-marker">
+      <div class="data-text-marker__fill" />
     </div>
   );
 }

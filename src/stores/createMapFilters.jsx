@@ -6,6 +6,7 @@ export default function createMapFilters(client, actions, state) {
     airSensor: true,
     excludeInactive: true,
     providers: state.providers,
+    dataText: true, //determines whether the checkbox is checked or not upon load
   });
   Object.assign(actions, {
     toggleMonitor: (value) => {
@@ -16,6 +17,9 @@ export default function createMapFilters(client, actions, state) {
     },
     toggleInactive: (value) => {
       setMapFilters({ excludeInactive: !value });
+    },
+    toggleText: (value) => {
+      setMapFilters({dataText: value});
     },
     updateProviders: (providersIds) => {
       setMapFilters({
