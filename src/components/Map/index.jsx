@@ -573,6 +573,7 @@ export function Map() {
           }}
         />
         <Layer
+        visible = {store.mapFilters.dataText}
           style={{
             id: 'clarity-text',
             type: 'symbol',
