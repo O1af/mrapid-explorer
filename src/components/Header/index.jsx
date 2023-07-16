@@ -7,7 +7,7 @@ export default function Header() {
       <div class="header-contents">
         <a href="/" class="header-logo" aria-label="logo">
           {/*<img src={imgSvg} alt="logo" />*/}
-          M-RAPID Maps
+          M-RAPID
         </a>
         <div class="spacer" />
         <nav class="nav">
@@ -21,30 +21,24 @@ export default function Header() {
             <li>
               <a
                 class="nav__item nav__item--active explore-data-tab"
-                href="https://explore.openaq.org"
+                href="./map"
               >
                 Pollution Map
               </a>
             </li>
             <li>
               <a
-                href="https://openaq.org/why-air-quality"
-                class="nav__item air-quality-tab"
+                class="nav__item nav__item--active explore-data-tab"
+                href="./data"
               >
-                Sensors
+                Data
               </a>
             </li>
-            <li>
+            {/* Uncomment code below if we decide to make data tab a dropdown menu
+            (note the links will have to be fixed) */}
+            {/* <li class="dropdown">
               <a
-                href="https://openaq.org/why-open-data"
-                class="nav__item open-data-tab"
-              >
-                Emission Sources
-              </a>
-            </li>
-            <li class="dropdown">
-              <a
-                href="file:/pages.Data.jsx"            //FIX THIS!!!!
+                href={"./data"}
                 aria-haspopup="true"
                 class="nav__item"
               >
@@ -68,7 +62,7 @@ export default function Header() {
                   </a>
                 </li>
               </ul>
-            </li>
+            </li> */}
             <li>
               <a
                 href="https://openaq.org/partners"
