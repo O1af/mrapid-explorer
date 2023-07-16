@@ -286,6 +286,7 @@ export default function Accordion() {
           class="select"
           onChange={(e) => {
             loadParameter(e.target.value);
+            //to get parameter do : store.parameter.id
           }}
         >
           <For each={store.parameters()}>

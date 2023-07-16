@@ -91,7 +91,7 @@ export default function OverlayCard() {
           name=""
           id=""
           class="select"
-          onChange={(e) => loadParameter(e.target.value)}
+          onChange={(e) => {loadParameter(e.target.value)}}
         >
           <For each={store.parameters}>
             {(parameter) => (

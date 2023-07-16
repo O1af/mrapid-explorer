@@ -270,7 +270,6 @@ let dataset = {"type":"FeatureCollection","features":[{"type":"Feature","geometr
     
   });
   
-  
   return (
     <MapGL
       class="map"
@@ -560,13 +559,14 @@ let dataset = {"type":"FeatureCollection","features":[{"type":"Feature","geometr
                 14,
                 ['case', ['==', ['get', 'ismonitor'], true], 22, 22],
               ],
+              'circle-opacity': ['case', ['==', ["has",(store.parameters()[store.parameter.id-1]).name,["properties"]], true], 1, .1],
               'circle-color': 
               [
                 "interpolate",
   ["linear"],
   [
     "to-number",
-    ["get","value",["get","pm2.5",["properties"]]]
+    ["get","value",["get",(store.parameters()[store.parameter.id-1]).name,["properties"]]]
   ]
   
 ,
@@ -600,7 +600,7 @@ let dataset = {"type":"FeatureCollection","features":[{"type":"Feature","geometr
             source: 'clarityData',
             layout: {
                "text-field": 
-               ["get","value",["get","pm2.5",["properties"]]]
+               ["get","value",["get",(store.parameters()[store.parameter.id-1]).name,["properties"]]]
                ,
               "text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
               "text-size": 20
