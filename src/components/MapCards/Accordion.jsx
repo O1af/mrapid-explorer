@@ -247,7 +247,6 @@ export default function Accordion() {
   //   setAqi(aqi1);
   // });
   
-
   return (
     <AccordionProvider>
       {/* <AccordionPanel
@@ -290,7 +289,8 @@ export default function Accordion() {
           }}
         >
           <For each={store.parameters()}>
-            {(parameter) => (
+            {
+            (parameter) => (
               <option
                 value={parameter.id}
                 selected={parameter.id == store.parameter.id}

@@ -260,19 +260,17 @@ export function Map() {
     }
     return geojson;
 }
-
+let dataset = {"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"Point","coordinates":["-83.0589","42.3656"]},"properties":{"NO2":{"value":"14","unit":"ppb"},"pm2.5":{"value":"11","unit":"µg/m³"},"pm1":{"value":"9","unit":"µg/m³"},"pm10":{"value":"14","unit":"µg/m³"},"info":{"sensorID":"CLA : EC2","source":"CLARITY"}}}]}
 
   const [clarityData, setClarityData] = createSignal(getAllCoordinatesAsGeoJSON(getClarityData()));
   
   createEffect(async () => {
     const data = await getClarityData();
     await setClarityData(getAllCoordinatesAsGeoJSON(data));
-    console.log(data);
-    console.log(clarityData());
+    
   });
   
-  console.log(clarityData());
-
+  
   return (
     <MapGL
       class="map"
@@ -281,7 +279,7 @@ export function Map() {
         style: import.meta.env.VITE_MAPBOX_STYLE,
         touchZoomRotate: false,
         dragRotate: false,
-        minZoom: 10,
+        minZoom: 9,
         maxZoom: 14,
       }}
       cursorStyle={cursorStyle()}
@@ -301,6 +299,7 @@ export function Map() {
         options={{ showCompass: false, showZoom: true }}
       />
       <Geocoder />
+      {/*  
       <Source
         source={{
           id: 'locations',
@@ -529,11 +528,12 @@ export function Map() {
           }}
         />
       </Source>
+      */}
       <Source
         id='clarityData' //idk if this needs to be here. trying to add an id to this source layer
         source={{
           type: 'geojson',
-          data: 'https://mocki.io/v1/a312ed2e-fbb7-48c0-8777-ae5c61efc8ba',
+          data: 'https://mrapid-api3-r2oaltsiuq-uc.a.run.app/mapdata',
         }}
       >
         <Layer
@@ -564,10 +564,30 @@ export function Map() {
               [
                 "interpolate",
   ["linear"],
-  ["get", "raw", ["get", "pm2_5ConcMass", ["get", "characteristics", ["properties"]]]],
+  [
+    "to-number",
+    ["get","value",["get","pm2.5",["properties"]]]
+  ]
+  
+,
                 -1,
                 '#ddd', // light gray
                 ...getColorScale(store),
+              ],
+              'circle-stroke-color': [
+                'case',
+                ['==', ['get', 'ismonitor'], true],
+                'white',
+                'white',
+              ],
+              'circle-stroke-width': [
+                'interpolate',
+                ['linear'],
+                ['zoom'],
+                2,
+                ['case', ['==', ['get', 'ismonitor'], true], 1, 0.25],
+                14,
+                ['case', ['==', ['get', 'ismonitor'], true], 5, 5],
               ],
             },
           }}
@@ -579,7 +599,9 @@ export function Map() {
             type: 'symbol',
             source: 'clarityData',
             layout: {
-              "text-field": ["get", "raw", ["get", "pm2_5ConcMass", ["get", "characteristics", ["properties"]]]]              ,
+               "text-field": 
+               ["get","value",["get","pm2.5",["properties"]]]
+               ,
               "text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
               "text-size": 20
               }

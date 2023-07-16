@@ -21,6 +21,22 @@ export default function createClient([actions]) {
       headers['Content-Type'] = 'application/json';
       opts.body = JSON.stringify(data);
     }
+    if(url =='/parameterList'){
+      //return response from https://mrapid-api3-r2oaltsiuq-uc.a.run.app/parameterList
+      try {
+        const response = await fetch('https://mrapid-api3-r2oaltsiuq-uc.a.run.app/parameterList');
+        const json = await response.json();
+        const res = resKey ? json[resKey] : json;
+        return idx != undefined ? res[idx] : res;
+      } catch (err) {
+        if (err && err.response && err.response.status === 401) {
+          actions.logout();
+        }
+        console.log(err);
+        return err;
+      }
+      
+    }
 
     try {
       const response = await fetch(url_root + url, opts);
@@ -51,7 +67,9 @@ export default function createClient([actions]) {
   };
 
   const Parameters = {
-    getAll: () => send('get', `/v3/parameters`, undefined, 'results'),
+    //getAll: () => send('get', `/v3/parameters`, undefined, 'results'),
+    //return response from https://mrapid-api3-r2oaltsiuq-uc.a.run.app/parameterList
+    getAll: () => send('get', `/parameterList`, undefined, 'results'),
   };
 
   const Providers = {
