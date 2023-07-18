@@ -1,53 +1,59 @@
 function Data() {
     return (
-      <div class="page-data">
-        <h1>
-          Data
-        </h1>
-        <h2>
-          Download data from a sensor.
-        </h2>
+      <section class="page-data">
+        <div class="data-form">
         <form>
-          <p>
-          <label>
+        <h1>
+          Download data from a sensor
+        </h1>
+          <label class="data-form-item">
             Zip code
-            <input type="number" name="zip"></input>
+            <input type="search" name="zip" class="text-input"></input>
           </label>
-          </p>
-          <p>
-          <label>
-              Sensor (nothing here yet)
+          <label class="data-form-item">
+              Sensor
+              <select class="select">
+              <option>Clarity 12</option>
+              <option>PurpleAir 5</option>
+              <option>EPA 368</option>
+              <option>DST 5</option>
+            </select>
           </label>
-          </p>
-          <p>
-          <label>
+          <label class="data-form-item">
             Pollutant
+            <select class="select">
+              <option>PM 2.5</option>
+              <option>PM 10</option>
+              <option>O3</option>
+              <option>CO</option>
+            </select>
           </label>
-          </p>
-          <p>
-          <label>
+          <label class="data-form-item">
             Start time/date
-            <input type="datetime-local" name="start-time"></input>
+            <input type="datetime-local" name="start-time" class="text-input"></input>
           </label>
-          </p>
-          <p>
-          <label>
+          <label class="data-form-item">
             End time/date
-            <input type="datetime-local" name="end-time"></input>
+            <input type="datetime-local" name="end-time" class="text-input"></input>
           </label>
-          </p>
-          <p>
-          <label>
+          <label class="data-form-item">
             Time step
+            <select class="select">
+              <option>Hourly</option>
+              <option>Daily</option>
+              <option>Monthly</option>
+              <option>Yearly</option>
+            </select>
           </label>
-          </p>
-          <p>
-          <label>
-            <input type="submit" name="submit"></input>
+          <div class="data-chart">data chart goes here</div>
+          <label class="data-form-item">
+            <button type="submit" name="submit" class="icon-btn btn-secondary">Download</button>
           </label>
-          </p>
         </form>
-      </div>
+        </div>
+        <div class="data-image">image goes here</div>
+        {/* put another div here for image */}
+      </section>
     );
   }
   

@@ -9,7 +9,7 @@
 @use './horizontal-rule';
 @use './location-detail-card';
 
-
+@use './datatab';
 @use './flip-card';
 @use './breadcrumbs';
 @use './buttons' as *;
@@ -69,6 +69,8 @@ body {
   position: relative;
   align-items: center;
   justify-content: center;
+  margin-left:4px;
+  display:flex;
 }
 
 .page-404 {
