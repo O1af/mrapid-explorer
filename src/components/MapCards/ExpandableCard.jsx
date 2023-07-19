@@ -24,7 +24,7 @@ export function ExpandableCard(props) {
         <div style={{ display: 'flex', 'align-items': 'center' }}>
           <span class="material-symbols-outlined white">layers</span>
           <h3 class="type-heading3 text-white">
-            {open() ? 'Overlay' : 'Overlay & Filters'}
+            {open() ? 'Settings' : 'Overlay & Filters'}
           </h3>
         </div>
       </div>
@@ -56,7 +56,9 @@ export default function FilterOverlayCard() {
   const [showMonitors, setShowMonitors] = createSignal(true);
   const [showText, setShowText] = createSignal(true); //new
   const [showAirSensors, setShowAirSensors] = createSignal(true);
-
+  const [showDSTSensors, setShowDSTSensors] = createSignal(true);
+  const [showClaritySensors, setShowClaritySensors] = createSignal(true);
+  const [showTSISensors, setShowTSISensors] = createSignal(true);
   const monitorCheck = (e) => {
     setShowMonitors(e.target.checked);
     toggleMonitor(e.target.checked);
@@ -92,7 +94,7 @@ export default function FilterOverlayCard() {
           <div class="filters-section__body">
             <ReferenceGradeMarker />
             <label class="marker-legend-item" for="reference-grade">
-              <span>Reference monitor locations</span>
+              <span>EPA monitor locations</span>
               <input
                 type="checkbox"
                 name="reference-grade"
@@ -105,7 +107,20 @@ export default function FilterOverlayCard() {
             </label>
             <LowCostSensorMarker />
             <label class="marker-legend-item" for="low-cost-sensor">
-              Air sensors locations
+              PurpleAir locations
+              <input
+                type="checkbox"
+                name="low-cost-sensor"
+                id="low-cost-sensor"
+                class="checkbox"
+                checked={store.mapFilters.airSensor}
+                onChange={sensorCheck}
+                disabled={!showMonitors()}
+              />
+            </label>
+            <LowCostSensorMarker />
+            <label class="marker-legend-item" for="low-cost-sensor">
+              DST locations
               <input
                 type="checkbox"
                 name="low-cost-sensor"
@@ -117,7 +132,33 @@ export default function FilterOverlayCard() {
               />
             </label>
 
-            <TextMarker /> 
+            <LowCostSensorMarker />
+            <label class="marker-legend-item" for="low-cost-sensor">
+              Clarity locations
+              <input
+                type="checkbox"
+                name="low-cost-sensor"
+                id="low-cost-sensor"
+                class="checkbox"
+                checked={store.mapFilters.airSensor}
+                onChange={sensorCheck}
+                disabled={!showMonitors()}
+              />
+            </label>
+            <LowCostSensorMarker />
+            <label class="marker-legend-item" for="low-cost-sensor">
+              TSI locations
+              <input
+                type="checkbox"
+                name="low-cost-sensor"
+                id="low-cost-sensor"
+                class="checkbox"
+                checked={store.mapFilters.airSensor}
+                onChange={sensorCheck}
+                disabled={!showMonitors()}
+              />
+            </label>
+            {/* <TextMarker /> 
             <label class="marker-legend-item" for="data-text">
               Show Text
               <input
@@ -129,9 +170,9 @@ export default function FilterOverlayCard() {
                 onChange={textCheck}
                 disabled={!showText()}
               />
-            </label>
+            </label> */}
 
-            <NoRecentUpdateMarker />
+            {/* <NoRecentUpdateMarker />
             <label class="marker-legend-item" for="no-recent-updates">
               Show locations with no recent updates
               <input
@@ -141,7 +182,7 @@ export default function FilterOverlayCard() {
                 class="checkbox"
                 onChange={noRecentUpdatesCheck}
               />
-            </label>
+            </label> */}
           </div>
         </div>
         <div class="expandable-card__footer">

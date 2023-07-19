@@ -3,7 +3,7 @@ import { createStore } from 'solid-js/store';
 export default function createParameter(client, actions, state) {
   //const [parameterId, setParameter] = createSignal(2);
   const [parameter, setParameter] = createStore({
-    id: 4,
+    id: 3,
     parameterName: 'PM 2.5',
     unit: 'µg/m³',
   });
