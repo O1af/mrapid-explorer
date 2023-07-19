@@ -7,6 +7,42 @@ export function ReferenceGradeMarker() {
   );
 }
 
+export function PurpleAirMarker() {
+  return (
+    <div class="reference-grade-marker">
+      <div class="purple-air-marker__border" />
+      <div class="reference-grade-marker__fill" />
+    </div>
+  );
+}
+
+export function DSTMarker() {
+  return (
+    <div class="reference-grade-marker">
+      <div class="dst-marker__border" />
+      <div class="reference-grade-marker__fill" />
+    </div>
+  );
+}
+
+export function TSIMarker() {
+  return (
+    <div class="reference-grade-marker">
+      <div class="tsi-marker__border" />
+      <div class="reference-grade-marker__fill" />
+    </div>
+  );
+}
+
+export function ClarityMarker() {
+  return (
+    <div class="reference-grade-marker">
+      <div class="clarity-marker__border" />
+      <div class="reference-grade-marker__fill" />
+    </div>
+  );
+}
+
 export function LowCostSensorMarker() {
   return (
     <div class="low-cost-sensor-marker">

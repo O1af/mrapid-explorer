@@ -82,7 +82,7 @@ function AccordionPanel(props) {
           <AccordionHelp contentKey={props.contentKey} open={open} />
         </div>
         <div class="header-section">
-          {props.active ? (
+          {/* {props.active ? (
             <Badge type={'status-ok'}>
               Active
               <span class={`material-symbols-outlined white`}>
@@ -97,7 +97,7 @@ function AccordionPanel(props) {
             >
               visibility_off
             </span>
-          )}
+          )} */}
         </div>
       </header>
       <div
@@ -307,14 +307,6 @@ export default function Accordion() {
         >
           Update
         </button>
-      </AccordionPanel>
-      <AccordionPanel
-        name="thresholds"
-        title="Thresholds"
-        contentKey="thresholds"
-        active={store.mapThreshold.active}
-      >
-        <ThresholdSelect />
       </AccordionPanel>
     </AccordionProvider>
   );

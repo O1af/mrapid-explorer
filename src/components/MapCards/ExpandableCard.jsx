@@ -1,9 +1,12 @@
 import { createSignal } from 'solid-js';
 import { useStore } from '../../stores';
 import {
+  ClarityMarker,
+  DSTMarker,
   LowCostSensorMarker,
-  NoRecentUpdateMarker,
+  PurpleAirMarker,
   ReferenceGradeMarker,
+  TSIMarker,
   TextMarker, //new
 } from '../LocationMarker';
 import Accordion from './Accordion';
@@ -22,7 +25,6 @@ export function ExpandableCard(props) {
     >
       <div class="expandable-card__header">
         <div style={{ display: 'flex', 'align-items': 'center' }}>
-          <span class="material-symbols-outlined white">layers</span>
           <h3 class="type-heading3 text-white">
             {open() ? 'Settings' : 'Overlay & Filters'}
           </h3>
@@ -105,8 +107,8 @@ export default function FilterOverlayCard() {
                 disabled={!showAirSensors()}
               />
             </label>
-            <LowCostSensorMarker />
-            <label class="marker-legend-item" for="low-cost-sensor">
+            <PurpleAirMarker />
+            <label class="marker-legend-item" for="purple-air">
               PurpleAir locations
               <input
                 type="checkbox"
@@ -118,7 +120,7 @@ export default function FilterOverlayCard() {
                 disabled={!showMonitors()}
               />
             </label>
-            <LowCostSensorMarker />
+            <DSTMarker />
             <label class="marker-legend-item" for="low-cost-sensor">
               DST locations
               <input
@@ -132,7 +134,7 @@ export default function FilterOverlayCard() {
               />
             </label>
 
-            <LowCostSensorMarker />
+            <ClarityMarker />
             <label class="marker-legend-item" for="low-cost-sensor">
               Clarity locations
               <input
@@ -145,7 +147,7 @@ export default function FilterOverlayCard() {
                 disabled={!showMonitors()}
               />
             </label>
-            <LowCostSensorMarker />
+            <TSIMarker />
             <label class="marker-legend-item" for="low-cost-sensor">
               TSI locations
               <input
@@ -185,7 +187,7 @@ export default function FilterOverlayCard() {
             </label> */}
           </div>
         </div>
-        <div class="expandable-card__footer">
+        {/* <div class="expandable-card__footer">
           <button
             class="btn btn-secondary icon-btn"
             onClick={() => toggleProviderList(true)}
@@ -193,7 +195,7 @@ export default function FilterOverlayCard() {
             Choose data providers
             <span class="material-symbols-outlined green">tune</span>
           </button>
-        </div>
+        </div> */}
       </section>
     </ExpandableCard>
   );
