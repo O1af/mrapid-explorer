@@ -3,7 +3,7 @@ import { createStore } from 'solid-js/store';
 export default function createParameter(client, actions, state) {
   //const [parameterId, setParameter] = createSignal(2);
   const [parameter, setParameter] = createStore({
-    id: 3, //changes which pollutant initially appears on load
+    id: 1, //changes which pollutant initially appears on load
     parameterName: 'PM 2.5', //starting label for starting pollutant
     unit: 'µg/m³',
   });
