@@ -4,6 +4,7 @@ import {
   ClarityMarker,
   DSTMarker,
   LowCostSensorMarker,
+  NoRecentUpdateMarker,
   PurpleAirMarker,
   ReferenceGradeMarker,
   TSIMarker,
@@ -51,7 +52,11 @@ export default function FilterOverlayCard() {
       toggleMonitor,
       toggleAirSensor,
       toggleText, // new
+      toggleDST,
+      toggleTSI,
+      toggleClarity,
       toggleInactive,
+      togglePurpleAir,
     },
   ] = useStore();
 
@@ -70,11 +75,21 @@ export default function FilterOverlayCard() {
     setShowAirSensors(e.target.checked);
     toggleAirSensor(e.target.checked);
   };
-
-  const textCheck = (e) => {          //new
-    //setShowText(e.target.checked);
-    toggleText(e.target.checked);
-  }
+  const clarityCheck = (e) => {
+    setShowClaritySensors(e.target.checked);
+    toggleClarity(e.target.checked);
+  };
+  const dstCheck = (e) => {
+    setShowDSTSensors(e.target.checked);
+    toggleDST(e.target.checked);
+  };
+  const tsiCheck = (e) => {
+    setShowTSISensors(e.target.checked);
+    toggleTSI(e.target.checked);
+  };
+  const purpleairCheck = (e) => {
+    togglePurpleAir(e.target.checked);
+  };
 
   const noRecentUpdatesCheck = (e) => {
     toggleInactive(e.target.checked);
@@ -94,6 +109,19 @@ export default function FilterOverlayCard() {
         </header>
         <div style={{ margin: '16px 15px' }}>
           <div class="filters-section__body">
+            <NoRecentUpdateMarker />
+            <label class="marker-legend-item" for="recent-updates">
+              <span>Exclude Inactive Monitors</span>
+              <input
+                type="checkbox"
+                name="recent-updates"
+                id="recent-updates"
+                class="checkbox"
+                checked={store.mapFilters.excludeInactive}
+                onChange={noRecentUpdatesCheck}
+              />
+            </label>
+            
             <ReferenceGradeMarker />
             <label class="marker-legend-item" for="reference-grade">
               <span>EPA monitor locations</span>
@@ -115,9 +143,8 @@ export default function FilterOverlayCard() {
                 name="low-cost-sensor"
                 id="low-cost-sensor"
                 class="checkbox"
-                checked={store.mapFilters.airSensor}
-                onChange={sensorCheck}
-                disabled={!showMonitors()}
+                checked={store.mapFilters.purpleair}
+                onChange={purpleairCheck}
               />
             </label>
             <DSTMarker />
@@ -128,9 +155,8 @@ export default function FilterOverlayCard() {
                 name="low-cost-sensor"
                 id="low-cost-sensor"
                 class="checkbox"
-                checked={store.mapFilters.airSensor}
-                onChange={sensorCheck}
-                disabled={!showMonitors()}
+                checked={store.mapFilters.dst}
+                onChange={dstCheck}
               />
             </label>
 
@@ -142,9 +168,8 @@ export default function FilterOverlayCard() {
                 name="low-cost-sensor"
                 id="low-cost-sensor"
                 class="checkbox"
-                checked={store.mapFilters.airSensor}
-                onChange={sensorCheck}
-                disabled={!showMonitors()}
+                checked={store.mapFilters.clarity}
+                onChange={clarityCheck}
               />
             </label>
             <TSIMarker />
@@ -155,9 +180,8 @@ export default function FilterOverlayCard() {
                 name="low-cost-sensor"
                 id="low-cost-sensor"
                 class="checkbox"
-                checked={store.mapFilters.airSensor}
-                onChange={sensorCheck}
-                disabled={!showMonitors()}
+                checked={store.mapFilters.tsi}
+                onChange={tsiCheck}
               />
             </label>
             {/* <TextMarker /> 

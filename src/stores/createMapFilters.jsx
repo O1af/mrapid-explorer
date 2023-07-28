@@ -6,7 +6,13 @@ export default function createMapFilters(client, actions, state) {
     airSensor: true,
     excludeInactive: true,
     providers: state.providers,
-    dataText: true, //determines whether the checkbox is checked or not upon load
+    dataText: true,
+    clarity:true,
+    openaq:true,
+    purpleair:true,
+    dst:true,
+    tsi:true
+     //determines whether the checkbox is checked or not upon load
   });
   Object.assign(actions, {
     toggleMonitor: (value) => {
@@ -16,7 +22,7 @@ export default function createMapFilters(client, actions, state) {
       setMapFilters({ airSensor: value });
     },
     toggleInactive: (value) => {
-      setMapFilters({ excludeInactive: !value });
+      setMapFilters({ excludeInactive: value });
     },
     toggleText: (value) => {
       setMapFilters({dataText: value});
@@ -26,6 +32,21 @@ export default function createMapFilters(client, actions, state) {
         providers: providersIds,
       });
     },
+    toggleClarity: (value) => {
+      setMapFilters({ clarity: value });
+    },
+    toggleOpenAQ: (value) => {
+      setMapFilters({ openaq: value });
+    },
+    togglePurpleAir: (value) => {
+      setMapFilters({ purpleair: value });
+    },
+    toggleDST: (value) => {
+      setMapFilters({ dst: value });
+    },
+    toggleTSI: (value) => {
+      setMapFilters({ tsi: value });
+    }
   });
 
   return mapFilters;

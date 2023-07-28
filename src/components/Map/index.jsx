@@ -218,6 +218,7 @@ export function Map() {
 
     return features[0].geometry.coordinates;
   }
+  console.log(store.mapFilters.purpleair);
 
   const URL = 'https://clarity-data-api.clarity.io/v1/measurements?code=AT9BM6VV,ALQ1TJN6,AXPPQ0QF,AW2JHDG8&startTime=2023-06-01T00:00:00Z&endTime=2023-06-01T1:00:00Z';
   const APIkey = 'WIISszA2VDYFNB37ZdpkHoX07UHIvPSBkxc2npSR';
@@ -277,10 +278,14 @@ let dataset = {"type":"FeatureCollection","features":[{"type":"Feature","geometr
         maxZoom: 14,
       }}
       cursorStyle={cursorStyle()}
-      onMouseOver={{ locations: () => setCursorStyle('pointer'),
-                    clarityData: () => setCursorStyle('pointer')}} //not working yet
-      onMouseLeave={{ locations: () => setCursorStyle(''),
-                    clarityData: () => setCursorStyle('')}}
+      onMouseOver={{
+        locations: () => setCursorStyle("pointer"),
+        clarityData: () => setCursorStyle("pointer"),
+      }} //not working yet
+      onMouseLeave={{
+        locations: () => setCursorStyle(""),
+        clarityData: () => setCursorStyle(""),
+      }}
       viewport={store.viewport}
       onViewportChange={(e) => {
         return setViewport(e);
@@ -524,10 +529,10 @@ let dataset = {"type":"FeatureCollection","features":[{"type":"Feature","geometr
       </Source>
       */}
       <Source
-        id='clarityData' //idk if this needs to be here. trying to add an id to this source layer
+        id="clarityData" //idk if this needs to be here. trying to add an id to this source layer
         source={{
-          type: 'geojson',
-          data: 'https://mrapid-api3-r2oaltsiuq-uc.a.run.app/mapdata',
+          type: "geojson",
+          data: "https://mrapid-api3-r2oaltsiuq-uc.a.run.app/mapdata",
         }}
       >
         <Layer
@@ -540,66 +545,188 @@ let dataset = {"type":"FeatureCollection","features":[{"type":"Feature","geometr
               essential: true,
             });
           }}
+          filter={[
+            "all",
+            [
+              "any",
+              ["!", !store.mapFilters.purpleair],
+              ["!=", ["get", "source", ["get", "info", ["properties"]]], "PURPLEAIR"],
+            ],
+            [
+              "any",
+              ["!", !store.mapFilters.monitor],
+              ["!=", ["get", "source", ["get", "info", ["properties"]]], "OPENAQ"],
+            ],
+            [
+              "any",
+              ["!", !store.mapFilters.dst],
+              ["!=", ["get", "source", ["get", "info", ["properties"]]], "DST"],
+            ],
+            [
+              "any",
+              ["!", !store.mapFilters.tsi],
+              ["!=", ["get", "source", ["get", "info", ["properties"]]], "BLUESKY TSI"],
+            ],
+            [
+              "any",
+              ["!", !store.mapFilters.clarity],
+              ["!=", ["get", "source", ["get", "info", ["properties"]]], "CLARITY"],
+            ]
+          ]}
           style={{
-            id: 'clarity-locations',
-            type: 'circle',
-            source: 'clarityData',
+            id: "clarity-locations",
+            type: "circle",
+            source: "clarityData",
             paint: {
-              'circle-radius': [
-                'interpolate',
-                ['linear'],
-                ['zoom'],
-                1,
-                ['case', ['==', ['get', 'ismonitor'], true], 3, 3],
-                14,
-                ['case', ['==', ['get', 'ismonitor'], true], 22, 22],
-              ],
-              'circle-opacity': ['case', ['==', ["has",(store.parameters()[store.parameter.id-1]).name,["properties"]], true], 1, .1],
-              'circle-color': 
-              [
+              "circle-radius": [
                 "interpolate",
-  ["linear"],
-  [
-    "to-number",
-    ["get","value",["get",(store.parameters()[store.parameter.id-1]).name,["properties"]]]
-  ]
-  
-,
+                ["linear"],
+                ["zoom"],
+                1,
+                ["case", ["==", ["get", "ismonitor"], true], 3, 3],
+                14,
+                ["case", ["==", ["get", "ismonitor"], true], 22, 22],
+              ],
+              "circle-opacity": [
+                "case",
+                [
+                  "==",
+                  [
+                    "has",
+                    store.parameters()[store.parameter.id - 1].name,
+                    ["properties"],
+                  ],
+                  true,
+                ],
+                1,
+                0,
+              ],
+              "circle-stroke-opacity": [
+                "case",
+                ["==", !store.mapFilters.excludeInactive, true],
+                1,
+                [
+                  "case",
+                  [
+                    "==",
+                    [
+                      "has",
+                      store.parameters()[store.parameter.id - 1].name,
+                      ["properties"],
+                    ],
+                    true,
+                  ],
+                  1,
+                  0,
+                ],
+              ],
+              "circle-color": [
+                "interpolate",
+                ["linear"],
+                [
+                  "to-number",
+                  [
+                    "get",
+                    "value",
+                    [
+                      "get",
+                      store.parameters()[store.parameter.id - 1].name,
+                      ["properties"],
+                    ],
+                  ],
+                ],
+
                 -1,
-                '#ddd', // light gray
+                "#ddd", // light gray
                 ...getColorScale(store),
               ],
-              'circle-stroke-color': [
-                'case',
-                ['==', ['get', 'ismonitor'], true],
-                'white',
-                'white',
+              "circle-stroke-color": [
+                "match",
+                ["get", "source", ["get", "info", ["properties"]]],
+                "CLARITY",
+                "#49a1d6",
+                "OPENAQ",
+                "white",
+                "PURPLEAIR",
+                "#9a49d6",
+                "DST",
+                "#559660",
+                "BLUESKY TSI",
+                "#cc555c",
+                "white",
               ],
-              'circle-stroke-width': [
-                'interpolate',
-                ['linear'],
-                ['zoom'],
+              "circle-stroke-width": [
+                "interpolate",
+                ["linear"],
+                ["zoom"],
                 2,
-                ['case', ['==', ['get', 'ismonitor'], true], 1, 0.25],
+                ["case", ["==", ["get", "ismonitor"], true], 1, 0.25],
                 14,
-                ['case', ['==', ['get', 'ismonitor'], true], 5, 5],
+                [
+                  "case",
+                  [
+                    "==",
+                    [
+                      "has",
+                      store.parameters()[store.parameter.id - 1].name,
+                      ["properties"],
+                    ],
+                    true,
+                  ],
+                  6,
+                  3,
+                ],
               ],
             },
           }}
         />
         <Layer
-        visible = {store.mapFilters.dataText}
+          visible={store.mapFilters.dataText}
+          filter={[
+            "all",
+            [
+              "any",
+              ["!", !store.mapFilters.purpleair],
+              ["!=", ["get", "source", ["get", "info", ["properties"]]], "PURPLEAIR"],
+            ],
+            [
+              "any",
+              ["!", !store.mapFilters.monitor],
+              ["!=", ["get", "source", ["get", "info", ["properties"]]], "OPENAQ"],
+            ],
+            [
+              "any",
+              ["!", !store.mapFilters.dst],
+              ["!=", ["get", "source", ["get", "info", ["properties"]]], "DST"],
+            ],
+            [
+              "any",
+              ["!", !store.mapFilters.tsi],
+              ["!=", ["get", "source", ["get", "info", ["properties"]]], "BLUESKY TSI"],
+            ],
+            [
+              "any",
+              ["!", !store.mapFilters.clarity],
+              ["!=", ["get", "source", ["get", "info", ["properties"]]], "CLARITY"],
+            ]
+          ]}
           style={{
-            id: 'clarity-text',
-            type: 'symbol',
-            source: 'clarityData',
+            id: "clarity-text",
+            type: "symbol",
+            source: "clarityData",
             layout: {
-               "text-field": 
-               ["get","value",["get",(store.parameters()[store.parameter.id-1]).name,["properties"]]]
-               ,
+              "text-field": [
+                "get",
+                "value",
+                [
+                  "get",
+                  store.parameters()[store.parameter.id - 1].name,
+                  ["properties"],
+                ],
+              ],
               "text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
-              "text-size": 20
-              }
+              "text-size": 20,
+            },
           }}
         />
       </Source>
