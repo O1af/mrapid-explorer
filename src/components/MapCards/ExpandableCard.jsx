@@ -3,12 +3,12 @@ import { useStore } from '../../stores';
 import {
   ClarityMarker,
   DSTMarker,
-  LowCostSensorMarker,
+  // LowCostSensorMarker,
   NoRecentUpdateMarker,
   PurpleAirMarker,
   ReferenceGradeMarker,
   TSIMarker,
-  TextMarker, //new
+  // TextMarker, //new
 } from '../LocationMarker';
 import Accordion from './Accordion';
 
@@ -48,10 +48,10 @@ export default function FilterOverlayCard() {
   const [
     store,
     {
-      toggleProviderList,
+      // toggleProviderList,
       toggleMonitor,
       toggleAirSensor,
-      toggleText, // new
+      // toggleText, // new
       toggleDST,
       toggleTSI,
       toggleClarity,
@@ -111,7 +111,7 @@ export default function FilterOverlayCard() {
           <div class="filters-section__body">
             <NoRecentUpdateMarker />
             <label class="marker-legend-item" for="recent-updates">
-              <span>Exclude Inactive Monitors</span>
+              <span>Show monitors not measuring pollutant</span>
               <input
                 type="checkbox"
                 name="recent-updates"

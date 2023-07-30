@@ -117,16 +117,16 @@
     width: 28px;
     height: 28px;
     border-radius: 50%;
-    background-color: white;
+    background-image: linear-gradient(white, #cc555c, rgb(119, 0, 204), rgb(0, 174, 255), #559660);
     box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.5);
   }
 
   &__fill {
     position: absolute;
-    width: 20px;
-    height: 20px;
+    width: 23px;
+    height: 23px;
     border-radius: 50%;
-    background-color: variables.$smoke10;
+    background-color: rgb(247, 235, 214);
   }
 
   &__dot {
