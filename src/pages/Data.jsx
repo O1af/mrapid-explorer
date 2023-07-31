@@ -1,13 +1,29 @@
-function Data() {
+
+import React, { useState } from "react";
+import Select from "react-select";
+
+const Data = () => {
+  const options = [
+    { value: "Male", label: "Male" },
+    { value: "Female", label: "Female" },
+    { value: "Others", label: "Others" },
+  ];
+
     return (
       <section class="page-data">
+        
         <div class="data-form">
         <form>
         <h1>
           Download data from a sensor
         </h1>
+
+        <div>
+          <Select options={options} />
+        </div>
+        
           <label class="data-form-item">
-            Zip code
+            Sensor
             <input list="sensors" id="mySensor" size="35" name="mySensor" placeholder="Search by Zip Code..." />
             <datalist id="sensors">
             <option value="DST : 101 2236 14TH STREET (95120)"></option>
@@ -62,6 +78,6 @@ function Data() {
         {/* put another div here for image */}
       </section>
     );
-  }
+  };
   
   export default Data;
