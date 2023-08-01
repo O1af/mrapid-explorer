@@ -21,7 +21,7 @@ export default function Header() {
             <li>
               <a
                 class="nav__item nav__item--active explore-data-tab"
-                href="./"
+                href="./map"
               >
                 Pollution Map
               </a>
@@ -29,7 +29,7 @@ export default function Header() {
             <li>
               <a
                 class="nav__item nav__item--active explore-data-tab"
-                href={"./data"}
+                href="./data"
               >
                 Data
               </a>

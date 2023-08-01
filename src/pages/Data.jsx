@@ -1,23 +1,46 @@
-function Data() {
+
+import React, { useState } from "react";
+import Select from "react-select";
+
+const Data = () => {
+  const options = [
+    { value: "Male", label: "Male" },
+    { value: "Female", label: "Female" },
+    { value: "Others", label: "Others" },
+  ];
+
     return (
       <section class="page-data">
+        
         <div class="data-form">
         <form>
         <h1>
           Download data from a sensor
         </h1>
+
+        <div>
+          <Select options={options} />
+        </div>
+        
           <label class="data-form-item">
-            Zip code
-            <input type="search" name="zip" class="text-input"></input>
-          </label>
-          <label class="data-form-item">
-              Sensor
-              <select class="select">
-              <option>Clarity 12</option>
-              <option>PurpleAir 5</option>
-              <option>EPA 368</option>
-              <option>DST 5</option>
-            </select>
+            Sensor
+            <input list="sensors" id="mySensor" size="35" name="mySensor" placeholder="Search by Zip Code..." />
+            <datalist id="sensors">
+            <option value="DST : 101 2236 14TH STREET (95120)"></option>
+            <option value="DST : 102 TRINITY (20147)"></option>
+            <option value="DST : 103 TRINITY (20147)"></option>
+            <option value="DST : 93 2236 14TH STREET (95120)"></option>
+            <option value="DST : RECOVERY PARK (95120)"></option>
+            <option value="DST : OA 95 (48105)"></option>
+            <option value="DST : 96 ECN (90012)"></option>
+            <option value="DST : 99 TRINITY (20147)"></option>
+            <option value="DST : ANN ARBOR 2 (48105)"></option>
+            <option value="DST : LINWOOD (48105)"></option>
+            <option value="OAQ : PORT HURON (48060)"></option>
+            <option value="PAR : Appoline St (48227)"></option>
+            <option value="CLA : AHKQKKTX (48211)"></option>
+            <option value="TSI : FBPOWER1 (58757)"></option>
+            </datalist>
           </label>
           <label class="data-form-item">
             Pollutant
@@ -55,6 +78,6 @@ function Data() {
         {/* put another div here for image */}
       </section>
     );
-  }
+  };
   
   export default Data;
