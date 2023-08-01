@@ -6,7 +6,6 @@ const Detail = lazy(() => import('./pages/Detail'));
 const Explore = lazy(() => import('./pages/Explore'));
 const Data = lazy(() => import('./pages/Data'));
 const NotFound = lazy(() => import('./pages/NotFound'));
-const Data = lazy(() => import ('./pages/Data'));
 const Home = lazy(() => import ('./pages/Home'));
 
 function App() {

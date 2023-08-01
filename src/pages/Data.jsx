@@ -1,13 +1,9 @@
 
 import React, { useState } from "react";
-import Select from "react-select";
+import { Select } from "@thisbeyond/solid-select";
 
 const Data = () => {
-  const options = [
-    { value: "Male", label: "Male" },
-    { value: "Female", label: "Female" },
-    { value: "Others", label: "Others" },
-  ];
+  const options = ["apple", "banana", "pear", "pineapple", "kiwi"];
 
     return (
       <section class="page-data">
@@ -17,7 +13,6 @@ const Data = () => {
         <h1>
           Download data from a sensor
         </h1>
-
         <div>
           <Select options={options} />
         </div>
