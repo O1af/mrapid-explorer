@@ -1,0 +1,10 @@
+import{H as e}from"./HelpContent.fa2f7cb8.js";import{c as t}from"./index.098b95bd.js";const a=`<h1>Latest Readings Chart</h1>
+<p>The latest readings chart shows hourly measurements from the last 24 hours, 48 hours, 72 hours, 1 week or 30 days, starting from the current moment in time. Time values on the x-axis are shown in the location\u2019s local time.</p>
+<p>For sensors that report measurements at sub-hour intervals, an average (mean) of the hour is calculated. The hourly averages represent the time-ending values (\u201Cceiling\u201D), e.g., 10:00 represents the average value of measurements from 09:01 to 10:00.</p>
+<h3>Logarithmic scale vs linear scale</h3>
+<p>The chart provides two options for displaying values on the y-axis: linear (default) and logarithmic. The linear scale displays the values position on the y-axis in equal intervals. The logarithmic scale displays the value in exponential intervals, i.e., non-equal intervals. The logarithmic scale option is useful when viewing data with some values diverging greatly from the rest of the data as it can better respond to skewness in the data.</p>
+<h2>Why are there gaps in the chart?</h2>
+<p>In cases where an hourly measurement is missing, a point will not be visible. For missing data points, the connecting trend line is broken to better indicate the missing data. OpenAQ strives to ingest complete data, but sometimes data providers will have reporting outages, report data with a large delay, or experience device issues.</p>
+<h2>Why does the chart show negative readings?</h2>
+<p>Some instruments may occasionally report negative measurement values. Negative concentration values may seem impossible, but instruments may report negative values because of  calibration error, instrument failure, instrument uncertainty and/or poor model selection. QuantAQ explains this issue well on their <a href="https://blog.quant-aq.com/why-is-my-air-quality-monitor-reporting-negative-values-and-what-can-i-do-about-it/">blog</a>.</p>
+`;function i(){return t(e,{html:a})}export{i as default};
