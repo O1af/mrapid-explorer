@@ -1,4 +1,4 @@
-import{H as n}from"./HelpContent.fa2f7cb8.js";import{c as t}from"./index.098b95bd.js";const i=`<h1>Pollutants</h1>
+import{H as n}from"./HelpContent.f9947fc9.js";import{c as t}from"./index.247121f4.js";const i=`<h1>Pollutants</h1>
 <p>The OpenAQ database currently ingests the following pollutant data, with a focus on those in <strong>bold</strong>.</p>
 <ul>
 <li>PM<sub>1</sub> - particulate matter 1 microns (\u03BCm)</li>

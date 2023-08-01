@@ -1,0 +1,1 @@
+import{t as e}from"./index.247121f4.js";const s=e('<section class="page-404"><div class="bubble-lg"></div><div class="bubble-sm"></div><h1 class="type-heading-1">This is the home page</h1></section>',8);function a(){return s.cloneNode(!0)}export{a as default};
