@@ -1,7 +1,7 @@
 /* eslint-disable solid/style-prop */
 import MapGL, { Source, Layer, Control, useMap } from 'solid-map-gl';
 import Geocoder from '../Geocoder';
-import { Show, createEffect, createSignal, on } from 'solid-js';
+import { createEffect, createSignal, on } from 'solid-js';
 import { useStore } from '../../stores';
 
 function calculateFlyToDuration(zoom) {
@@ -51,11 +51,11 @@ export const parametersBins = {
   12: [0, 400, 1000, 2000, 3000, 4000], // CO₂ (ppm) openAQ's
 };
 
-function getField(store) {
-  return store.mapThreshold.active
-    ? ['number', ['get', 'exceedance']]
-    : ['number', ['get', 'value']];
-}
+// function getField(store) {
+//   return store.mapThreshold.active
+//     ? ['number', ['get', 'exceedance']]
+//     : ['number', ['get', 'value']];
+// }
 
 function colorScale(parameter) {
   const bins = hexValues.map((c, i) => [
@@ -70,11 +70,11 @@ function percentColorScale() {
   return bins;
 }
 
-function locationsCircleOpacityExpression(store) {
-  return store.mapThreshold.active
-    ? ['case', ['has', 'exceedance'], 1, 0]
-    : 1;
-}
+// function locationsCircleOpacityExpression(store) {
+//   return store.mapThreshold.active
+//     ? ['case', ['has', 'exceedance'], 1, 0]
+//     : 1;
+// }
 
 function getColorScale(store) {
   return store.mapThreshold.active
@@ -82,64 +82,64 @@ function getColorScale(store) {
     : colorScale(store.parameter.id).flat();
 }
 
-function createTileUrl(store) {
-  let parameters = '';
-  if (store.parameter.id) {
-    parameters = `parameters_id=${store.parameter?.id}`;
-  }
-  let isMonitor = '';
-  if (store.mapFilters.monitor && store.mapFilters.airSensor) {
-    isMonitor = '';
-  }
-  if (!store.mapFilters.monitor && store.mapFilters.airSensor) {
-    isMonitor = '&monitor=false';
-  }
-  if (store.mapFilters.monitor && !store.mapFilters.airSensor) {
-    isMonitor = '&monitor=true';
-  }
-  let excludeInactive = '';
-  if (store.mapFilters.excludeInactive) {
-    excludeInactive = '&active=true';
-  }
-  let providers_ids = '';
-  if (store.mapFilters.providers.length > 0) {
-    const providers = store.mapFilters.providers
-      .map((o) => o.id)
-      .join(',');
-    providers_ids = `&providers_id=${providers}`;
-  }
+// function createTileUrl(store) {
+//   let parameters = '';
+//   if (store.parameter.id) {
+//     parameters = `parameters_id=${store.parameter?.id}`;
+//   }
+//   let isMonitor = '';
+//   if (store.mapFilters.monitor && store.mapFilters.airSensor) {
+//     isMonitor = '';
+//   }
+//   if (!store.mapFilters.monitor && store.mapFilters.airSensor) {
+//     isMonitor = '&monitor=false';
+//   }
+//   if (store.mapFilters.monitor && !store.mapFilters.airSensor) {
+//     isMonitor = '&monitor=true';
+//   }
+//   let excludeInactive = '';
+//   if (store.mapFilters.excludeInactive) {
+//     excludeInactive = '&active=true';
+//   }
+//   let providers_ids = '';
+//   if (store.mapFilters.providers.length > 0) {
+//     const providers = store.mapFilters.providers
+//       .map((o) => o.id)
+//       .join(',');
+//     providers_ids = `&providers_id=${providers}`;
+//   }
 
-  return `${
-    import.meta.env.VITE_API_BASE_URL
-  }/v3/locations/tiles/{z}/{x}/{y}.pbf?${parameters}${isMonitor}${excludeInactive}${providers_ids}`;
-}
+//   return `${
+//     import.meta.env.VITE_API_BASE_URL
+//   }/v3/locations/tiles/{z}/{x}/{y}.pbf?${parameters}${isMonitor}${excludeInactive}${providers_ids}`;
+// }
 
-function createThresholdTileUrl(store) {
-  let parameters = '';
-  if (store.mapThreshold.parameter_id) {
-    parameters = `parameters_id=${store.mapThreshold.parameter_id}`;
-  }
-  let isMonitor = '';
-  if (store.mapFilters.monitor && store.mapFilters.airSensor) {
-    isMonitor = '';
-  }
-  if (!store.mapFilters.monitor && store.mapFilters.airSensor) {
-    isMonitor = '&monitor=false';
-  }
-  if (store.mapFilters.monitor && !store.mapFilters.airSensor) {
-    isMonitor = '&monitor=true';
-  }
-  let excludeInactive = '';
-  if (store.mapFilters.excludeInactive) {
-    excludeInactive = '&active=true';
-  }
-  let providers_ids = '';
-  const period = store.mapThreshold.period;
-  const threshold = store.mapThreshold.threshold;
-  return `${
-    import.meta.env.VITE_API_BASE_URL
-  }/v3/thresholds/tiles/{z}/{x}/{y}.pbf?period=${period}&threshold=${threshold}&${parameters}${isMonitor}${excludeInactive}${providers_ids}`;
-}
+// function createThresholdTileUrl(store) {
+//   let parameters = '';
+//   if (store.mapThreshold.parameter_id) {
+//     parameters = `parameters_id=${store.mapThreshold.parameter_id}`;
+//   }
+//   let isMonitor = '';
+//   if (store.mapFilters.monitor && store.mapFilters.airSensor) {
+//     isMonitor = '';
+//   }
+//   if (!store.mapFilters.monitor && store.mapFilters.airSensor) {
+//     isMonitor = '&monitor=false';
+//   }
+//   if (store.mapFilters.monitor && !store.mapFilters.airSensor) {
+//     isMonitor = '&monitor=true';
+//   }
+//   let excludeInactive = '';
+//   if (store.mapFilters.excludeInactive) {
+//     excludeInactive = '&active=true';
+//   }
+//   let providers_ids = '';
+//   const period = store.mapThreshold.period;
+//   const threshold = store.mapThreshold.threshold;
+//   return `${
+//     import.meta.env.VITE_API_BASE_URL
+//   }/v3/thresholds/tiles/{z}/{x}/{y}.pbf?period=${period}&threshold=${threshold}&${parameters}${isMonitor}${excludeInactive}${providers_ids}`;
+// }
 /*const [store, { clearLocation }] = useStore();
 const seriesData = () => {
   if (store.recentMeasurements()) {
@@ -215,51 +215,41 @@ export function Map() {
   }
   console.log(store.mapFilters.purpleair);
 
-  const URL = 'https://clarity-data-api.clarity.io/v1/measurements?code=AT9BM6VV,ALQ1TJN6,AXPPQ0QF,AW2JHDG8&startTime=2023-06-01T00:00:00Z&endTime=2023-06-01T1:00:00Z';
-  const APIkey = 'WIISszA2VDYFNB37ZdpkHoX07UHIvPSBkxc2npSR';
-  async function getClarityData() {
-    let res = await fetch(URL, {
-      method: 'GET',
-      headers: {
-        'x-api-key': APIkey,
-      },
-    })
-    let data = await res.json();
-    return data;
-  }
-  function getAllCoordinatesAsGeoJSON(jsonArray) {
-    let geojson = {
-        "type": "FeatureCollection",
-        "features": []
-    };
-    for (let i = 0; i < jsonArray.length; i++) {
-        let jsonObject = jsonArray[i];
-        if (jsonObject && jsonObject.location && jsonObject.location.coordinates) {
-            let feature = {
-                "type": "Feature",
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": jsonObject.location.coordinates
-                },
-                "properties": {
-                  "characteristics" : jsonObject.characteristics,
-                  "id" : jsonObject._id,
-                }
-            };
-            geojson.features.push(feature);
-        }
-    }
-    return geojson;
-}
-let dataset = {"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"Point","coordinates":["-83.0589","42.3656"]},"properties":{"NO2":{"value":"14","unit":"ppb"},"pm2.5":{"value":"11","unit":"µg/m³"},"pm1":{"value":"9","unit":"µg/m³"},"pm10":{"value":"14","unit":"µg/m³"},"info":{"sensorID":"CLA : EC2","source":"CLARITY"}}}]}
+//   async function getClarityData() {
+//     let res = await fetch(URL, {
+//       method: 'GET',
+//       headers: {
+//         'x-api-key': APIkey,
+//       },
+//     })
+//     let data = await res.json();
+//     return data;
+//   }
+//   function getAllCoordinatesAsGeoJSON(jsonArray) {
+//     let geojson = {
+//         "type": "FeatureCollection",
+//         "features": []
+//     };
+//     for (let i = 0; i < jsonArray.length; i++) {
+//         let jsonObject = jsonArray[i];
+//         if (jsonObject && jsonObject.location && jsonObject.location.coordinates) {
+//             let feature = {
+//                 "type": "Feature",
+//                 "geometry": {
+//                     "type": "Point",
+//                     "coordinates": jsonObject.location.coordinates
+//                 },
+//                 "properties": {
+//                   "characteristics" : jsonObject.characteristics,
+//                   "id" : jsonObject._id,
+//                 }
+//             };
+//             geojson.features.push(feature);
+//         }
+//     }
+//     return geojson;
+// }
 
-  const [clarityData, setClarityData] = createSignal(getAllCoordinatesAsGeoJSON(getClarityData()));
-  
-  createEffect(async () => {
-    const data = await getClarityData();
-    await setClarityData(getAllCoordinatesAsGeoJSON(data));
-    
-  });
   
   return (
     <MapGL

@@ -17,7 +17,8 @@ function App() {
         <Route path="/locations/:id" component={Detail} />
         <Route path="*" component={NotFound} />
         <Route path="/data" component={Data} />
-        <Route path="/" component={Home} />
+        <Route path="/" component={Explore} />
+        <Route path="/home" component={Home} />
       </Routes>
     </>
   );

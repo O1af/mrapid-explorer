@@ -1,5 +1,4 @@
-import imgSvg from '../../assets/logo.svg';
-import {Link} from 'react-router-dom';
+//import {Link} from 'react-router-dom';
 
 export default function Header() {
   return (
@@ -11,12 +10,12 @@ export default function Header() {
         </a>
         <div class="spacer" />
         <nav class="nav">
-          <input id="menu-toggle" type="checkbox"></input>
+          {/* <input id="menu-toggle" type="checkbox"/>
           <label class="menu-button-container" for="menu-toggle">
             <div class="menu-button">
               <span class="material-symbols-outlined">menu</span>
             </div>
-          </label>
+          </label> */}
           <ul class="nav-list">
             <li>
               <a
@@ -87,15 +86,15 @@ export default function Header() {
   );
 }
 
-function CustomLink({ to, children, ...props }) {
-  const resolvedPath = useResolvedPath(to)
-  const isActive = useMatch({ path: resolvedPath.pathname, end: true })
+// function CustomLink({ to, children, ...props }) {
+//   const resolvedPath = useResolvedPath(to)
+//   const isActive = useMatch({ path: resolvedPath.pathname, end: true })
 
-  return (
-    <li className={isActive ? "active" : ""}>
-      <Link to={to} {...props}>
-        {children}
-      </Link>
-    </li>
-  )
-}
+//   return (
+//     <li className={isActive ? "active" : ""}>
+//       <Link to={to} {...props}>
+//         {children}
+//       </Link>
+//     </li>
+//   )
+// }

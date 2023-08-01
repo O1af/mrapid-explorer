@@ -50,7 +50,6 @@ export default function FilterOverlayCard() {
     {
       // toggleProviderList,
       toggleMonitor,
-      toggleAirSensor,
       // toggleText, // new
       toggleDST,
       toggleTSI,
@@ -60,31 +59,17 @@ export default function FilterOverlayCard() {
     },
   ] = useStore();
 
-  const [showMonitors, setShowMonitors] = createSignal(true);
-  const [showText, setShowText] = createSignal(true); //new
-  const [showAirSensors, setShowAirSensors] = createSignal(true);
-  const [showDSTSensors, setShowDSTSensors] = createSignal(true);
-  const [showClaritySensors, setShowClaritySensors] = createSignal(true);
-  const [showTSISensors, setShowTSISensors] = createSignal(true);
   const monitorCheck = (e) => {
-    setShowMonitors(e.target.checked);
     toggleMonitor(e.target.checked);
   };
 
-  const sensorCheck = (e) => {
-    setShowAirSensors(e.target.checked);
-    toggleAirSensor(e.target.checked);
-  };
   const clarityCheck = (e) => {
-    setShowClaritySensors(e.target.checked);
     toggleClarity(e.target.checked);
   };
   const dstCheck = (e) => {
-    setShowDSTSensors(e.target.checked);
     toggleDST(e.target.checked);
   };
   const tsiCheck = (e) => {
-    setShowTSISensors(e.target.checked);
     toggleTSI(e.target.checked);
   };
   const purpleairCheck = (e) => {
@@ -132,7 +117,6 @@ export default function FilterOverlayCard() {
                 class="checkbox"
                 checked={store.mapFilters.monitor}
                 onChange={monitorCheck}
-                disabled={!showAirSensors()}
               />
             </label>
             <PurpleAirMarker />

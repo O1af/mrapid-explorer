@@ -1,5 +1,3 @@
-
-import React, { useState } from "react";
 import { Select } from "@thisbeyond/solid-select";
 
 const Data = () => {
@@ -64,8 +62,8 @@ const Data = () => {
             </select>
           </label>
           <div class="data-chart">data chart goes here</div>
-          <label class="data-form-item">
-            <button type="submit" name="submit" class="icon-btn btn-secondary">Download</button>
+          <label class="data-form-item" htmlFor="downloadSubmit">
+            <button id="downloadSubmit" type="submit" name="submit" class="icon-btn btn-secondary">Download</button>
           </label>
         </form>
         </div>

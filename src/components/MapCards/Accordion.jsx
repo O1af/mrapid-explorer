@@ -1,15 +1,11 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import {
-  createSignal,
   createContext,
   useContext,
   For,
-  on,
-  onMount,
 } from 'solid-js';
 import { createStore } from 'solid-js/store';
 import { useStore } from '../../stores';
-import Badge from '../Badge';
 
 const AccordionContext = createContext();
 
@@ -111,121 +107,121 @@ function AccordionPanel(props) {
   );
 }
 
-function ThresholdSelect() {
-  const [thresholdParameter, setThresholdParameter] = createSignal(2); // initialize with PM25
-  const [thresholdValue, setThresholdValue] = createSignal(5); // initialize at 5ugm3
-  const [thressholdPeriod, setThressholdPeriod] = createSignal(14); // initialize at 14 days
+// function ThresholdSelect() {
+//   const [thresholdParameter, setThresholdParameter] = createSignal(2); // initialize with PM25
+//   const [thresholdValue, setThresholdValue] = createSignal(5); // initialize at 5ugm3
+//   const [thressholdPeriod, setThressholdPeriod] = createSignal(14); // initialize at 14 days
 
-  const [{ setMapThreshold }] = useStore();
+//   const [{ setMapThreshold }] = useStore();
 
-  function setThreshold() {
-    setMapThreshold({
-      active: true,
-      parameter_id: thresholdParameter(),
-      threshold: thresholdValue(),
-      period: thressholdPeriod(),
-    });
-  }
+//   function setThreshold() {
+//     setMapThreshold({
+//       active: true,
+//       parameter_id: thresholdParameter(),
+//       threshold: thresholdValue(),
+//       period: thressholdPeriod(),
+//     });
+//   }
 
-  const parameters = [
-    { value: 2, display: 'PM2.5' },
-    { value: 1, display: 'PM10' },
-    { value: 3, display: 'O₃' },
-    { value: 5, display: 'NO₂' },
-  ];
-  const periods = [
-    { value: 14, display: 'Last 14 days' },
-    { value: 30, display: 'Last 30 days' },
-    { value: 90, display: 'Last 90 days' },
-  ];
-  const thresholdValues = [
-    { value: 5, display: 5, parameter: 2 },
-    { value: 10, display: 10, parameter: 2 },
-    { value: 250, display: 250, parameter: 2 },
-    { value: 15, display: 15, parameter: 1 },
-    { value: 20, display: 20, parameter: 1 },
-    { value: 100, display: 100, parameter: 3 },
-    { value: 10, display: 10, parameter: 5 },
-    { value: 40, display: 40, parameter: 5 },
-  ];
+//   const parameters = [
+//     { value: 2, display: 'PM2.5' },
+//     { value: 1, display: 'PM10' },
+//     { value: 3, display: 'O₃' },
+//     { value: 5, display: 'NO₂' },
+//   ];
+//   const periods = [
+//     { value: 14, display: 'Last 14 days' },
+//     { value: 30, display: 'Last 30 days' },
+//     { value: 90, display: 'Last 90 days' },
+//   ];
+//   const thresholdValues = [
+//     { value: 5, display: 5, parameter: 2 },
+//     { value: 10, display: 10, parameter: 2 },
+//     { value: 250, display: 250, parameter: 2 },
+//     { value: 15, display: 15, parameter: 1 },
+//     { value: 20, display: 20, parameter: 1 },
+//     { value: 100, display: 100, parameter: 3 },
+//     { value: 10, display: 10, parameter: 5 },
+//     { value: 40, display: 40, parameter: 5 },
+//   ];
 
-  const [thresholds, setThresholds] = createSignal(
-    thresholdValues.filter((o) => o.parameter == 2)
-  );
+//   const [thresholds, setThresholds] = createSignal(
+//     thresholdValues.filter((o) => o.parameter == 2)
+//   );
 
-  function onParameterChange(e) {
-    setThresholds(
-      thresholdValues.filter((o) => o.parameter == e.target.value)
-    );
-    setThresholdValue(
-      thresholdValues.filter((o) => o.parameter == e.target.value)[0]
-        .value
-    );
-    setThresholdParameter(parseInt(e.target.value));
-  }
+//   function onParameterChange(e) {
+//     setThresholds(
+//       thresholdValues.filter((o) => o.parameter == e.target.value)
+//     );
+//     setThresholdValue(
+//       thresholdValues.filter((o) => o.parameter == e.target.value)[0]
+//         .value
+//     );
+//     setThresholdParameter(parseInt(e.target.value));
+//   }
 
-  return (
-    <>
-      <select
-        name=""
-        id=""
-        class="select"
-        onChange={onParameterChange}
-      >
-        <For each={parameters}>
-          {(parameter) => (
-            <option value={parameter.value}>
-              {parameter.display}
-            </option>
-          )}
-        </For>
-      </select>
-      <div class="thresholds-controls">
-        <span class="thresholds-controls__item">Above</span>
-        <select
-          name=""
-          id=""
-          class="select thresholds-controls__item"
-          onChange={(e) =>
-            setThresholdValue(parseInt(e.target.value))
-          }
-        >
-          <For
-            each={thresholds().filter(
-              (o) => o.parameter === thresholdParameter()
-            )}
-          >
-            {(threshold, i) => (
-              <option value={threshold.value} selected={i === 1}>
-                {threshold.display}
-              </option>
-            )}
-          </For>
-        </select>
-        <span class="thresholds-controls__item">µg/m³</span>
-      </div>
-      <select
-        name=""
-        id=""
-        class="select"
-        onChange={(e) =>
-          setThressholdPeriod(parseInt(e.target.value))
-        }
-      >
-        <For each={periods}>
-          {(period, i) => (
-            <option value={period.value} selected={i == 0}>
-              {period.display}
-            </option>
-          )}
-        </For>
-      </select>
-      <button class="btn btn-secondary" onClick={setThreshold}>
-        Update
-      </button>
-    </>
-  );
-}
+//   return (
+//     <>
+//       <select
+//         name=""
+//         id=""
+//         class="select"
+//         onChange={onParameterChange}
+//       >
+//         <For each={parameters}>
+//           {(parameter) => (
+//             <option value={parameter.value}>
+//               {parameter.display}
+//             </option>
+//           )}
+//         </For>
+//       </select>
+//       <div class="thresholds-controls">
+//         <span class="thresholds-controls__item">Above</span>
+//         <select
+//           name=""
+//           id=""
+//           class="select thresholds-controls__item"
+//           onChange={(e) =>
+//             setThresholdValue(parseInt(e.target.value))
+//           }
+//         >
+//           <For
+//             each={thresholds().filter(
+//               (o) => o.parameter === thresholdParameter()
+//             )}
+//           >
+//             {(threshold, i) => (
+//               <option value={threshold.value} selected={i === 1}>
+//                 {threshold.display}
+//               </option>
+//             )}
+//           </For>
+//         </select>
+//         <span class="thresholds-controls__item">µg/m³</span>
+//       </div>
+//       <select
+//         name=""
+//         id=""
+//         class="select"
+//         onChange={(e) =>
+//           setThressholdPeriod(parseInt(e.target.value))
+//         }
+//       >
+//         <For each={periods}>
+//           {(period, i) => (
+//             <option value={period.value} selected={i == 0}>
+//               {period.display}
+//             </option>
+//           )}
+//         </For>
+//       </select>
+//       <button class="btn btn-secondary" onClick={setThreshold}>
+//         Update
+//       </button>
+//     </>
+//   );
+// }
 
 export default function Accordion() {
   const [store, { loadParameter, setMapThresholdActive }] =
