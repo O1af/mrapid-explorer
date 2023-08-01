@@ -598,7 +598,7 @@ let dataset = {"type":"FeatureCollection","features":[{"type":"Feature","geometr
               ],
               "circle-stroke-opacity": [
                 "case",
-                ["==", !store.mapFilters.excludeInactive, true],
+                ["==", !store.mapFilters.excludeInactive, false],
                 1,
                 [
                   "case",

@@ -64,7 +64,7 @@ export function NoRecentUpdateMarker() {
     <div class="no-recent-data-marker">
       <div class="no-recent-data-marker__border" />
       <div class="no-recent-data-marker__fill" />
-      <div class="no-recent-data-marker__dot" />
+      {/* <div class="no-recent-data-marker__dot" /> */}
     </div>
   );
 }
