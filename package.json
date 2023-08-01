@@ -49,11 +49,11 @@
     "mapbox-gl": "^2.10.0",
     "minisearch": "^6.0.0",
     "openaq-design-system": "github:openaq/openaq-design-system#v-4.0.0",
+    "react-router-dom": "^6.14.2",
     "sass": "^1.54.9",
     "solid-js": "^1.5.1",
     "solid-map-gl": "1.5.3",
     "trendline": "^0.3.1"
   },
   "homepage": "https://o1af.github.io/mrapid-explorer"
-  
 }
