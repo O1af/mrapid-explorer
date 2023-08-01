@@ -8,7 +8,9 @@
     "build": "vite build",
     "serve": "vite preview",
     "unit-test": "vitest src",
-    "test": "yarn playwright test"
+    "test": "yarn playwright test",
+    "predeploy": "yarn run build",
+    "deploy": "gh-pages -d build"
   },
   "license": "MIT",
   "devDependencies": {
@@ -20,6 +22,7 @@
     "eslint": "^8.35.0",
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-solid": "^0.10.0",
+    "gh-pages": "^5.0.0",
     "jsdom": "^20.0.3",
     "lightningcss": "^1.18.0",
     "postcss-cli": "^10.1.0",
@@ -50,5 +53,7 @@
     "solid-js": "^1.5.1",
     "solid-map-gl": "1.5.3",
     "trendline": "^0.3.1"
-  }
+  },
+  "homepage": "https://o1af.github.io/mrapid-explorer"
+  
 }
