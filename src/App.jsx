@@ -13,12 +13,12 @@ function App() {
     <>
       <Header />
       <Routes>
-        <Route path="/map" component={Explore} />
-        <Route path="/locations/:id" component={Detail} />
+        <Route path="/mrapid-explorer/map" component={Explore} />
+        <Route path="/mrapid-explorer/locations/:id" component={Detail} />
         <Route path="*" component={NotFound} />
-        <Route path="/data" component={Data} />
-        <Route path="/" component={Explore} />
-        <Route path="/home" component={Home} />
+        <Route path="/mrapid-explorer/data" component={Data} />
+        <Route path="/mrapid-explorer/" component={Explore} />
+        <Route path="/mrapid-explorer/home" component={Home} />
       </Routes>
     </>
   );

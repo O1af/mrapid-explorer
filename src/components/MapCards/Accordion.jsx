@@ -297,12 +297,7 @@ export default function Accordion() {
             )}
           </For>
         </select>
-        <button
-          class="btn btn-secondary"
-          onClick={() => setMapThresholdActive(false)}
-        >
-          Update
-        </button>
+
       </AccordionPanel>
     </AccordionProvider>
   );
