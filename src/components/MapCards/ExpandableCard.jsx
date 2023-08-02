@@ -96,7 +96,7 @@ export default function FilterOverlayCard() {
           <div class="filters-section__body">
             <NoRecentUpdateMarker />
             <label class="marker-legend-item" for="recent-updates">
-              <span>Show monitors not measuring pollutant</span>
+              <span>Exclude inactive monitors</span>
               <input
                 type="checkbox"
                 name="recent-updates"

@@ -588,7 +588,7 @@ export function Map() {
               ],
               "circle-stroke-opacity": [
                 "case",
-                ["==", !store.mapFilters.excludeInactive, false],
+                ["==", !store.mapFilters.excludeInactive, true],
                 1,
                 [
                   "case",

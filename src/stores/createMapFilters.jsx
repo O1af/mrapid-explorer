@@ -4,7 +4,7 @@ export default function createMapFilters(client, actions, state) {
   const [mapFilters, setMapFilters] = createStore({
     monitor: true,
     airSensor: true,
-    excludeInactive: false,
+    excludeInactive: true,
     providers: state.providers,
     dataText: true,
     clarity:true,
