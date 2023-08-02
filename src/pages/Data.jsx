@@ -1,7 +1,42 @@
-import { Select } from "@thisbeyond/solid-select";
+import { For, createSignal, createUniqueId } from "solid-js";
+import { Select, createSelect, createOptions } from "@thisbeyond/solid-select";
+import "@thisbeyond/solid-select/style.css";
+import './search.scss';
 
 const Data = () => {
-  const options = ["apple", "banana", "pear", "pineapple", "kiwi"];
+
+  const createValue = (name) => {
+    return { id: createUniqueId(), name };
+  };
+
+  const candidates = [
+    createValue("DST : 101 2236 14TH STREET (95120)"),
+    createValue("OAQ : PORT HURON (48060)"),
+    createValue("PAR : Appoline St (48227)"),
+    createValue("CLA : AHKQKKTX (48211)"),
+    createValue("TSI : FBPOWER1 (58757)"),
+  ];
+
+  const initialValue = [];
+
+  const [options, setOptions] = createSignal(candidates);
+  const [selectedValues, setSelectedValues] = createSignal(initialValue);
+
+  const onChange = (selected) => {
+    setSelectedValues(selected);
+
+    const lastValue = selected[selected.length - 1];
+    if (lastValue && !options().includes(lastValue)) {
+      setOptions([...options(), lastValue]);
+    }
+  };
+
+  const props = createOptions(options, {
+    key: "name",
+    disable: (value) => selectedValues().includes(value),
+    filterable: true, // Default
+    createable: createValue,
+  });
 
     return (
       <section class="page-data">
@@ -9,32 +44,21 @@ const Data = () => {
         <div class="data-form">
         <form>
         <h1>
-          Download data from a sensor
+          Download sensor data
         </h1>
-        <div>
-          <Select options={options} />
+
+        <div class="flex flex-1 flex-col max-w-100 gap-3">
+          Select sensor(s):
+          <Select
+            class="search"
+            multiple
+            label="Select sensors"
+            placeholder="Search by monitor type, sensor name, or zip code..."
+            onChange={onChange}
+            {...props}
+          />
         </div>
         
-          <label class="data-form-item">
-            Sensor
-            <input list="sensors" id="mySensor" size="35" name="mySensor" placeholder="Search by Zip Code..." />
-            <datalist id="sensors">
-            <option value="DST : 101 2236 14TH STREET (95120)"></option>
-            <option value="DST : 102 TRINITY (20147)"></option>
-            <option value="DST : 103 TRINITY (20147)"></option>
-            <option value="DST : 93 2236 14TH STREET (95120)"></option>
-            <option value="DST : RECOVERY PARK (95120)"></option>
-            <option value="DST : OA 95 (48105)"></option>
-            <option value="DST : 96 ECN (90012)"></option>
-            <option value="DST : 99 TRINITY (20147)"></option>
-            <option value="DST : ANN ARBOR 2 (48105)"></option>
-            <option value="DST : LINWOOD (48105)"></option>
-            <option value="OAQ : PORT HURON (48060)"></option>
-            <option value="PAR : Appoline St (48227)"></option>
-            <option value="CLA : AHKQKKTX (48211)"></option>
-            <option value="TSI : FBPOWER1 (58757)"></option>
-            </datalist>
-          </label>
           <label class="data-form-item">
             Pollutant
             <select class="select">

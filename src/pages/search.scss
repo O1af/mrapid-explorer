@@ -1,0 +1,16 @@
+.search{
+    background-color: white;
+    color: black;
+    border: grey
+}
+  .search .solid-select-placeholder {
+    background-color: white;
+  }
+  .search .solid-select-option:hover {
+    background-color: #fa7f25;
+    color: #fff;
+  }
+  .search .solid-select-option[data-focused=true] {
+    background-color: white;
+    color: black;
+  }
