@@ -57,7 +57,8 @@
     "sass": "^1.54.9",
     "solid-js": "^1.5.1",
     "solid-map-gl": "1.5.3",
-    "trendline": "^0.3.1"
+    "trendline": "^0.3.1",
+    "yarn": "^1.22.19"
   },
   "homepage": "https://o1af.github.io/mrapid-explorer"
 }

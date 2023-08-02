@@ -53,7 +53,7 @@ const Data = () => {
             class="search"
             multiple
             label="Select sensors"
-            placeholder="Search by sensor name, zip code, or monitor type..."
+            placeholder="Search by monitor type, sensor name, or zip code..."
             onChange={onChange}
             {...props}
           />
