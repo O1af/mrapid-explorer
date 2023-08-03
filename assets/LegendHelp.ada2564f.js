@@ -1,4 +1,4 @@
-import{H as e}from"./HelpContent.f9947fc9.js";import{c as a}from"./index.247121f4.js";const n=`<h1>Legend</h1>
+import{H as e}from"./HelpContent.5d016612.js";import{c as a}from"./index.a2168236.js";const n=`<h1>Legend</h1>
 <p>When showing a pollutant overlay on the map, the map displays the most recent value for locations. To visualize the range of data on the map view each pollutant is visualized on a scale based on common breaks of 6 levels. For example the PM2.5 scale is bucketed to the following values:</p>
 <ul>
 <li>0-12</li>
