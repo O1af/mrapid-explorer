@@ -224,7 +224,7 @@ function AccordionPanel(props) {
 // }
 
 export default function Accordion() {
-  const [store, { loadParameter, setMapThresholdActive }] =
+  const [store, { loadParameter }] =
     useStore();
 
   //on load get aqi value from openweathermap api and store

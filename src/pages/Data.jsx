@@ -1,5 +1,5 @@
-import { For, createSignal, createUniqueId } from "solid-js";
-import { Select, createSelect, createOptions } from "@thisbeyond/solid-select";
+import { createSignal, createUniqueId } from "solid-js";
+import { Select, createOptions } from "@thisbeyond/solid-select";
 import "@thisbeyond/solid-select/style.css";
 import './search.scss';
 
