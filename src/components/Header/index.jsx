@@ -4,10 +4,14 @@ export default function Header() {
   return (
     <header class="header">
       <div class="header-contents">
-        <a href="/" class="header-logo" aria-label="logo">
+      <ul class="nav-list">
+            <li>
+        <a href="./map" class="header-logo" aria-label="logo">
           {/*<img src={imgSvg} alt="logo" />*/}
           M-RAPID
         </a>
+        </li>
+        </ul>
         <div class="spacer" />
         <nav class="nav">
           {/* <input id="menu-toggle" type="checkbox"/>
@@ -64,7 +68,7 @@ export default function Header() {
             </li> */}
             <li>
               <a
-                href="https://openaq.org/partners"
+                href="./"
                 class="nav__item partners-tab"
               >
                 Register
@@ -72,7 +76,7 @@ export default function Header() {
             </li>
             <li>
               <a
-                href="https://openaq.org/about/"
+                href="./"
                 aria-haspopup="true"
                 class="nav__item"
               >
