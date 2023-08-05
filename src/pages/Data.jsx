@@ -85,14 +85,25 @@ const Data = () => {
               <option>Yearly</option>
             </select>
           </label>
-          <div class="data-chart">data chart goes here</div>
           <label class="data-form-item" htmlFor="downloadSubmit">
             <button id="downloadSubmit" type="submit" name="submit" class="icon-btn btn-secondary">Download</button>
           </label>
         </form>
         </div>
-        <div class="data-image">image goes here</div>
-        {/* put another div here for image */}
+        <div class="data-image-container">
+          <h3>Map of Detroit Zip Codes</h3>
+          <div class="data-image">
+            <img src="/src/assets/detroitmap.jpg"/>
+          </div>
+          For a complete list of MI zip codes, refer to this 
+          <a 
+            href="https://www.michigan.gov/dtmb/-/media/Project/Websites/dtmb/Services/GIS/Static-Maps/Boundaries/ZIPCodeMap_LP102209.pdf?rev=ef32903cd06c47688b6f3978263a40f4&hash=FB40296EEACD32BC792E28F054C0E47D"
+            target="_blank" 
+            rel="noopener noreferrer"
+          >
+            document
+          </a>.
+        </div>
       </section>
     );
   };
