@@ -55,6 +55,7 @@
     "react-scripts": "4.0.0",
     "react-select": "^5.7.4",
     "sass": "^1.54.9",
+    "solid-blocks": "^0.1.1",
     "solid-js": "^1.5.1",
     "solid-map-gl": "1.5.3",
     "trendline": "^0.3.1",
