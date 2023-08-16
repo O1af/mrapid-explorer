@@ -61,6 +61,7 @@ export const parametersBins = {
   21: [0, 8000, 8001, 8002, 8003, 8004], // PM0.5 (particles/cm3) * 500 was to make them all green
   22: [0, 8000, 8001, 8002, 8003, 8004], // PM4 (particles/cm3) * 500 was to make them all green
   23: [0, 400, 1000, 2000, 3000, 4000], // CO₂ (ppm) openAQ's
+  50: [0, 50, 100, 150, 200, 300, 500], // AQI
 };
 
 // function getField(store) {
@@ -70,6 +71,13 @@ export const parametersBins = {
 // }
 
 function colorScale(parameter) {
+  if(selectedValue() == 'AQI'){
+    const bins = aqiHexValues.map((c, i) => [
+      parametersBins[50][i],
+     c,
+    ]);
+    return bins;
+   }
   const bins = hexValues.map((c, i) => [
     parametersBins[parameter][i],
     c,
