@@ -45,10 +45,21 @@ export const parametersBins = {
   6: [0, 4500, 9500, 12500, 15500, 30500], // CO (ppb)
   7: [0, 54, 101, 361, 650, 1250], // NO (ppb)
   8: [0, 54, 101, 361, 650, 1250], // NOx (ppb)
-  9: [0, 12.1, 35.5, 55.5, 150.5, 250.5], // PM1 count (particles/cm³) openAQ's
+  9: [0, 500, 501, 502, 503, 504], // um3 (particles/cm3)
+  10: [0, 12.1, 35.5, 55.5, 150.5, 250.5], // PM1 count (particles/cm³) openAQ's
+  11: [0, 8000, 8001, 8002, 8003, 8004], // um10 (particles/cm3) * 500 was to make them all green
+  12: [0, 8000, 8001, 8002, 8003, 8004], // um5 (particles/cm3) * 500 was to make them all green
+  13: [0, 8000, 8001, 8002, 8003, 8004], // um100 (particles/cm3) * 500 was to make them all green
+  14: [0, 8000, 8001, 8002, 8003, 8004], // um25 (particles/cm3) * 500 was to make them all green
+  15: [0, 8000, 8001, 8002, 8003, 8004], // um50 (particles/cm3) * 500 was to make them all green
   16: [0, 1, 3, 7, 12, 16], // BC (µg/m³) kinda guessed on the maroon one since I only could find 1 source
-  11: [0, 12.1, 35.5, 55.5, 150.5, 250.5], // PM4 (µg/m³) * openAQ's
-  12: [0, 400, 1000, 2000, 3000, 4000], // CO₂ (ppm) openAQ's
+  17: [0, 12.1, 35.5, 55.5, 150.5, 250.5], // PM4 (µg/m³) openAQ's
+  18: [0, 8000, 8001, 8002, 8003, 8004], // PM2.5 (particles/cm3) * 500 was to make them all green
+  19: [0, 8000, 8001, 8002, 8003, 8004], // PM1 (particles/cm3) * 500 was to make them all green
+  20: [0, 8000, 8001, 8002, 8003, 8004], // PM10 (particles/cm3) * 500 was to make them all green
+  21: [0, 8000, 8001, 8002, 8003, 8004], // PM0.5 (particles/cm3) * 500 was to make them all green
+  22: [0, 8000, 8001, 8002, 8003, 8004], // PM4 (particles/cm3) * 500 was to make them all green
+  23: [0, 400, 1000, 2000, 3000, 4000], // CO₂ (ppm) openAQ's
 };
 
 // function getField(store) {
