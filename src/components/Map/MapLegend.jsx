@@ -6,6 +6,7 @@ import {
   percentHexValues,
   hexValues,
 } from '.';
+import { selectedValue } from '../MapCards/Accordion';
 export default function MapLegend() {
   const [store, { toggleHelp, loadContent }] = useStore();
 
