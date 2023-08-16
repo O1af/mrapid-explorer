@@ -3,6 +3,7 @@ import MapGL, { Source, Layer, Control, useMap } from 'solid-map-gl';
 import Geocoder from '../Geocoder';
 import { createEffect, createSignal, on } from 'solid-js';
 import { useStore } from '../../stores';
+import { selectedValue } from '../MapCards/Accordion';
 
 function calculateFlyToDuration(zoom) {
   return 2500 / (zoom / 5);
@@ -172,6 +173,7 @@ function Bounds() {
   });
   return <></>;
 }
+
 
 export function Map() {
   const [
@@ -514,13 +516,15 @@ export function Map() {
       </Source>
       */}
       <Source
-        id="clarityData" //idk if this needs to be here. trying to add an id to this source layer
+        id="concentration" //idk if this needs to be here. trying to add an id to this source layer
         source={{
           type: "geojson",
-          data: "https://mrapid-api3-r2oaltsiuq-uc.a.run.app/mapdata",
+          data: "https://mrapid-api3-r2oaltsiuq-uc.a.run.app/mapData",
         }}
+        
       >
         <Layer
+        visible={selectedValue() != 'AQI'}
           onClick={(e) => {
             const coordinates = getFeature(e);
             e.target.flyTo({
@@ -666,7 +670,7 @@ export function Map() {
           }}
         />
         <Layer
-          visible={store.mapFilters.dataText}
+        visible={selectedValue() != 'AQI'}
           filter={[
             "all",
             [
@@ -716,6 +720,210 @@ export function Map() {
         />
       </Source>
 
+      <Source
+        id="AQI" //idk if this needs to be here. trying to add an id to this source layer
+        source={{
+          type: "geojson",
+          data: "https://mrapid-api3-r2oaltsiuq-uc.a.run.app/mapAQIData",
+        }}
+        
+      >
+        <Layer
+        visible={selectedValue() == 'AQI'}
+          onClick={(e) => {
+            const coordinates = getFeature(e);
+            e.target.flyTo({
+              center: coordinates,
+              zoom: e.target.getZoom() > 12 ? e.target.getZoom() : 12,
+              duration: calculateFlyToDuration(e.target.getZoom()),
+              essential: true,
+            });
+          }}
+          filter={[
+            "all",
+            [
+              "any",
+              ["!", !store.mapFilters.purpleair],
+              ["!=", ["get", "source", ["get", "info", ["properties"]]], "PURPLEAIR"],
+            ],
+            [
+              "any",
+              ["!", !store.mapFilters.monitor],
+              ["!=", ["get", "source", ["get", "info", ["properties"]]], "OPENAQ"],
+            ],
+            [
+              "any",
+              ["!", !store.mapFilters.dst],
+              ["!=", ["get", "source", ["get", "info", ["properties"]]], "DST"],
+            ],
+            [
+              "any",
+              ["!", !store.mapFilters.tsi],
+              ["!=", ["get", "source", ["get", "info", ["properties"]]], "BLUESKY TSI"],
+            ],
+            [
+              "any",
+              ["!", !store.mapFilters.clarity],
+              ["!=", ["get", "source", ["get", "info", ["properties"]]], "CLARITY"],
+            ]
+          ]}
+          style={{
+            id: "clarity-locations",
+            type: "circle",
+            source: "clarityData",
+            paint: {
+              "circle-radius": [
+                "interpolate",
+                ["linear"],
+                ["zoom"],
+                1,
+                ["case", ["==", ["get", "ismonitor"], true], 3, 3],
+                14,
+                ["case", ["==", ["get", "ismonitor"], true], 22, 22],
+              ],
+              "circle-opacity": [
+                "case",
+                [
+                  "==",
+                  [
+                    "has",
+                    store.parameters()[store.parameter.id - 1].name,
+                    ["properties"],
+                  ],
+                  true,
+                ],
+                1,
+                0,
+              ],
+              "circle-stroke-opacity": [
+                "case",
+                ["==", !store.mapFilters.excludeInactive, true],
+                1,
+                [
+                  "case",
+                  [
+                    "==",
+                    [
+                      "has",
+                      store.parameters()[store.parameter.id - 1].name,
+                      ["properties"],
+                    ],
+                    true,
+                  ],
+                  1,
+                  0,
+                ],
+              ],
+              "circle-color": [
+                "interpolate",
+                ["linear"],
+                [
+                  "to-number",
+                  [
+                    "get",
+                    "value",
+                    [
+                      "get",
+                      store.parameters()[store.parameter.id - 1].name,
+                      ["properties"],
+                    ],
+                  ],
+                ],
+
+                -1,
+                "#ddd", // light gray
+                ...getColorScale(store),
+              ],
+              "circle-stroke-color": [
+                "match",
+                ["get", "source", ["get", "info", ["properties"]]],
+                "CLARITY",
+                "#49a1d6",
+                "OPENAQ",
+                "white",
+                "PURPLEAIR",
+                "#9a49d6",
+                "DST",
+                "#559660",
+                "BLUESKY TSI",
+                "#cc555c",
+                "white",
+              ],
+              "circle-stroke-width": [
+                "interpolate",
+                ["linear"],
+                ["zoom"],
+                2,
+                ["case", ["==", ["get", "ismonitor"], true], 1, 0.25],
+                14,
+                [
+                  "case",
+                  [
+                    "==",
+                    [
+                      "has",
+                      store.parameters()[store.parameter.id - 1].name,
+                      ["properties"],
+                    ],
+                    true,
+                  ],
+                  6,
+                  3,
+                ],
+              ],
+            },
+          }}
+        />
+        <Layer
+        visible={selectedValue() == 'AQI'}
+          filter={[
+            "all",
+            [
+              "any",
+              ["!", !store.mapFilters.purpleair],
+              ["!=", ["get", "source", ["get", "info", ["properties"]]], "PURPLEAIR"],
+            ],
+            [
+              "any",
+              ["!", !store.mapFilters.monitor],
+              ["!=", ["get", "source", ["get", "info", ["properties"]]], "OPENAQ"],
+            ],
+            [
+              "any",
+              ["!", !store.mapFilters.dst],
+              ["!=", ["get", "source", ["get", "info", ["properties"]]], "DST"],
+            ],
+            [
+              "any",
+              ["!", !store.mapFilters.tsi],
+              ["!=", ["get", "source", ["get", "info", ["properties"]]], "BLUESKY TSI"],
+            ],
+            [
+              "any",
+              ["!", !store.mapFilters.clarity],
+              ["!=", ["get", "source", ["get", "info", ["properties"]]], "CLARITY"],
+            ]
+          ]}
+          style={{
+            id: "clarity-text",
+            type: "symbol",
+            source: "clarityData",
+            layout: {
+              "text-field": [
+                "get",
+                "value",
+                [
+                  "get",
+                  store.parameters()[store.parameter.id - 1].name,
+                  ["properties"],
+                ],
+              ],
+              "text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
+              "text-size": 20,
+            },
+          }}
+        />
+      </Source>
       <Bounds />
     </MapGL>
   );
