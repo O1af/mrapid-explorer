@@ -26,12 +26,12 @@ export const percentHexValues = [
 ];
 
 export const aqiHexValues = [
-  'green',
-  'yellow',
-  'orange',
-  'red',
-  'purple',
-  'maroon',
+  '#00e400',
+  '#ffff00',
+  '#ff7e00',
+  '#ff0000',
+  '#8f3f97',
+  '#7e0023',
 ];
 
 export const percentBins = [0, 20, 40, 60, 80];
@@ -64,6 +64,33 @@ export const parametersBins = {
   50: [0, 50, 100, 150, 200, 300, 500], // AQI
 };
 
+export const parametersBinsAQI = {
+  1: [0, 50, 100, 150, 200, 300, 500], // AQI
+  2: [0, 50, 100, 150, 200, 300, 500], // AQI
+  3: [0, 50, 100, 150, 200, 300, 500], // AQI
+  4: [0, 50, 100, 150, 200, 300, 500], // AQI
+  5: [0, 50, 100, 150, 200, 300, 500], // AQI
+  6: [0, 50, 100, 150, 200, 300, 500], // AQI
+  7: [0, 50, 100, 150, 200, 300, 500], // AQI
+  8: [0, 50, 100, 150, 200, 300, 500], // AQI
+  9: [0, 50, 100, 150, 200, 300, 500], // AQI
+  10: [0, 50, 100, 150, 200, 300, 500], // AQI
+  11: [0, 50, 100, 150, 200, 300, 500], // AQI
+  12: [0, 50, 100, 150, 200, 300, 500], // AQI
+  13: [0, 50, 100, 150, 200, 300, 500], // AQI
+  14: [0, 50, 100, 150, 200, 300, 500], // AQI
+  15: [0, 50, 100, 150, 200, 300, 500], // AQI
+  16: [0, 50, 100, 150, 200, 300, 500], // AQI
+  17: [0, 50, 100, 150, 200, 300, 500], // AQI
+  18: [0, 50, 100, 150, 200, 300, 500], // AQI
+  19: [0, 50, 100, 150, 200, 300, 500], // AQI
+  20: [0, 50, 100, 150, 200, 300, 500], // AQI
+  21: [0, 50, 100, 150, 200, 300, 500], // AQI
+  22: [0, 50, 100, 150, 200, 300, 500], // AQI
+  23: [0, 50, 100, 150, 200, 300, 500], // AQI
+  50: [0, 50, 100, 150, 200, 300, 500], // AQI
+};
+
 // function getField(store) {
 //   return store.mapThreshold.active
 //     ? ['number', ['get', 'exceedance']]
@@ -73,13 +100,13 @@ export const parametersBins = {
 function colorScale(parameter) {
   if(selectedValue() == 'AQI'){
     const bins = aqiHexValues.map((c, i) => [
-      parametersBins[50][i],
+      parametersBinsAQI[50][i],
      c,
     ]);
     return bins;
    }
   const bins = hexValues.map((c, i) => [
-    parametersBins[parameter][i],
+    parametersBinsAQI[parameter][i],
     c,
   ]);
   return bins;
