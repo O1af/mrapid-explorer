@@ -8,7 +8,7 @@ export default function Header() {
             <li>
         <a href="./map" class="header-logo" aria-label="logo">
           {/*<img src={imgSvg} alt="logo" />*/}
-          M-RAPID
+          Detroit Air
         </a>
         </li>
         </ul>
