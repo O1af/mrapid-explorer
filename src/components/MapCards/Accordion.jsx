@@ -3,10 +3,10 @@ import {
   createContext,
   useContext,
   For,
+  createSignal
 } from 'solid-js';
 import { createStore } from 'solid-js/store';
 import { useStore } from '../../stores';
-import {Radio, RadioGroup} from "solid-blocks";
 
 const AccordionContext = createContext();
 
@@ -107,6 +107,7 @@ function AccordionPanel(props) {
     </section>
   );
 }
+export const [selectedValue, setSelectedValue] = createSignal('AQI');
 
 export default function Accordion() {
   const [store, { loadParameter }] =
@@ -141,10 +142,19 @@ export default function Accordion() {
         open={true}
       >
         <h1>Select the unit and pollutant</h1>
-        <RadioGroup>
-        <Radio>AQI</Radio>
-        <Radio checked={true}>Concentration</Radio>
-        </RadioGroup>
+        <div onChange={(e) => {setSelectedValue(e.target.value)
+        }}>
+      <label>
+        <input type="radio" name="group" value="AQI" checked={selectedValue() === 'AQI'} />
+        AQI
+      </label>
+      <label>
+        <input type="radio" name="group" value="Concentration" checked={selectedValue() === 'Concentration'} />
+        Concentration
+      </label>
+    </div>
+
+        
         <select
           name=""
           id=""
@@ -155,8 +165,7 @@ export default function Accordion() {
           }}
         >
           <For each={store.parameters()}>
-            {
-            (parameter) => (
+            {(parameter) => (
               <option
                 value={parameter.id}
                 selected={parameter.id == store.parameter.id}
@@ -166,7 +175,6 @@ export default function Accordion() {
             )}
           </For>
         </select>
-
       </AccordionPanel>
     </AccordionProvider>
   );

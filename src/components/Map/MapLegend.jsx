@@ -5,7 +5,9 @@ import {
   percentBins,
   percentHexValues,
   hexValues,
+  parametersBinsAQI,
 } from '.';
+import { selectedValue } from '../MapCards/Accordion';
 export default function MapLegend() {
   const [store, { toggleHelp, loadContent }] = useStore();
 
@@ -16,6 +18,8 @@ export default function MapLegend() {
 
   const colors = () =>
     store.mapThreshold.active ? percentHexValues : hexValues;
+
+  
 
   const showHelp = (e) => {
     toggleHelp(true);
