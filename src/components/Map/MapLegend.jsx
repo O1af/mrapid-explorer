@@ -1,4 +1,4 @@
-import { createEffect, For } from 'solid-js';
+import { createEffect, createSignal, For } from 'solid-js';
 import { useStore } from '../../stores';
 import {
   parametersBins,
@@ -10,7 +10,7 @@ import {
 import { selectedValue } from '../MapCards/Accordion';
 export default function MapLegend() {
   const [store, { toggleHelp, loadContent }] = useStore();
-
+  
   const legendTitle = () =>
     store.mapThreshold.active
       ? '% Measurements exceeding threshold'
@@ -28,6 +28,10 @@ export default function MapLegend() {
   };
 
   createEffect(() => console.log(store.parameter));
+
+  // Determine which bins to use based on the selected value
+  // Currently doesn't change when you select concentration (needs fix)
+  const binsToUse = selectedValue() === 'AQI' ? parametersBinsAQI : parametersBins;
 
   return (
     <div class="map-legend">
@@ -61,12 +65,12 @@ export default function MapLegend() {
                 )}
               </For>
             ) : (
-              <For each={parametersBins[store.parameter.id]}>
+              <For each={binsToUse[store.parameter.id]}>
                 {(value, i) => (
                   <span class="type-body-4" style={{ flex: '1' }}>
                     {value}
                     {i() + 1 ==
-                    parametersBins[store.parameter.id].length
+                    binsToUse[store.parameter.id].length
                       ? '+'
                       : ''}
                   </span>
