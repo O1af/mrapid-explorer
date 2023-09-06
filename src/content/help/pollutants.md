@@ -1,20 +1,54 @@
 # Pollutants
 
-The OpenAQ database currently ingests the following pollutant data, with a focus on those in **bold**.
+The Detroit Air database currently has data sensor data for the following pollutants. Note that we calculate the AQI values shown.
 
-- PM<sub>1</sub> - particulate matter 1 microns (μm)
-- **PM<sub>2.5</sub> - particulate matter 2.5 microns (μm)**
-- PM<sub>4</sub> - particulate matter 4 microns (μm)
-- **PM<sub>10</sub> - particulate matter 10 microns (μm)**
-- **BC - black carbon particulates, part of PM2.5**
-- **O₃ - Ozone gas**
-- **CO - Carbon monoxide gas**
-- **NO₂ - Nitrogen dioxide gas**
-- NO - Nitrogen monoxide gas
-- NO<sub>x</sub> - Nitrogen oxides
-- **SO₂ - Sulfur dioxide gas**
-- CH₄ - Methane gas
-- CO₂ - Carbon dioxide gas
+## Criteria Pollutants:
+- PM2.5 (µg/m³)
+- SO₂ (ppb)
+- O₃ (ppb)
+- PM10 (µg/m³)
+- NO₂ (ppb)
+- CO (ppb)
+
+## Other Pollutants:
+- NO (ppb)
+- NOx (ppb)
+- BC (µg/m³)
+- PM4 (µg/m³)
+- CO₂ (ppm)
+
+## Particle Count:
+- um3 (particles/cm3)
+- PM1 count (particles/cm³)
+- um10 (particles/cm3)
+- um5 (particles/cm3)
+- um100 (particles/cm3)
+- um25 (particles/cm3)
+- um50 (particles/cm3)
+- PM2.5 (particles/cm3)
+- PM1 (particles/cm3)
+- PM10 (particles/cm3)
+- PM0.5 (particles/cm3)
+- PM4 (particles/cm3)
+
+---
+
+# Air Quality Index (AQI)
+
+Air Quality Index or AQI is a system used to understand the levels of air pollution in a given area. The higher the AQI value, the greater the level of air pollution and the greater the health concern. Below are different ranges of AQI values and their meanings.
+&nbsp;  
+&nbsp;  
+<span style="color: green;">**0-50:**</span> Good
+
+<span style="color: gold;">**51-100:**</span> Moderate
+
+<span style="color: orange;">**101-150:**</span> Unhealthy for sensitive groups
+
+<span style="color: red;">**151-200:**</span> Unhealthy
+
+<span style="color: purple;">**201-300:**</span> Very unhealthy
+
+<span style="color: maroon;">**301+:**</span> Hazardous
 
 ---
 
@@ -22,8 +56,11 @@ The OpenAQ database currently ingests the following pollutant data, with a focus
 
 Measurements of pollutants are reported in a variety of units depending on how the data is reported from the original data provider. The most common units found in the dataset are:
 
-- ppb (parts per million)
+- ppm (parts per million)
+- ppb (parts per billion)
 - µg/m³ (micrograms per cubic meter)
+- particles/cm³ (particles per cubic centimeter)
+- AQI (Air Quality Index)
 
+Aside from converting ppb to ppm or vice versa, all pollutants shown are reported as is. Note that we do calculate AQI based on the reported concentration values our sources provide.
 
-Units are not normalized in the OpenAQ system, with the exception of converting ppb (parts per billion) to ppm (parts per million). Volume units are not converted to mass units, nor vice versa; they are served as originally reported.

@@ -35,7 +35,7 @@ export function HelpCard() {
       <footer class="map-card__footer">
         <a
           class="btn btn-primary icon-btn"
-          href="https://openaq.org/developers/help/"
+          href="./faq"
           target="_blank"
           rel="noreferrer noopener"
         >
