@@ -87,7 +87,7 @@ export function AddSensor(prop) {
   return (
     <>
       <form>
-      <h3>Find Sensors</h3>
+      <h3>Select Sensors</h3>
 
       <div class="flex flex-1 flex-col max-w-100 gap-3">
         <label for="zip_code">Filter sensors by zip code</label>
@@ -147,32 +147,31 @@ export function AddSensor(prop) {
             }
         >
             <Show when={!data.loading} fallback={<>Searching...</>}>
-              <ul>
-              <For each={data().SensorList}>   
-                  {(sensor) => (
-                  <li>
-                      {sensor.name}
-                  </li>
-                  )}
-              </For>
-              </ul>
+            
+            <label class="data-form-item">
+                Select sensors
+                <MultiSelect
+                    style={{ chips: { color: "purple", "background-color": "pink" } }}
+                    options={data()}
+                    onSelect={console.log}
+                    onRemove={console.log}
+                    class="search"
+                    //selectedValues={["yellow"]}
+                    //selectionLimit={2}
+                />
+            </label>
+            <ul>
+            <For each={data()}>   
+                {(sensor) => (
+                <li>
+                    {sensor.title}
+                </li>
+                )}
+            </For>
+            </ul>
         </Show>
       </Show>
-
-      <h3>Filter Data</h3>
-      <div class="flex flex-1 flex-col max-w-100 gap-3">
-        <label for="sensor">Filter data by sensor</label>
-        <Select
-          class="search"
-          id="sensor"
-          //value={input().zip_code}
-          multiple
-          label="Select sensors"
-          placeholder="Search by sensor"
-          onChange={onChangeSensor}
-          {...propsSensor}
-        />
-      </div>
     </>
   );
 }
+
