@@ -2,7 +2,7 @@ import { createSignal, createUniqueId, Show } from "solid-js";
 //import { Select, createOptions } from "@thisbeyond/solid-select";
 import "@thisbeyond/solid-select/style.css";
 import './search.scss';
-import { MultiSelect } from '@digichanges/solid-multiselect';
+//import { MultiSelect } from '@digichanges/solid-multiselect';
 
 //import { BookList } from "./BookList";
 import { AddSensor } from "./AddSensor";
@@ -10,7 +10,7 @@ import { AddSensor } from "./AddSensor";
 const initialSensors = [];
 
 function Sensors(props) {
-  const [books, setSensors] = createSignal(initialSensors);
+  const [sensors, setSensors] = createSignal(initialSensors);
 
   return (
     <div>
@@ -20,9 +20,6 @@ function Sensors(props) {
 }
 
 const Data = () => {
-  const createValue = (name) => {
-    return { id: createUniqueId(), name };
-  };
   
     return (
 
