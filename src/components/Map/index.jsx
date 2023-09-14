@@ -36,7 +36,7 @@ export const aqiHexValues = [
 
 export const percentBins = [0, 20, 40, 60, 80];
 
-//used EPA for these values
+//used EPA, OpenAQ, or my own calcs for these
 export const parametersBins = {
   1: [0, 12.1, 35.5, 55.5, 150.5, 250.5], // PM2.5 (µg/m³)
   2: [0, 36, 76, 186, 305, 605], // SO₂ (ppb)
@@ -47,19 +47,19 @@ export const parametersBins = {
   7: [0, 54, 101, 361, 650, 1250], // NO (ppb)
   8: [0, 54, 101, 361, 650, 1250], // NOx (ppb)
   9: [0, 500, 501, 502, 503, 504], // um3 (particles/cm3)
-  10: [0, 12.1, 35.5, 55.5, 150.5, 250.5], // PM1 count (particles/cm³) openAQ's
-  11: [0, 8000, 8001, 8002, 8003, 8004], // um10 (particles/cm3) * 500 was to make them all green
-  12: [0, 8000, 8001, 8002, 8003, 8004], // um5 (particles/cm3) * 500 was to make them all green
-  13: [0, 8000, 8001, 8002, 8003, 8004], // um100 (particles/cm3) * 500 was to make them all green
-  14: [0, 8000, 8001, 8002, 8003, 8004], // um25 (particles/cm3) * 500 was to make them all green
-  15: [0, 8000, 8001, 8002, 8003, 8004], // um50 (particles/cm3) * 500 was to make them all green
+  10: [0, 8.5, 25, 39.1, 106, 176.4], // PM1 count (particles/cm³) * PM10 / 1.42
+  11: [0, 5.5, 15.5, 25.5, 35.5, 42.5], // um10 (particles/cm3) * PM10 / 10
+  12: [0, 5, 12.8, 19.5, 51.2, 84.5], // um5 (particles/cm3) * (PM2.5 / 3) + 1
+  13: [0, 8000, 8001, 8002, 8003, 8004], // um100 (particles/cm3) * not enough data
+  14: [0, .09, 0.25, 0.4, 1.1, 1.8], // um25 (particles/cm3) * PM1 / 100
+  15: [0, 8000, 8001, 8002, 8003, 8004], // um50 (particles/cm3) * not enough data
   16: [0, 1, 3, 7, 12, 16], // BC (µg/m³) kinda guessed on the maroon one since I only could find 1 source
   17: [0, 12.1, 35.5, 55.5, 150.5, 250.5], // PM4 (µg/m³) openAQ's
-  18: [0, 8000, 8001, 8002, 8003, 8004], // PM2.5 (particles/cm3) * 500 was to make them all green
-  19: [0, 8000, 8001, 8002, 8003, 8004], // PM1 (particles/cm3) * 500 was to make them all green
-  20: [0, 8000, 8001, 8002, 8003, 8004], // PM10 (particles/cm3) * 500 was to make them all green
-  21: [0, 8000, 8001, 8002, 8003, 8004], // PM0.5 (particles/cm3) * 500 was to make them all green
-  22: [0, 8000, 8001, 8002, 8003, 8004], // PM4 (particles/cm3) * 500 was to make them all green
+  18: [0, 12.1, 35.5, 55.5, 150.5, 250.5], // PM2.5 (particles/cm3) * reads the same vals as PM2.5 in ug/m3
+  19: [0, 8.5, 25, 39.1, 106, 176.4], // PM1 (particles/cm3) * reads the same vals as PM1 in ug/m3
+  20: [0, 55, 155, 255, 355, 425], // PM10 (particles/cm3) * reads the same vals as PM10 in ug/m3
+  21: [0, 10.6, 31.1, 48.7, 132, 219.7], // PM0.5 (particles/cm3) * PM2.5 / 1.14
+  22: [0, 12.1, 35.5, 55.5, 150.5, 250.5], // PM4 (particles/cm3) * reads the same vals as PM4 in ug/m3
   23: [0, 400, 1000, 2000, 3000, 4000], // CO₂ (ppm) openAQ's
   50: [0, 50, 100, 150, 200, 300, 500], // AQI
 };
