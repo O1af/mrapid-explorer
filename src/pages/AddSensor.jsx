@@ -4,10 +4,42 @@ import { MultiSelect } from '@digichanges/solid-multiselect';
 import { Select, createSelect, createOptions } from "@thisbeyond/solid-select";
 import "@thisbeyond/solid-select/style.css";
 import './search.scss';
+import { zip } from "d3";
 
-const filters = { zip_code: {}, type: {}, pollutant: {} };
+const createValue = (id, name) => {
+  return { id: id, name: name };
+};
+
+//gets list of all available zipcodes, formats into list of zipcodes
+export async function getZipcodes() {
+  const response = await fetch(
+    `https://mrapid-api3-r2oaltsiuq-uc.a.run.app/zipcodes`
+  );
+  const results = await response.json();
+  let zipcodes = []
+  for (let step = 0; step < results['zipcode_list'].length; step++) {
+    zipcodes.push(createValue(results['zipcode_list'][step]['zip_code'], 
+                  results['zipcode_list'][step]['zip_code']));
+  }
+  return zipcodes;
+}
+
+//gets list of all available parameters, formats into list
+export async function getPollutants() {
+  const response = await fetch(
+    `https://mrapid-api3-r2oaltsiuq-uc.a.run.app/parameterList`
+  );
+  const results = await response.json();
+  let zipcodes = []
+  for (let step = 0; step < results['results'].length; step++) {
+    zipcodes.push(createValue(results['results'][step]['name'], 
+                  results['results'][step]['displayName']));
+  }
+  return zipcodes;
+}
 
 export function AddSensor(prop) {
+  const filters = { zip_code: [], type: [], pollutant: [] };
   const [input, setInput] = createSignal(filters);
   const [query, setQuery] = createSignal("");
   const [data] = createResource(query, searchSensors);
@@ -17,34 +49,29 @@ export function AddSensor(prop) {
 
   //////
 
-  const createValue = (name) => {
-    return { id: createUniqueId(), name };
-  };
-
-  const zips = [
-    createValue("1111"),
-    createValue("48216"),
-  ];
-  const initialZips = [];
-  const [zipOptions, zipSetOptions] = createSignal(zips);
-  const [zipSelectedValues, zipSetSelectedValues] = createSignal(initialZips);
+  const [zipOptions, { mutateZipcode, refetchZipcode }] = createResource(getZipcodes);
+  const [zipSelectedValues, zipSetSelectedValues] = createSignal([]);
   const onChangeZip = (selected) => {
     zipSetSelectedValues(selected);
     setInput({ ...input(), zip_code: selected});
+    //setInput(val => val[zip_code]=selected);
 
     //setInput({ ...input(), q: selected});
     //input().q = selectedValues;
+    zipOptions();
   };
+  /*
   const propsZip = createOptions(zipOptions, {
     key: "name",
     disable: (value) => zipSelectedValues().includes(value),
     filterable: true, // Default
     createable: createValue,
   });
+  */
 
   const types = [
-    createValue("DST"),
-    createValue("OAQ"),
+    createValue("DST", "dst full name"),
+    createValue("OAQ", "open air quality"),
   ];
   const initialTypes = [];
   const [typeOptions, typeSetOptions] = createSignal(types);
@@ -52,7 +79,6 @@ export function AddSensor(prop) {
   const onChangeType = (selected) => {
     typeSetSelectedValues(selected);
     setInput({ ...input(), type: selected});
-
     //setInput({ ...input(), q: selected});
     //input().q = selectedValues;
   };
@@ -63,12 +89,8 @@ export function AddSensor(prop) {
     createable: createValue,
   });
 
-  const pollutants = [
-    createValue("pm2.5"),
-    createValue("pm"),
-  ];
   const initialPollutants = [];
-  const [pollutantOptions, pollutantSetOptions] = createSignal(pollutants);
+  const [pollutantOptions, { mutatePollutant, refetchPollutant }] = createResource(getPollutants)
   const [pollutantSelectedValues, pollutantSetSelectedValues] = createSignal(initialPollutants);
   const onChangePollutant = (selected) => {
     pollutantSetSelectedValues(selected);
@@ -77,29 +99,39 @@ export function AddSensor(prop) {
     //setInput({ ...input(), q: selected});
     //input().q = selectedValues;
   };
+  /*
   const propsPollutant = createOptions(pollutantOptions, {
     key: "name",
     disable: (value) => pollutantSelectedValues().includes(value),
     filterable: true, // Default
     createable: createValue,
   });
+  */
+
+  const format = (item, type) => (type === "option" ? item.name : item.name);
 
   return (
     <>
       <form>
       <h3>Select Sensors</h3>
-
+      
       <div class="flex flex-1 flex-col max-w-100 gap-3">
         <label for="zip_code">Filter sensors by zip code</label>
         <Select
+          /*
+          {...propsZip}
+          */
           class="search"
           id="zip_code"
           //value={input().zip_code}
           multiple
           label="Select sensors"
           placeholder="Search by zip code"
+          initialValue={zipSelectedValues()}
           onChange={onChangeZip}
-          {...propsZip}
+          format={format}
+          options={zipOptions}
+          isOptionDisabled={(option) => zipSelectedValues().includes(option)}
         />
       </div>
 
@@ -127,7 +159,10 @@ export function AddSensor(prop) {
           label="Select sensors"
           placeholder="Search by pollutant"
           onChange={onChangePollutant}
-          {...propsPollutant}
+          //{...propsPollutant}
+          format={format}
+          options={pollutantOptions}
+          isOptionDisabled={(option) => pollutantSelectedValues().includes(option)}
         />
       </div>
 
