@@ -1,4 +1,4 @@
-import { createEffect, createSignal, For } from 'solid-js';
+import { createEffect, For } from 'solid-js';
 import { useStore } from '../../stores';
 import {
   parametersBins,
@@ -31,8 +31,8 @@ export default function MapLegend() {
 
   // Determine which bins to use based on the selected value
   // Currently doesn't change when you select concentration (needs fix)
-  const binsToUse = selectedValue() === 'AQI' ? parametersBinsAQI : parametersBins;
-
+  //const binsToUse = ((selectedValue() == 'AQI') ? parametersBinsAQI : parametersBins);
+  //write funtion to log selected value to console every time it changes
   return (
     <div class="map-legend">
       <div class="map-legend__body">
@@ -65,12 +65,12 @@ export default function MapLegend() {
                 )}
               </For>
             ) : (
-              <For each={binsToUse[store.parameter.id]}>
+              <For each={((selectedValue() == 'AQI') ? parametersBinsAQI : parametersBins)[store.parameter.id]}>
                 {(value, i) => (
                   <span class="type-body-4" style={{ flex: '1' }}>
                     {value}
                     {i() + 1 ==
-                    binsToUse[store.parameter.id].length
+                    ((selectedValue() == 'AQI') ? parametersBinsAQI : parametersBins)[store.parameter.id].length
                       ? '+'
                       : ''}
                   </span>
