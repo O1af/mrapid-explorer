@@ -1,10 +1,9 @@
-import { createSignal, createResource, For, Show, createUniqueId } from "solid-js";
+import { createSignal, createResource, For, Show } from "solid-js";
 import { searchSensors } from "./searchSensors";
 import { MultiSelect } from '@digichanges/solid-multiselect';
-import { Select, createSelect, createOptions } from "@thisbeyond/solid-select";
+import { Select, createOptions } from "@thisbeyond/solid-select";
 import "@thisbeyond/solid-select/style.css";
 import './search.scss';
-import { zip } from "d3";
 
 const createValue = (id, name) => {
   return { id: id, name: name };
@@ -38,7 +37,7 @@ export async function getPollutants() {
   return zipcodes;
 }
 
-export function AddSensor(prop) {
+export function AddSensor() {
   const filters = { zip_code: [], type: [], pollutant: [] };
   const [input, setInput] = createSignal(filters);
   const [query, setQuery] = createSignal("");
@@ -49,7 +48,7 @@ export function AddSensor(prop) {
 
   //////
 
-  const [zipOptions, { mutateZipcode, refetchZipcode }] = createResource(getZipcodes);
+  const [zipOptions] = createResource(getZipcodes);
   const [zipSelectedValues, zipSetSelectedValues] = createSignal([]);
   const onChangeZip = (selected) => {
     zipSetSelectedValues(selected);
@@ -74,7 +73,7 @@ export function AddSensor(prop) {
     createValue("OAQ", "open air quality"),
   ];
   const initialTypes = [];
-  const [typeOptions, typeSetOptions] = createSignal(types);
+  const [typeOptions] = createSignal(types);
   const [typeSelectedValues, typeSetSelectedValues] = createSignal(initialTypes);
   const onChangeType = (selected) => {
     typeSetSelectedValues(selected);
@@ -90,7 +89,7 @@ export function AddSensor(prop) {
   });
 
   const initialPollutants = [];
-  const [pollutantOptions, { mutatePollutant, refetchPollutant }] = createResource(getPollutants)
+  const [pollutantOptions] = createResource(getPollutants)
   const [pollutantSelectedValues, pollutantSetSelectedValues] = createSignal(initialPollutants);
   const onChangePollutant = (selected) => {
     pollutantSetSelectedValues(selected);
@@ -116,7 +115,7 @@ export function AddSensor(prop) {
       <h3>Select Sensors</h3>
       
       <div class="flex flex-1 flex-col max-w-100 gap-3">
-        <label for="zip_code">Filter sensors by zip code</label>
+        <label htmlFor="zip_code">Filter sensors by zip code</label>
         <Select
           /*
           {...propsZip}
@@ -136,7 +135,7 @@ export function AddSensor(prop) {
       </div>
 
       <div class="flex flex-1 flex-col max-w-100 gap-3">
-        <label for="type">Filter sensors by monitor type</label>
+        <label htmlFor="type">Filter sensors by monitor type</label>
         <Select
           class="search"
           id="type"
@@ -150,7 +149,7 @@ export function AddSensor(prop) {
       </div>
 
       <div class="flex flex-1 flex-col max-w-100 gap-3">
-        <label for="pollutant">Filter sensors by pollutant</label>
+        <label htmlFor="pollutant">Filter sensors by pollutant</label>
         <Select
           class="search"
           id="pollutant"
@@ -183,7 +182,7 @@ export function AddSensor(prop) {
         >
             <Show when={!data.loading} fallback={<>Searching...</>}>
             
-            <label class="data-form-item">
+            <label htmlFor="sensor selector" class="data-form-item">
                 Select sensors
                 <MultiSelect
                     style={{ chips: { color: "purple", "background-color": "pink" } }}

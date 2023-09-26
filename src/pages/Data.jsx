@@ -1,4 +1,4 @@
-import { createSignal, createUniqueId, Show } from "solid-js";
+import { createSignal } from "solid-js";
 //import { Select, createOptions } from "@thisbeyond/solid-select";
 import "@thisbeyond/solid-select/style.css";
 import './search.scss';
@@ -9,8 +9,8 @@ import { AddSensor } from "./AddSensor";
 
 const initialSensors = [];
 
-function Sensors(props) {
-  const [sensors, setSensors] = createSignal(initialSensors);
+function Sensors() {
+  const [setSensors] = createSignal(initialSensors);
 
   return (
     <div>
@@ -57,7 +57,7 @@ const Data = () => {
       <div class="data-image-container">
         <h3>Map of Detroit Zip Codes</h3>
         <div class="data-image">
-          <img src="/src/assets/detroitmap.jpg"/>
+          <img src="/src/assets/detroitmap.jpg" alt="map of detroit zipcodes"/>
         </div>
         For a complete list of MI zip codes, refer to this 
         <a 

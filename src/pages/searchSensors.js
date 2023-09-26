@@ -1,4 +1,4 @@
-import { stringify, parse } from 'query-string';
+import queryString from "query-string";
 export async function searchSensors(query) {
 
     let queries = queryString.stringify(query);
@@ -9,4 +9,4 @@ export async function searchSensors(query) {
     );
     const results = await response.json();
     return results;
-  }
+}
