@@ -1,3 +1,3 @@
-import{H as e}from"./HelpContent.c4a409d2.js";import{c as t}from"./index.db626f75.js";const o=`<h1>Thresholds</h1>
+import{H as e}from"./HelpContent.01f797e8.js";import{c as t}from"./index.4d1a85f7.js";const o=`<h1>Thresholds</h1>
 <p>The thresholds overlay allows you to see the proportion of measurement values that exceed a given threshold over a given period of time. For example one can chose to overlay the threshold of PM2.5 measurements that exceeded 5 \xB5g/m\xB3 during the past 90 days. The resulting color scale show the percentage of measurements (0-100%) that exceeded 5 \xB5g/m\xB3, with the lightest color being zero or a low number of measurements to the darksest being all or nearly all measurements.</p>
 `;function a(){return t(e,{html:o})}export{a as default};
