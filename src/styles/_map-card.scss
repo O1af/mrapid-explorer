@@ -243,3 +243,111 @@
     justify-content: center;
   }
 }
+
+@media (max-width: 1000px) {
+  .expandable-card {
+    @include card;
+    position: absolute;
+    transform: none;
+    will-change: transform;
+    transition: transform 0.3s cubic-bezier(0, 0, 0.3, 1);
+    margin: 0 0 8px 0;
+  
+    &--translate {
+      transform: translateX(120%);
+      transition: transform 0.3s cubic-bezier(0, 0, 0.3, 1);
+    }
+  
+    &__header {
+      height: 25px;
+      display: flex;
+      justify-content: right;
+      align-items: right;
+      background: variables.$sky120;
+      padding: 0 10px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+  
+    &__body {
+      height: auto;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+      font-size:12px;
+  
+      &--open {
+        max-height: calc(50vw - 30px - 16px - 100px);
+        overflow-y: scroll;
+        transition: max-height 0.5s ease-in;
+      }
+      
+    }
+  
+    &__footer {
+      border-top: 1px solid variables.$smoke10;
+      padding: 24px 15px 15px 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+  }
+
+  .accordion {
+    &__header {
+      @include mixins.subtitle3;
+      background-color: variables.$sky10;
+      color: #636c77;
+      height: 25px;
+      border-bottom: 2px solid #ffffff;
+      display: flex;
+      justify-content: right;
+      align-items: center;
+      cursor: pointer;
+      padding: 0 10px;
+  
+      &--open {
+        background: variables.$sky100;
+        color: white;
+      }
+  
+      &-title {
+        font-size: 14px;
+        margin: auto 0;
+      }
+    }
+  
+    &__body {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      max-height: 0;
+      overflow: hidden;
+      margin: 0;
+      transition: max-height 0.3s ease, margin 0.3s ease;
+  
+      h1 {
+        margin:1px;
+        font-size: 14px;
+      }
+      
+      .select {
+        font-size: 12px;
+        
+      }
+  
+      &--open {
+        max-height: 600px;
+        margin: 12px 15px;
+        overflow: hidden;
+        transition: max-height 0.5s ease, margin 0.2s ease;
+      }
+    }
+  }
+}
+
+@media (max-width:545px) {
+  .select {
+    height: calc(30vw - 100px);
+  }
+}
