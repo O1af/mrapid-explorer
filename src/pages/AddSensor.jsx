@@ -1,7 +1,7 @@
-import { createSignal, createResource, For, Show } from "solid-js";
+import { createSignal, createResource, Show } from "solid-js";
 import { searchSensors } from "./searchSensors";
-import { MultiSelect } from '@digichanges/solid-multiselect';
-import { Select, createOptions } from "@thisbeyond/solid-select";
+// import { MultiSelect } from '@digichanges/solid-multiselect';
+import { Select } from "@thisbeyond/solid-select";
 import "@thisbeyond/solid-select/style.css";
 import './search.scss';
 
@@ -29,108 +29,84 @@ export async function getPollutants() {
     `https://mrapid-api3-r2oaltsiuq-uc.a.run.app/parameterList`
   );
   const results = await response.json();
-  let zipcodes = []
+  let pollutants = []
   for (let step = 0; step < results['results'].length; step++) {
-    zipcodes.push(createValue(results['results'][step]['name'], 
+    pollutants.push(createValue(results['results'][step]['name'], 
                   results['results'][step]['displayName']));
   }
-  return zipcodes;
+  return pollutants;
 }
 
 export function AddSensor() {
-  const filters = { zip_code: [], type: [], pollutant: [] };
-  const [input, setInput] = createSignal(filters);
-  const [query, setQuery] = createSignal("");
-  const [data] = createResource(query, searchSensors);
+  // const temp1 = []
+  // const temp2 = []
+  // const temp3 = []
+  // const temp4 = []
+  const [zipSelectedValues, zipSetSelectedValues] = createSignal([]);
+  const [typeSelectedValues, typeSetSelectedValues] = createSignal([]);
+  const [pollutantSelectedValues, pollutantSetSelectedValues] = createSignal([]);
+  const [sensorSelected, sensorSetSelected] = createSignal([]);
 
-  const [showForm, setShowForm] = createSignal(false);
-  const toggleForm = () => setShowForm(!showForm());
+  // const [showForm, setShowForm] = createSignal(false);
+  // const toggleForm = () => setShowForm(!showForm());
+
+
+  // for creating query parameter list
+  const sensorListParameters = () => {
+    return {zip_code: zipSelectedValues(), type: typeSelectedValues(), pollutant: pollutantSelectedValues()}
+  }
+  const [data] = createResource(sensorListParameters, searchSensors)
+  const onChangeSensors = (selected) => {
+    sensorSetSelected(selected);
+    data();
+  };
 
   //////
-
-  const [zipOptions] = createResource(getZipcodes);
-  const [zipSelectedValues, zipSetSelectedValues] = createSignal([]);
+  const [zipOptions] = createResource(getZipcodes)
   const onChangeZip = (selected) => {
     zipSetSelectedValues(selected);
-    setInput({ ...input(), zip_code: selected});
-    //setInput(val => val[zip_code]=selected);
 
     //setInput({ ...input(), q: selected});
     //input().q = selectedValues;
     zipOptions();
   };
-  /*
-  const propsZip = createOptions(zipOptions, {
-    key: "name",
-    disable: (value) => zipSelectedValues().includes(value),
-    filterable: true, // Default
-    createable: createValue,
-  });
-  */
 
   const types = [
     createValue("DST", "dst full name"),
     createValue("OAQ", "open air quality"),
   ];
-  const initialTypes = [];
-  const [typeOptions] = createSignal(types);
-  const [typeSelectedValues, typeSetSelectedValues] = createSignal(initialTypes);
+  // const [typeOptions] = createSignal(types);
   const onChangeType = (selected) => {
     typeSetSelectedValues(selected);
-    setInput({ ...input(), type: selected});
-    //setInput({ ...input(), q: selected});
-    //input().q = selectedValues;
+    
   };
-  const propsType = createOptions(typeOptions, {
-    key: "name",
-    disable: (value) => typeSelectedValues().includes(value),
-    filterable: true, // Default
-    createable: createValue,
-  });
 
-  const initialPollutants = [];
   const [pollutantOptions] = createResource(getPollutants)
-  const [pollutantSelectedValues, pollutantSetSelectedValues] = createSignal(initialPollutants);
   const onChangePollutant = (selected) => {
     pollutantSetSelectedValues(selected);
-    setInput({ ...input(), pollutant: selected});
-
-    //setInput({ ...input(), q: selected});
-    //input().q = selectedValues;
+    pollutantOptions();
   };
-  /*
-  const propsPollutant = createOptions(pollutantOptions, {
-    key: "name",
-    disable: (value) => pollutantSelectedValues().includes(value),
-    filterable: true, // Default
-    createable: createValue,
-  });
-  */
 
   const format = (item, type) => (type === "option" ? item.name : item.name);
 
   return (
     <>
       <form>
-      <h3>Select Sensors</h3>
-      
+      <h3>Filter Sensors</h3>
+
       <div class="flex flex-1 flex-col max-w-100 gap-3">
         <label htmlFor="zip_code">Filter sensors by zip code</label>
         <Select
-          /*
-          {...propsZip}
-          */
           class="search"
           id="zip_code"
           //value={input().zip_code}
           multiple
           label="Select sensors"
           placeholder="Search by zip code"
-          initialValue={zipSelectedValues()}
           onChange={onChangeZip}
           format={format}
           options={zipOptions}
-          isOptionDisabled={(option) => zipSelectedValues().includes(option)}
+          isOptionDisabled={(option) => (zipSelectedValues().length != 0) ? zipSelectedValues().includes(option) : false}
         />
       </div>
 
@@ -143,8 +119,12 @@ export function AddSensor() {
           multiple
           label="Select sensors"
           placeholder="Search by monitor type"
+          initialValue={typeSelectedValues()}
           onChange={onChangeType}
-          {...propsType}
+          format={format}
+          options={types}
+          isOptionDisabled={(option) => (typeSelectedValues().length != 0) ? typeSelectedValues().includes(option) : false}
+          // {...propsType}
         />
       </div>
 
@@ -161,50 +141,39 @@ export function AddSensor() {
           //{...propsPollutant}
           format={format}
           options={pollutantOptions}
-          isOptionDisabled={(option) => pollutantSelectedValues().includes(option)}
+          isOptionDisabled={(option) => (pollutantSelectedValues().length != 0) ? pollutantSelectedValues().includes(option) : false}
         />
       </div>
 
-      </form>
-      <Show
-            when={showForm()}
-            fallback={
-                <button onClick={(e) => {
-                    e.preventDefault();
-                    //setInput({ ...input(), q: selectedValues()});
-                    setQuery(input());
-                    toggleForm();
-                }}
-                >
-                    Filter sensors
-                </button>
-            }
-        >
-            <Show when={!data.loading} fallback={<>Searching...</>}>
-            
-            <label htmlFor="sensor selector" class="data-form-item">
-                Select sensors
-                <MultiSelect
-                    style={{ chips: { color: "purple", "background-color": "pink" } }}
-                    options={data()}
-                    onSelect={console.log}
-                    onRemove={console.log}
-                    class="search"
-                    //selectedValues={["yellow"]}
-                    //selectionLimit={2}
-                />
-            </label>
-            <ul>
-            <For each={data()}>   
-                {(sensor) => (
-                <li>
-                    {sensor.title}
-                </li>
-                )}
-            </For>
-            </ul>
-        </Show>
+      <h3>Select Sensors</h3>
+      <Show when={!data.loading} fallback={<>Searching...</>}>
+        <div class="flex flex-1 flex-col max-w-100 gap-3">
+          <label htmlFor="sensor">Select sensors</label>
+            {/* <MultiSelect
+                style={{ chips: { color: "purple", "background-color": "pink" } }}
+                options={data()}
+                onSelect={console.log}
+                onRemove={console.log}
+                class="search"
+                //selectedValues={["yellow"]}
+                //selectionLimit={2}
+            /> */}
+          <Select
+            class="search"
+            id="sensor"
+            //value={input().zip_code}
+            multiple
+            label="sensor selector"
+            placeholder="Search for specific sensors"
+            onChange={onChangeSensors}
+            format={format}
+            options={data}
+            isOptionDisabled={(option) => (sensorSelected().length != 0) ? sensorSelected().includes(option) : false}
+          />
+        </div>
       </Show>
+      </form>
+
     </>
   );
 }
