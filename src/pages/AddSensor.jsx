@@ -1,5 +1,5 @@
 import { createSignal, createResource, Show } from "solid-js";
-import { searchSensors } from "./searchSensors";
+import { searchSensors, getSensorData } from "./searchSensors";
 // import { MultiSelect } from '@digichanges/solid-multiselect';
 import { Select } from "@thisbeyond/solid-select";
 import "@thisbeyond/solid-select/style.css";
@@ -50,8 +50,15 @@ export function AddSensor() {
   // const [showForm, setShowForm] = createSignal(false);
   // const toggleForm = () => setShowForm(!showForm());
 
+  const [startDate, setStartDate] = createSignal("");
+  const [endDate, setEndDate] = createSignal("");
+  const [timeStep, setTimeStep] = createSignal("");
+  const onChangeTime = (selected) => {
+    setTimeStep(selected.currentTarget.value)
+    dataJson();
+  };
 
-  // for creating query parameter list
+  // for creating query parameter list for sensors
   const sensorListParameters = () => {
     return {zip_code: zipSelectedValues(), type: typeSelectedValues(), pollutant: pollutantSelectedValues()}
   }
@@ -60,6 +67,12 @@ export function AddSensor() {
     sensorSetSelected(selected);
     data();
   };
+
+  // for creating query parameter list for data json
+  const sensorDataParameters = () => {
+    return {zip_code: zipSelectedValues(), pollutant: pollutantSelectedValues()}// TODO add other params here
+  }
+  const [dataJson] = createResource(sensorDataParameters, getSensorData)
 
   //////
   const [zipOptions] = createResource(getZipcodes)
@@ -172,6 +185,26 @@ export function AddSensor() {
           />
         </div>
       </Show>
+
+      <h3>Filter Sensor Data </h3>
+
+      <label class="data-form-item">
+        Start time/date
+        <input type="date" value={startDate} onChange={(e) => {setStartDate(e.currentTarget.value); dataJson();}} name="start-time" class="text-input"></input>
+      </label>
+      <label class="data-form-item">
+        End time/date
+        <input type="date" value={endDate} onChange={(e) => {setEndDate(e.currentTarget.value); dataJson();}} name="end-time" class="text-input"></input>
+      </label>
+      <label class="data-form-item">
+        Time step
+        <select class="select" value={timeStep} onChange={onChangeTime}>
+          <option value="h">Hourly</option>
+          <option value="d">Daily</option>
+          <option value="m">Monthly</option>
+          <option value="y">Yearly</option>
+        </select>
+      </label>
       </form>
 
     </>

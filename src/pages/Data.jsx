@@ -32,23 +32,6 @@ const Data = () => {
 
         <Sensors name="Solid"/>
 
-        <label class="data-form-item">
-          Start time/date
-          <input type="datetime-local" name="start-time" class="text-input"></input>
-        </label>
-        <label class="data-form-item">
-          End time/date
-          <input type="datetime-local" name="end-time" class="text-input"></input>
-        </label>
-        <label class="data-form-item">
-          Time step
-          <select class="select">
-            <option>Hourly</option>
-            <option>Daily</option>
-            <option>Monthly</option>
-            <option>Yearly</option>
-          </select>
-        </label>
         <label class="data-form-item" htmlFor="downloadSubmit">
           <button id="downloadSubmit" type="submit" name="submit" class="icon-btn btn-secondary">Download</button>
         </label>
