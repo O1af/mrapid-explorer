@@ -42,9 +42,12 @@ export function AddSensor() {
   // const temp2 = []
   // const temp3 = []
   // const temp4 = []
-  const [zipSelectedValues, zipSetSelectedValues] = createSignal([]);
-  const [typeSelectedValues, typeSetSelectedValues] = createSignal([]);
-  const [pollutantSelectedValues, pollutantSetSelectedValues] = createSignal([]);
+  const initialZip = []
+  const initialType = []
+  const initialPollutant = []
+  const [zipSelectedValues, zipSetSelectedValues] = createSignal(initialZip);
+  const [typeSelectedValues, typeSetSelectedValues] = createSignal(initialType);
+  const [pollutantSelectedValues, pollutantSetSelectedValues] = createSignal(initialPollutant);
   const [sensorSelected, sensorSetSelected] = createSignal([]);
 
   // const [showForm, setShowForm] = createSignal(false);
@@ -102,11 +105,39 @@ export function AddSensor() {
 
   const format = (item, type) => (type === "option" ? item.name : item.name);
 
+  const [zipAll, setZipAll] = createSignal({ text: 'Select all zip codes', complete: false});
+  const selectZip = () => {
+    setZipAll({ ...zipAll, complete: !zipAll.complete });
+    zipSetSelectedValues(zipOptions);
+    zipOptions();
+  };
+
+  const [typeAll, setTypeAll] = createSignal({ text: 'Select all monitor types', complete: false});
+  const selectType = () => {
+    setTypeAll({ ...typeAll, complete: !typeAll.complete });
+    typeSetSelectedValues(types);
+  };
+
+  const [pollutantAll, setPollutantAll] = createSignal({ text: 'Select all pollutant types', complete: false});
+  const selectPollutant = () => {
+    setPollutantAll({ ...pollutantAll, complete: !pollutantAll.complete });
+    pollutantSetSelectedValues(pollutantOptions);
+    pollutantOptions();
+  };
+
   return (
     <>
       <form>
       <h3>Filter Sensors</h3>
 
+      <label>
+          <input
+            type="checkbox"
+            checked={zipAll().complete}
+            onChange={selectZip}
+          />
+          {zipAll().text}
+      </label>
       <div class="flex flex-1 flex-col max-w-100 gap-3">
         <label htmlFor="zip_code">Filter sensors by zip code</label>
         <Select
@@ -114,6 +145,7 @@ export function AddSensor() {
           id="zip_code"
           //value={input().zip_code}
           multiple
+          initialValue = {zipSelectedValues()}
           label="Select sensors"
           placeholder="Search by zip code"
           onChange={onChangeZip}
@@ -123,6 +155,14 @@ export function AddSensor() {
         />
       </div>
 
+      <label>
+          <input
+            type="checkbox"
+            checked={typeAll().complete}
+            onChange={selectType}
+          />
+          {typeAll().text}
+      </label>
       <div class="flex flex-1 flex-col max-w-100 gap-3">
         <label htmlFor="type">Filter sensors by monitor type</label>
         <Select
@@ -141,6 +181,14 @@ export function AddSensor() {
         />
       </div>
 
+      <label>
+          <input
+            type="checkbox"
+            checked={pollutantAll().complete}
+            onChange={selectPollutant}
+          />
+          {pollutantAll().text}
+      </label>
       <div class="flex flex-1 flex-col max-w-100 gap-3">
         <label htmlFor="pollutant">Filter sensors by pollutant</label>
         <Select
@@ -148,6 +196,7 @@ export function AddSensor() {
           id="pollutant"
           //value={input().zip_code}
           multiple
+          initialValue={pollutantSelectedValues()}
           label="Select sensors"
           placeholder="Search by pollutant"
           onChange={onChangePollutant}
