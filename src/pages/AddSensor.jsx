@@ -32,7 +32,8 @@ export async function getPollutants() {
   let pollutants = []
   for (let step = 0; step < results['results'].length; step++) {
     pollutants.push(createValue(results['results'][step]['name'], 
-                  results['results'][step]['displayName']));
+                  results['results'][step]['displayName'] + " " + 
+                  results['results'][step]['units']));
   }
   return pollutants;
 }
@@ -58,9 +59,13 @@ export function AddSensor() {
   const [timeStep, setTimeStep] = createSignal("");
   const onChangeTime = (selected) => {
     setTimeStep(selected.currentTarget.value)
-    dataJson();
   };
 
+  const onButtonClick = (event) => {
+    dataJson();
+    console.log(dataJson());
+    event.preventDefault();
+  }
   // for creating query parameter list for sensors
   const sensorListParameters = () => {
     return {zip_code: zipSelectedValues(), type: typeSelectedValues(), pollutant: pollutantSelectedValues()}
@@ -73,7 +78,8 @@ export function AddSensor() {
 
   // for creating query parameter list for data json
   const sensorDataParameters = () => {
-    return {zip_code: zipSelectedValues(), pollutant: pollutantSelectedValues()}// TODO add other params here
+    return {pollutant: pollutantSelectedValues(), sensor: sensorSelected(), 
+            start: startDate(), end: endDate(), step: timeStep()}// unit inside the pollutant['name'] (do a .split())
   }
   const [dataJson] = createResource(sensorDataParameters, getSensorData)
 
@@ -239,15 +245,15 @@ export function AddSensor() {
 
       <label class="data-form-item">
         Start time/date
-        <input type="date" value={startDate} onChange={(e) => {setStartDate(e.currentTarget.value); dataJson();}} name="start-time" class="text-input"></input>
+        <input type="date" value={startDate()} onChange={(e) => setStartDate(e.currentTarget.value)} name="start-time" class="text-input"></input>
       </label>
       <label class="data-form-item">
         End time/date
-        <input type="date" value={endDate} onChange={(e) => {setEndDate(e.currentTarget.value); dataJson();}} name="end-time" class="text-input"></input>
+        <input type="date" value={endDate()} onChange={(e) => setEndDate(e.currentTarget.value)} name="end-time" class="text-input"></input>
       </label>
       <label class="data-form-item">
         Time step
-        <select class="select" value={timeStep} onChange={onChangeTime}>
+        <select class="select" value={timeStep()} onChange={onChangeTime}>
           <option value="h">Hourly</option>
           <option value="d">Daily</option>
           <option value="m">Monthly</option>
@@ -255,7 +261,8 @@ export function AddSensor() {
         </select>
       </label>
       </form>
-
+      
+      <button onClick={onButtonClick}>click here to load data json</button>
     </>
   );
 }
