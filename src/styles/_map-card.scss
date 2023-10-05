@@ -277,7 +277,7 @@
       font-size:12px;
   
       &--open {
-        max-height: calc(50vw - 30px - 16px - 100px);
+        max-height: calc(30vw);
         overflow-y: scroll;
         transition: max-height 0.5s ease-in;
       }
@@ -346,8 +346,8 @@
   }
 }
 
-@media (max-width:545px) {
+@media (max-width:400px) {
   .select {
-    height: calc(30vw - 100px);
+    height: calc(7vw);
   }
 }
