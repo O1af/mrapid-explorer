@@ -9,7 +9,7 @@ import eslint from 'vite-plugin-eslint';
 
 
 export default defineConfig({
-  base: '/mrapid-explorer',
+  base: '/',
   plugins: [
     remarkHtml({
       sanitize: false
