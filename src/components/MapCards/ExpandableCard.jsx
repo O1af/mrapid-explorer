@@ -83,7 +83,7 @@ export default function FilterOverlayCard() {
   return (
     <ExpandableCard>
       <Accordion />
-      <section class="filters-section">
+      {/* <section class="filters-section">
         <header class="expandable-card__header">
           <div style={{ display: 'flex', 'align-items': 'center' }}>
             <span class="material-symbols-rounded white">
@@ -93,8 +93,8 @@ export default function FilterOverlayCard() {
           </div>
         </header>
         <div style={{ margin: '16px 15px' }}>
-          <div class="filters-section__body">
-            <NoRecentUpdateMarker />
+          <div class="filters-section__body"> */}
+            {/* <NoRecentUpdateMarker />
             <label class="marker-legend-item" for="recent-updates">
               <span>Exclude inactive monitors</span>
               <input
@@ -167,7 +167,9 @@ export default function FilterOverlayCard() {
                 checked={store.mapFilters.tsi}
                 onChange={tsiCheck}
               />
-            </label>
+            </label> */}
+          {/* the code above was originally for the source toggle checkboxes */}
+
             {/* <TextMarker /> 
             <label class="marker-legend-item" for="data-text">
               Show Text
@@ -193,8 +195,8 @@ export default function FilterOverlayCard() {
                 onChange={noRecentUpdatesCheck}
               />
             </label> */}
-          </div>
-        </div>
+          {/* </div>
+        </div> */}
         {/* <div class="expandable-card__footer">
           <button
             class="btn btn-secondary icon-btn"
@@ -204,7 +206,8 @@ export default function FilterOverlayCard() {
             <span class="material-symbols-outlined green">tune</span>
           </button>
         </div> */}
-      </section>
+      {/* </section> */}
+      <p>Click to open/close map options.</p>
     </ExpandableCard>
   );
 }

@@ -166,3 +166,32 @@
     background-color: variables.$fire60;
   }
 }
+
+@media (max-width:400px) {
+  
+  .low-cost-sensor-marker, .clarity-marker, .dst-marker, .purple-air-marker, .reference-grade-marker, .tsi-marker {
+    padding:5px;
+
+    &__fill {
+      height: 15px;
+      width: 15px;
+    }
+    &__border {
+      height: 23px;
+      width: 23px;
+    }
+  }
+
+  .no-recent-data-marker {
+    padding:5px;
+
+    &__fill {
+      height: 15px;
+      width: 15px;
+    }
+    &__border {
+      height: 20px;
+      width: 20px;
+    }
+  }
+}
