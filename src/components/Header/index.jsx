@@ -62,7 +62,9 @@ export default function Header() {
                 </li>
               </ul>
             </li> */}
-            <li>
+            
+            {/* Uncomment below once we decide to develop these pages */}
+            {/* <li>
               <a
                 href="./"
                 class="nav__item partners-tab"
@@ -78,7 +80,7 @@ export default function Header() {
               >
                 Profile
               </a>
-            </li>
+            </li> */}
           </ul>
         </nav>
       </div>
