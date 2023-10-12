@@ -31,20 +31,26 @@ function Home() {
           <h2 class="meet-team-title__heading2">Meet the team</h2>
         </div>
         <div class='meet-team-grid-prof'>
-          <div id='team-member-prof'>
-            <img class='team-img' alt="Image of Professor Batterman" src={ImageProf}></img>
+          <div class='team-member'>
+            <img class='team-img' alt="Professor Batterman" src={ImageProf}></img>
             <div class="member-label">
               Professor Stewart Batterman 
             </div>
-            <div class="member-desc">
+            <div class="member-affiliation">
               Professor
+            </div>
+            <div class="member-desc">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris efficitur, urna eu pharetra porta, 
+            augue ligula ornare nisl, id vehicula nulla neque vel massa. Nam nec elit odio. Duis auctor egestas 
+            dolor, ultricies aliquet tortor pellentesque sed. Sed eleifend dolor nec lectus feugiat, ut hendrerit 
+            ante vulputate.
             </div>
           </div>
         </div>
         <hr class='meet-team-line'></hr>
         <div class='meet-team-grid'>
-          <div id='team-member-yash'>
-            <img class='team-img' alt="Image of Yash" src={ImageYash}></img>
+          <div class='team-member'>
+            <img class='team-img' alt="Yash" src={ImageYash}></img>
             <div class="member-label">
               Yashoditya (Yash) Watal
             </div>
@@ -52,58 +58,91 @@ function Home() {
               Student
             </div>
             <div class="member-desc">
-
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris efficitur, urna eu pharetra porta, 
+            augue ligula ornare nisl, id vehicula nulla neque vel massa. Nam nec elit odio. Duis auctor egestas 
+            dolor, ultricies aliquet tortor pellentesque sed. Sed eleifend dolor nec lectus feugiat, ut hendrerit 
+            ante vulputate.
             </div>
           </div>
 
-          <div id='team-member-amelia'>
-            <img class='team-img' alt="Image of Amelia" src={ImageAmelia}></img>
+          <div class='team-member'>
+            <img class='team-img' alt="Amelia" src={ImageAmelia}></img>
             <div class="member-label">
               Amelia Francisco
             </div>
-            <div class="member-desc">
+            <div class="member-affiliation">
               Student
             </div>
+            <div class="member-desc">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris efficitur, urna eu pharetra porta, 
+              augue ligula ornare nisl, id vehicula nulla neque vel massa. Nam nec elit odio. Duis auctor egestas 
+              dolor, ultricies aliquet tortor pellentesque sed. Sed eleifend dolor nec lectus feugiat, ut hendrerit 
+              ante vulputate.
+            </div>            
           </div>
 
-          <div id='team-member-olaf'>
-            <img class='team-img'alt="Image of Olaf" src={ImageOlaf}></img>
+          <div class='team-member'>
+            <img class='team-img'alt="Olaf" src={ImageOlaf}></img>
             <div class="member-label">
               Olaf Dsouza 
             </div>
-            <div class="member-desc">
+            <div class="member-affiliation">
               Student
             </div>
+            <div class="member-desc">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris efficitur, urna eu pharetra porta, 
+              augue ligula ornare nisl, id vehicula nulla neque vel massa. Nam nec elit odio. Duis auctor egestas 
+              dolor, ultricies aliquet tortor pellentesque sed. Sed eleifend dolor nec lectus feugiat, ut hendrerit 
+              ante vulputate.
+            </div>            
           </div>
 
-          <div id='team-member-ella'>
-            <img class='team-img' alt="Image of Ella" src={ImageElla}></img>
+          <div class='team-member'>
+            <img class='team-img' alt="Ella" src={ImageElla}></img>
             <div class="member-label">
               Ella Zhang
             </div>
-            <div class="member-desc">
+            <div class="member-affiliation">
               Student
             </div>
+            <div class="member-desc">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris efficitur, urna eu pharetra porta, 
+              augue ligula ornare nisl, id vehicula nulla neque vel massa. Nam nec elit odio. Duis auctor egestas 
+              dolor, ultricies aliquet tortor pellentesque sed. Sed eleifend dolor nec lectus feugiat, ut hendrerit 
+              ante vulputate.
+            </div>            
           </div>
 
-          <div id='team-member-kristine'>
-            <img class='team-img' alt="Image of Kristine" src={ImageKristine}></img>
+          <div class='team-member'>
+            <img class='team-img' alt="Kristine" src={ImageKristine}></img>
             <div class="member-label">
               Kristine McLaughlin
             </div>
-            <div class="member-desc">
+            <div class="member-affiliation">
               Student
             </div>
+            <div class="member-desc">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris efficitur, urna eu pharetra porta, 
+              augue ligula ornare nisl, id vehicula nulla neque vel massa. Nam nec elit odio. Duis auctor egestas 
+              dolor, ultricies aliquet tortor pellentesque sed. Sed eleifend dolor nec lectus feugiat, ut hendrerit 
+              ante vulputate.
+            </div>            
           </div>
 
-          <div id='team-member-jenny'>
-            <img class='team-img' alt="Image of Jenny" src={ImageJenny}></img>
+          <div class='team-member'>
+            <img class='team-img' alt="Jenny" src={ImageJenny}></img>
             <div class="member-label">
               Jenny Xu
             </div>
-            <div class="member-desc">
+            <div class="member-affiliation">
               Student
             </div>
+            <div class="member-desc">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris efficitur, urna eu pharetra porta, 
+              augue ligula ornare nisl, id vehicula nulla neque vel massa. Nam nec elit odio. Duis auctor egestas 
+              dolor, ultricies aliquet tortor pellentesque sed. Sed eleifend dolor nec lectus feugiat, ut hendrerit 
+              ante vulputate.
+            </div>            
           </div>
         </div>
       </section>

@@ -16,6 +16,12 @@
     }
 }
 
+.member-affiliation {
+    size: 18px;
+    font-style: italic;
+    color:#706f79;
+}
+
 .meet-team-grid {
     margin-top: 30px;
     display:grid;
@@ -23,7 +29,8 @@
     justify-items: center;
     grid-auto-rows: 1fr;
     row-gap: 30px;
-    .team-img { //image slightly off for some screen sizes --> not a big deal but maybe fix eventually
+    column-gap: 10px;
+    .team-img {
         width:15vw;
         height:20vw;
         border:1px dashed rgb(214, 204, 204);
@@ -40,6 +47,10 @@
     }
     .member-desc {
         text-align: center;
+    }
+    .team-member {
+        display: grid;
+        justify-items: center;
     }
 }
 
