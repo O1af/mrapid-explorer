@@ -56,3 +56,26 @@
     padding: 4px;
   }
 }
+
+@media (max-width:400px) {
+  .map-legend {
+    width:100vw;
+    left:0%;
+    bottom:0%;
+    height:70px;
+    z-index:10; //brings to front
+  }
+  .map-legend-section {
+  .map-legend-bar {
+    width: 250px;
+    margin: 4px 0;
+    }
+    .map-legend-bar-labels {
+      margin: 0 18px;
+    }
+  }
+
+  .map-legend-title {
+    font-size: 12px;
+  }
+}

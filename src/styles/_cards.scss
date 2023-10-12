@@ -105,3 +105,21 @@ $sky60: #585560;
   flex-direction: column;
   gap: 8px;
 }
+
+@media (max-width:400px) {
+  .filters-section {
+    &__body {
+      width: 230px;
+      display: grid;
+      grid-template-columns: 1fr 9fr;
+      grid-auto-rows: 1fr;
+      row-gap: 3px;
+      column-gap: 4px;
+      
+      .marker-legend-item {
+        display: grid;
+        grid-template-columns: 6fr 1fr;
+      }
+    }
+  }
+}

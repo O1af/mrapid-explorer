@@ -10,6 +10,7 @@ const helpContent = {
   legend: lazy(() => import('./LegendHelp')),
   aqi: lazy(() => import('./AqiHelp')),
   lineChartHelp: lazy(() => import('./LineChartHelp')),
+  filters: lazy(() => import('./FilterHelp')),
 };
 
 export function HelpCard() {

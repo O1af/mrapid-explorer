@@ -4,22 +4,18 @@ export default function Header() {
   return (
     <header class="header">
       <div class="header-contents">
-      <ul class="nav-list">
-            <li>
-        <a href="./map" class="header-logo" aria-label="logo">
+        <a href="https://detroitair.umich.edu/" class="header-logo" aria-label="logo">
           {/*<img src={imgSvg} alt="logo" />*/}
           Detroit Air
         </a>
-        </li>
-        </ul>
         <div class="spacer" />
         <nav class="nav">
-          {/* <input id="menu-toggle" type="checkbox"/>
+           <input id="menu-toggle" type="checkbox"/>
           <label class="menu-button-container" for="menu-toggle">
             <div class="menu-button">
               <span class="material-symbols-outlined">menu</span>
             </div>
-          </label> */}
+          </label> 
           <ul class="nav-list">
             <li>
               <a
@@ -66,7 +62,9 @@ export default function Header() {
                 </li>
               </ul>
             </li> */}
-            <li>
+            
+            {/* Uncomment below once we decide to develop these pages */}
+            {/* <li>
               <a
                 href="./"
                 class="nav__item partners-tab"
@@ -82,7 +80,7 @@ export default function Header() {
               >
                 Profile
               </a>
-            </li>
+            </li> */}
           </ul>
         </nav>
       </div>

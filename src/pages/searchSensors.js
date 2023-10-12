@@ -13,12 +13,13 @@ export async function searchSensors(query) {
 
 export async function getSensorData(query) {
     let queries = ""
-    console.log(query)
-    // TODO format query
-    // query["sensor"].forEach((element) => queries += ("sensor=" + element["id"] + "&"));
-    // query["pollutant"].forEach((element) => queries += ("pollutant=" + element["id"] + "&"));
-    // query["pollutant"].forEach((element) => queries += ("pollutant=" + element["id"] + "&"));
-
+    query["sensor"].forEach((element) => queries += ("sensor=" + element["id"] + "&"));
+    query["pollutant"].forEach((element) => queries += ("pollutant=" + element["id"] + "&"));
+    query["pollutant"].forEach((element) => queries += ("unit=" + element["name"].split(" ").pop() + "&"));
+    queries += ("start=" + query['start'] + "&");
+    queries += ("end=" + query['end'] + "&");
+    queries += ("step=" + query['step'] + "&");
+    console.log(queries)
     const response = await fetch(
         `https://mrapid-api3-r2oaltsiuq-uc.a.run.app/history?${queries}`
     );
