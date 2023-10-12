@@ -33,6 +33,14 @@ export default function Header() {
                 Data
               </a>
             </li>
+            <li>
+              <a
+                class="nav__item nav__item--active explore-data-tab"
+                href="./about"
+              >
+                About Us
+              </a>
+            </li>
             {/* Uncomment code below if we decide to make data tab a dropdown menu
             (note the links will have to be fixed) */}
             {/* <li class="dropdown">

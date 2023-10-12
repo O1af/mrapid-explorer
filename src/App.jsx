@@ -6,7 +6,7 @@ const Detail = lazy(() => import('./pages/Detail'));
 const Explore = lazy(() => import('./pages/Explore'));
 const Data = lazy(() => import('./pages/Data'));
 const NotFound = lazy(() => import('./pages/NotFound'));
-const Home = lazy(() => import ('./pages/Home'));
+const About = lazy(() => import ('./pages/About'));
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
         <Route path="*" component={NotFound} />
         <Route path="/data" component={Data} />
         <Route path="/" component={Explore} />
-        <Route path="/home" component={Home} />
+        <Route path="/about" component={About} />
       </Routes>
     </>
   );

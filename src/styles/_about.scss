@@ -1,0 +1,77 @@
+.page-about {
+    margin:20px;
+}
+
+.meet-team-line {
+    opacity: 75%;
+    border:0.5px solid rgb(195, 195, 205);
+}
+
+.meet-team-title {
+    &__heading1 {
+        font-size: 40px;
+    }
+    &__heading2 {
+        font-size: 30px;
+    }
+}
+
+.meet-team-grid {
+    margin-top: 30px;
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
+    grid-auto-rows: 1fr;
+    row-gap: 30px;
+    .team-img { //image slightly off for some screen sizes --> not a big deal but maybe fix eventually
+        width:15vw;
+        height:20vw;
+        border:1px dashed rgb(214, 204, 204);
+        object-fit: cover; //could also do contain instead of cover, depends on what looks better for the img
+        box-shadow: 0px -10px 30px #ccc;
+    }
+    .member-label {
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+    }
+    .member-affiliation {
+        text-align: center;
+    }
+    .member-desc {
+        text-align: center;
+    }
+}
+
+.meet-team-grid-prof {
+ @extend .meet-team-grid;
+ grid-template-columns: 1fr;
+ margin-bottom: 20px;
+}
+
+
+@media (max-width: 1000px) {
+    .meet-team-grid {
+        grid-template-columns: 1fr 1fr 1fr;
+        .team-img {
+            width:25vw;
+            height:30vw;
+        }
+    }
+    .meet-team-grid-prof {
+        grid-template-columns: 1fr;
+       }
+}
+
+@media (max-width: 700px) {
+    .meet-team-grid {
+        grid-template-columns: 1fr;
+        .team-img {
+            width:200px;
+            height:250px;
+        }
+    }
+    .meet-team-title__heading2 {
+        text-align: center;
+    }
+}
