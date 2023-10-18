@@ -1,5 +1,5 @@
 import { createSignal, createResource, Show } from "solid-js";
-import { searchSensors, getSensorData } from "./searchSensors";
+import { searchSensors, getSensorData, csvDownload } from "./searchSensors";
 // import { MultiSelect } from '@digichanges/solid-multiselect';
 import { Select } from "@thisbeyond/solid-select";
 import "@thisbeyond/solid-select/style.css";
@@ -61,10 +61,28 @@ export function AddSensor() {
     setTimeStep(selected.currentTarget.value)
   };
 
-  const onButtonClick = (event) => {
-    dataJson();
-    console.log(dataJson());
+  const onCsvDownload = (event) => {
+    console.log("got to csv download part");
+    // const jsondata = dataJson();
+    let jsondata = {results: [
+      {"sensor": 111111, "value": 1},
+      {"sensor": 222222, "value": 2},
+      {"sensor": 333333, "value": 3}
+    ]
+    }
+    jsondata = jsondata.results
+    const data = jsondata.map(row => ({ 
+      sensor: row.sensor, 
+      value: row.value, 
+    })) 
+
+    csvDownload(data); 
+
+    console.log("got to csv download part");
     event.preventDefault();
+
+    //here just to get rid of errors. delete later when API is up TODO
+    dataJson();
   }
   // for creating query parameter list for sensors
   const sensorListParameters = () => {
@@ -262,7 +280,9 @@ export function AddSensor() {
       </label>
       </form>
       
-      <button onClick={onButtonClick}>click here to load data json</button>
+      <label class="data-form-item" htmlFor="downloadSubmit">
+          <button onClick={onCsvDownload} id="downloadSubmit" type="submit" name="submit" class="icon-btn btn-secondary">Download A CSV</button>
+      </label>
     </>
   );
 }

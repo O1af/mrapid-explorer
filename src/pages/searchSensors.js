@@ -10,7 +10,6 @@ export async function searchSensors(query) {
     const results = await response.json();
     return results['SensorList'];
 }
-
 export async function getSensorData(query) {
     let queries = ""
     query["sensor"].forEach((element) => queries += ("sensor=" + element["id"] + "&"));
@@ -24,5 +23,29 @@ export async function getSensorData(query) {
         `https://mrapid-api3-r2oaltsiuq-uc.a.run.app/history?${queries}`
     );
     const results = await response.json();
-    return results['results'];
+    return results;
 }
+
+export const csvDownload = function (data) { 
+    let csvRows = []; 
+    const headers = Object.keys(data[0]); 
+    csvRows.push(headers.join(',')); 
+  
+    for (const row of data) { 
+        const values = headers.map(e => { 
+            return row[e] 
+        }) 
+        csvRows.push(values.join(',')) 
+    } 
+  
+    csvRows = csvRows.join('\n') 
+    console.log(csvRows)
+    // downloading
+    const blob = new Blob([csvRows], { type: 'text/csv' }); 
+    const url = window.URL.createObjectURL(blob) 
+    const a = document.createElement('a') 
+    a.setAttribute('href', url) 
+    a.setAttribute('download', 'download.csv'); 
+    a.click() 
+  
+  }

@@ -32,9 +32,6 @@ const Data = () => {
 
         <Sensors name="Solid"/>
 
-        <label class="data-form-item" htmlFor="downloadSubmit">
-          <button id="downloadSubmit" type="submit" name="submit" class="icon-btn btn-secondary">Download</button>
-        </label>
       </form>
       </div>
       <div class="data-image-container">
