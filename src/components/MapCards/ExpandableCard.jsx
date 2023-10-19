@@ -1,15 +1,15 @@
 import { createSignal } from 'solid-js';
 import { useStore } from '../../stores';
-import {
-  ClarityMarker,
-  DSTMarker,
-  // LowCostSensorMarker,
-  NoRecentUpdateMarker,
-  PurpleAirMarker,
-  ReferenceGradeMarker,
-  TSIMarker,
-  // TextMarker, //new
-} from '../LocationMarker';
+// import {
+//   ClarityMarker,
+//   DSTMarker,
+//   // LowCostSensorMarker,
+//   NoRecentUpdateMarker,
+//   PurpleAirMarker,
+//   ReferenceGradeMarker,
+//   TSIMarker,
+//   // TextMarker, //new
+// } from '../LocationMarker';
 import Accordion from './Accordion';
 
 export function ExpandableCard(props) {
@@ -45,40 +45,40 @@ export function ExpandableCard(props) {
 }
 
 export default function FilterOverlayCard() {
-  const [
-    store,
-    {
-      // toggleProviderList,
-      toggleMonitor,
-      // toggleText, // new
-      toggleDST,
-      toggleTSI,
-      toggleClarity,
-      toggleInactive,
-      togglePurpleAir,
-    },
-  ] = useStore();
+  // const [
+  //   store,
+  //   {
+  //     // toggleProviderList,
+  //     toggleMonitor,
+  //     // toggleText, // new
+  //     toggleDST,
+  //     toggleTSI,
+  //     toggleClarity,
+  //     toggleInactive,
+  //     togglePurpleAir,
+  //   },
+  // ] = useStore();
 
-  const monitorCheck = (e) => {
-    toggleMonitor(e.target.checked);
-  };
+  // const monitorCheck = (e) => {
+  //   toggleMonitor(e.target.checked);
+  // };
 
-  const clarityCheck = (e) => {
-    toggleClarity(e.target.checked);
-  };
-  const dstCheck = (e) => {
-    toggleDST(e.target.checked);
-  };
-  const tsiCheck = (e) => {
-    toggleTSI(e.target.checked);
-  };
-  const purpleairCheck = (e) => {
-    togglePurpleAir(e.target.checked);
-  };
+  // const clarityCheck = (e) => {
+  //   toggleClarity(e.target.checked);
+  // };
+  // const dstCheck = (e) => {
+  //   toggleDST(e.target.checked);
+  // };
+  // const tsiCheck = (e) => {
+  //   toggleTSI(e.target.checked);
+  // };
+  // const purpleairCheck = (e) => {
+  //   togglePurpleAir(e.target.checked);
+  // };
 
-  const noRecentUpdatesCheck = (e) => {
-    toggleInactive(e.target.checked);
-  };
+  // const noRecentUpdatesCheck = (e) => {
+  //   toggleInactive(e.target.checked);
+  // };
 
   return (
     <ExpandableCard>

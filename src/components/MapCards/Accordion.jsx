@@ -7,7 +7,7 @@ import {
 } from 'solid-js';
 import { createStore } from 'solid-js/store';
 import { useStore } from '../../stores';
-import { ExpandableCard } from './ExpandableCard';
+//import { ExpandableCard } from './ExpandableCard';
 import { ClarityMarker } from '../LocationMarker';
 import { TSIMarker } from '../LocationMarker';
 import { DSTMarker } from '../LocationMarker';

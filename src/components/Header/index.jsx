@@ -11,11 +11,11 @@ export default function Header() {
         <div class="spacer" />
         <nav class="nav">
            <input id="menu-toggle" type="checkbox"/>
-          <label class="menu-button-container" for="menu-toggle">
+          {/* <label class="menu-button-container" for="menu-toggle">
             <div class="menu-button">
               <span class="material-symbols-outlined">menu</span>
             </div>
-          </label> 
+          </label>  */}
           <ul class="nav-list">
             <li>
               <a
