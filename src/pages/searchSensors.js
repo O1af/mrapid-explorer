@@ -48,4 +48,4 @@ export const csvDownload = function (data) {
     a.setAttribute('download', 'download.csv'); 
     a.click() 
   
-  }
+}

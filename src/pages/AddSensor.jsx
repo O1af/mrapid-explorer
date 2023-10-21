@@ -149,6 +149,13 @@ export function AddSensor() {
     pollutantOptions();
   };
 
+  //Show the graph of the data that was collected 
+  const show_graph = (event) => {
+    console.log("got here");
+    event.preventDefault();
+
+  }
+
   return (
     <>
       <form>
@@ -279,6 +286,10 @@ export function AddSensor() {
         </select>
       </label>
       </form>
+
+      <label class="data-form-item" htmlFor="graphSubmit">
+          <button onClick={show_graph} id="graphSubmit" type="submit" name="submit" class="icon-btn btn-secondary">Show A Graph of the data</button>
+      </label>
       
       <label class="data-form-item" htmlFor="downloadSubmit">
           <button onClick={onCsvDownload} id="downloadSubmit" type="submit" name="submit" class="icon-btn btn-secondary">Download A CSV</button>
