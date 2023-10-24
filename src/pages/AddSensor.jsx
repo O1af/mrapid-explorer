@@ -158,9 +158,10 @@ export function AddSensor() {
 
   return (
     <>
+      <div class="data-container">
       <form>
       <h3>Filter Sensors</h3>
-
+      <div class="data-form-item">
       <label>
           <input
             type="checkbox"
@@ -169,6 +170,8 @@ export function AddSensor() {
           />
           {zipAll().text}
       </label>
+
+
       <div class="flex flex-1 flex-col max-w-100 gap-3">
         <label htmlFor="zip_code">Filter sensors by zip code</label>
         <Select
@@ -186,6 +189,7 @@ export function AddSensor() {
         />
       </div>
 
+
       <label>
           <input
             type="checkbox"
@@ -194,6 +198,8 @@ export function AddSensor() {
           />
           {typeAll().text}
       </label>
+
+ 
       <div class="flex flex-1 flex-col max-w-100 gap-3">
         <label htmlFor="type">Filter sensors by monitor type</label>
         <Select
@@ -211,7 +217,7 @@ export function AddSensor() {
           // {...propsType}
         />
       </div>
-
+      
       <label>
           <input
             type="checkbox"
@@ -237,8 +243,9 @@ export function AddSensor() {
           isOptionDisabled={(option) => (pollutantSelectedValues().length != 0) ? pollutantSelectedValues().includes(option) : false}
         />
       </div>
-
+      </div>
       <h3>Select Sensors</h3>
+      <div class="data-form-item">
       <Show when={!data.loading} fallback={<>Searching...</>}>
         <div class="flex flex-1 flex-col max-w-100 gap-3">
           <label htmlFor="sensor">Select sensors</label>
@@ -265,9 +272,8 @@ export function AddSensor() {
           />
         </div>
       </Show>
-
+      </div>
       <h3>Filter Sensor Data </h3>
-
       <label class="data-form-item">
         Start time/date
         <input type="date" value={startDate()} onChange={(e) => setStartDate(e.currentTarget.value)} name="start-time" class="text-input"></input>
@@ -286,6 +292,9 @@ export function AddSensor() {
         </select>
       </label>
       </form>
+      </div>
+
+
 
       <label class="data-form-item" htmlFor="graphSubmit">
           <button onClick={show_graph} id="graphSubmit" type="submit" name="submit" class="icon-btn btn-secondary">Show A Graph of the data</button>

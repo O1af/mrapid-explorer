@@ -31,9 +31,7 @@ const Data = () => {
         </h1>
 
         <Sensors name="Solid"/>
-
       </form>
-      </div>
       <div class="data-image-container">
         <h3>Map of Detroit Zip Codes</h3>
         <div class="data-image">
@@ -48,6 +46,8 @@ const Data = () => {
           document
         </a>.
       </div>
+      </div>
+      
     </section>
     );
   };

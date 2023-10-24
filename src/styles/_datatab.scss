@@ -1,11 +1,17 @@
 .data-form {
-    width: 50%;
+    width: 85%;
     box-sizing: border-box;
     z-index: 2;
     background-color: white;
-    display:flex;
+    display:grid;
     align-items: center;
     justify-content: center;
+    grid-template-columns: 1fr 1fr;
+
+    .data-image-container {
+        justify-self: right;
+        align-self:baseline;
+    }
 }
 
 .data-form .data-form-item {
@@ -35,13 +41,50 @@
 }
 
 .data-image {
-    height:25rem;
-    width:30rem;
+    height:20rem;
+    width:25rem;
     background-color: lightgray;
     border: 1px solid black;
     img {
         width: 100%;
         height: 100%;
         display: block;
+    }
+}
+
+.data-form-item {
+    display: grid;
+}
+
+.data-container {
+    display:grid;
+    grid-template-columns: 1fr;
+}
+
+@media (max-width: 1150px) {
+    .data-form {
+        grid-template-columns: 1fr;
+        width: 50%;
+    }
+
+}
+
+@media (max-width: 1000px) {
+    .data-form {
+        grid-template-columns: 1fr;
+        width: 80%;
+        .data-image-container {
+            justify-self: center;
+        }
+    }
+}
+
+@media (max-width: 800px) {
+    .data-form {
+        
+        .data-form-item {
+            grid-template-columns: 1fr;
+            row-gap: 10px;
+        }
     }
 }
