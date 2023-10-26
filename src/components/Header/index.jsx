@@ -1,4 +1,4 @@
-//import {Link} from 'react-router-dom';
+// import {Link} from 'react-router-dom';
 
 export default function Header() {
   return (
@@ -17,10 +17,18 @@ export default function Header() {
             </div>
           </label>
           <ul class="nav-list">
+          <li>
+              <a
+                class="nav__item nav__item--active explore-data-tab"
+                href="/about"
+              >
+                About Us
+              </a>
+            </li>
             <li>
               <a
                 class="nav__item nav__item--active explore-data-tab"
-                href="./map"
+                href="/map"
               >
                 Pollution Map
               </a>
@@ -28,18 +36,45 @@ export default function Header() {
             <li>
               <a
                 class="nav__item nav__item--active explore-data-tab"
-                href="./data"
+                href="/data"
               >
                 Data
               </a>
             </li>
-            <li>
+            <li class="dropdown">
               <a
-                class="nav__item nav__item--active explore-data-tab"
-                href="./about"
+                class="nav__item nav__item--active"
+                href="/faq"
+                aria-haspopup="true"
               >
-                About Us
+                FAQs
               </a>
+              <ul class="submenu" aria-label="submenu">
+                <li class="submenu__item">
+                  <a
+                    class="nav__item api-overview-nav"
+                    href="/faq-o3"
+                  >
+                    Ozone FAQs
+                  </a>
+                </li>
+                <li class="submenu__item">
+                  <a
+                    class="nav__item api-overview-nav"
+                    href="/faq-pm25"
+                  >
+                    PM2.5 FAQs
+                  </a>
+                </li>
+                <li class="submenu__item">
+                  <a
+                    class="nav__item api-overview-nav"
+                    href="/faq-nox"
+                  >
+                    NOx FAQs
+                  </a>
+                </li>
+              </ul>
             </li>
             {/* Uncomment code below if we decide to make data tab a dropdown menu
             (note the links will have to be fixed) */}
