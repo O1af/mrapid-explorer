@@ -10,7 +10,7 @@
     "unit-test": "vitest src",
     "test": "yarn playwright test",
     "predeploy": "yarn run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "echo 'detroitair.umich.edu' > dist/CNAME && gh-pages -d dist"
   },
   "license": "MIT",
   "devDependencies": {
