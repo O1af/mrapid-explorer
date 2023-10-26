@@ -151,9 +151,10 @@ export function AddSensor() {
 
   //Show the graph of the data that was collected 
   const show_graph = (event) => {
+
+    console.log(sensorDataParameters())
     console.log("got here");
     event.preventDefault();
-
   }
 
   return (
