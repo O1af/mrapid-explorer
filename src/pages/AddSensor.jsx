@@ -62,27 +62,20 @@ export function AddSensor() {
   };
 
   const onCsvDownload = (event) => {
-    console.log("got to csv download part");
-    // const jsondata = dataJson();
-    let jsondata = {results: [
-      {"sensor": 111111, "value": 1},
-      {"sensor": 222222, "value": 2},
-      {"sensor": 333333, "value": 3}
-    ]
-    }
-    jsondata = jsondata.results
-    const data = jsondata.map(row => ({ 
-      sensor: row.sensor, 
-      value: row.value, 
-    })) 
-
-    csvDownload(data); 
-
-    console.log("got to csv download part");
     event.preventDefault();
+    console.log("got to csv download part");
+    let jsondata = dataJson();
+    console.log(jsondata)
+ 
+    jsondata = jsondata.results
+    const date1 = new Date(jsondata[0]['time'])
+    console.log(date1.getDate())
+    console.log(date1.getTime())
 
-    //here just to get rid of errors. delete later when API is up TODO
-    dataJson();
+    csvDownload(jsondata, pollutantSelectedValues()); 
+
+    console.log("got to csv download part");
+    
   }
   // for creating query parameter list for sensors
   const sensorListParameters = () => {
@@ -125,6 +118,7 @@ export function AddSensor() {
   const onChangePollutant = (selected) => {
     pollutantSetSelectedValues(selected);
     pollutantOptions();
+
   };
 
   const format = (item, type) => (type === "option" ? item.name : item.name);

@@ -26,18 +26,39 @@ export async function getSensorData(query) {
     return results;
 }
 
-export const csvDownload = function (data) { 
+export const csvDownload = function (data, selectedPollutants) { 
+    let headerObject = ['date', 'time']
+    for (let step = 0; step < selectedPollutants.length; step++) {
+        headerObject.push("pollutant")
+        headerObject.push("value")
+    }
+
+    let previousTime = new Date(data[0]['time'])
+    
     let csvRows = []; 
-    const headers = Object.keys(data[0]); 
-    csvRows.push(headers.join(',')); 
-  
+    csvRows.push(headerObject.join(',')); 
+
+    let cur_values = [previousTime.toLocaleString().split(", ")]
     for (const row of data) { 
-        const values = headers.map(e => { 
-            return row[e] 
-        }) 
-        csvRows.push(values.join(',')) 
+        console.log('pollution')
+        console.log(selectedPollutants[0]['name'])
+        // const values = headers.map(e => { 
+        //     return row[e] 
+        // }) 
+        // csvRows.push(values.join(',')) 
+        let date = new Date(row['time'])
+        if (date.getTime() != previousTime.getTime()) {
+            csvRows.push(cur_values.join(','))
+            previousTime = date
+            cur_values = []
+            cur_values = [previousTime.toLocaleString().split(", ")]
+        } 
+        // TODO:: CHANGE THIS ONCE WE GET MULTIPLE TYPES OF POLLUTANTS
+        cur_values.push(selectedPollutants[0]['name'])
+        cur_values.push(row['value'])
     } 
-  
+    
+    csvRows.push(cur_values.join(','))
     csvRows = csvRows.join('\n') 
     console.log(csvRows)
     // downloading
@@ -47,5 +68,5 @@ export const csvDownload = function (data) {
     a.setAttribute('href', url) 
     a.setAttribute('download', 'download.csv'); 
     a.click() 
-  
+    console.log("downloaded?")
 }
