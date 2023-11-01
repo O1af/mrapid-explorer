@@ -123,25 +123,30 @@ export function AddSensor() {
 
   const format = (item, type) => (type === "option" ? item.name : item.name);
 
-  const [zipAll, setZipAll] = createSignal({ text: 'Select all zip codes', complete: false});
   const selectZip = () => {
-    setZipAll({ ...zipAll, complete: !zipAll.complete });
     zipSetSelectedValues(zipOptions);
     zipOptions();
   };
+  const clearZip = () => {
+    zipSetSelectedValues([]);
+    zipOptions();
+  }
 
-  const [typeAll, setTypeAll] = createSignal({ text: 'Select all monitor types', complete: false});
   const selectType = () => {
-    setTypeAll({ ...typeAll, complete: !typeAll.complete });
     typeSetSelectedValues(types);
   };
+  const clearType = () => {
+    typeSetSelectedValues([]);
+  }
 
-  const [pollutantAll, setPollutantAll] = createSignal({ text: 'Select all pollutant types', complete: false});
   const selectPollutant = () => {
-    setPollutantAll({ ...pollutantAll, complete: !pollutantAll.complete });
     pollutantSetSelectedValues(pollutantOptions);
     pollutantOptions();
   };
+  const clearPollutant = () => {
+    pollutantSetSelectedValues([]);
+    pollutantOptions();
+  }
 
   //Show the graph of the data that was collected 
   const show_graph = (event) => {
@@ -157,15 +162,6 @@ export function AddSensor() {
       <form>
       <h3>Filter Sensors</h3>
       <div class="data-form-item">
-      <label>
-          <input
-            type="checkbox"
-            checked={zipAll().complete}
-            onChange={selectZip}
-          />
-          {zipAll().text}
-      </label>
-
 
       <div class="flex flex-1 flex-col max-w-100 gap-3">
         <label htmlFor="zip_code">Filter sensors by zip code</label>
@@ -183,17 +179,14 @@ export function AddSensor() {
           isOptionDisabled={(option) => (zipSelectedValues().length != 0) ? zipSelectedValues().includes(option) : false}
         />
       </div>
-
-
       <label>
-          <input
-            type="checkbox"
-            checked={typeAll().complete}
-            onChange={selectType}
-          />
-          {typeAll().text}
+        <button type="button" onClick={selectZip}>
+          Select all zip codes
+        </button>
+        <button type="button" onClick={clearZip}>
+          Clear all selected zip codes
+        </button>
       </label>
-
  
       <div class="flex flex-1 flex-col max-w-100 gap-3">
         <label htmlFor="type">Filter sensors by monitor type</label>
@@ -212,15 +205,15 @@ export function AddSensor() {
           // {...propsType}
         />
       </div>
-      
       <label>
-          <input
-            type="checkbox"
-            checked={pollutantAll().complete}
-            onChange={selectPollutant}
-          />
-          {pollutantAll().text}
+        <button type="button" onClick={selectType}>
+          Select all monitor types
+        </button>
+        <button type="button" onClick={clearType}>
+          Clear all selected monitor types
+        </button>
       </label>
+      
       <div class="flex flex-1 flex-col max-w-100 gap-3">
         <label htmlFor="pollutant">Filter sensors by pollutant</label>
         <Select
@@ -238,6 +231,15 @@ export function AddSensor() {
           isOptionDisabled={(option) => (pollutantSelectedValues().length != 0) ? pollutantSelectedValues().includes(option) : false}
         />
       </div>
+      <label>
+        <button type="button" onClick={selectPollutant}>
+          Select all pollutants
+        </button>
+        <button type="button" onClick={clearPollutant}>
+          Clear all selected pollutants
+        </button>
+      </label>
+
       </div>
       <h3>Select Sensors</h3>
       <div class="data-form-item">
