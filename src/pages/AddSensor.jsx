@@ -173,7 +173,8 @@ export function AddSensor() {
     if(start_date > end_date){set_err_message('Please provide a start date that is before the end date, or the same as the end date'); return}
     set_err_message("")
     //err checking and err message
-    let sensor_list = data();
+    
+    //let sensor_list = data();
 
     let jsondata = dataJson();
     console.log(jsondata)
