@@ -152,6 +152,7 @@ export function AddSensor() {
   const show_graph = (event) => {
 
     console.log(sensorDataParameters())
+    console.log(sensorListParameters())
     console.log("got here");
     event.preventDefault();
   }
