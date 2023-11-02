@@ -155,6 +155,7 @@ export function AddSensor() {
     console.log(sensorListParameters())
     console.log("got here");
     event.preventDefault();
+
   }
 
   return (
