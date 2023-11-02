@@ -61,6 +61,9 @@ export function AddSensor() {
     setTimeStep(selected.currentTarget.value)
   };
 
+  //States for graphs
+  const [err_message, set_err_message] = createSignal("");
+
   const onCsvDownload = (event) => {
     event.preventDefault();
     console.log("got to csv download part");
@@ -143,6 +146,7 @@ export function AddSensor() {
     pollutantSetSelectedValues(pollutantOptions);
     pollutantOptions();
   };
+
   const clearPollutant = () => {
     pollutantSetSelectedValues([]);
     pollutantOptions();
@@ -151,11 +155,35 @@ export function AddSensor() {
   //Show the graph of the data that was collected 
   const show_graph = (event) => {
 
-    console.log(sensorDataParameters())
-    console.log(sensorListParameters())
-    console.log("got here");
+    //getting values
+    let sensor_data = sensorDataParameters()
+    let select_sensors = sensorListParameters()
     event.preventDefault();
 
+    //err checking and err message
+    if(sensor_data['start'].length === 0){set_err_message('Please provide a start time for the graph'); return}
+    else if(sensor_data['end'].length === 0){set_err_message('Please provide an end time for the graph'); return}
+    else if(sensor_data['step'].length === 0){set_err_message('Please provide a time step for the graph'); return}
+    else if(select_sensors['zip_code'].length === 0){set_err_message('Please provide at least one zip code for the graph'); return}
+    else if(select_sensors['pollutant'].length === 0){set_err_message('Please provide at least one pollutant for the graph'); return}
+
+    let start_date = new Date(sensor_data['start']);
+    let end_date = new Date(sensor_data['end']);
+
+    if(start_date > end_date){set_err_message('Please provide a start date that is before the end date, or the same as the end date'); return}
+    set_err_message("")
+    //err checking and err message
+    let sensor_list = data();
+
+    let jsondata = dataJson();
+    console.log(jsondata)
+ 
+    jsondata = jsondata.results
+    /*
+    sensor_data.sensor = sensor_list
+    let results = getSensorData(sensor_data)
+    console.log(results)
+    */
   }
 
   return (
@@ -294,7 +322,7 @@ export function AddSensor() {
       </div>
 
 
-
+      <h6>{err_message}</h6>
       <label class="data-form-item" htmlFor="graphSubmit">
           <button onClick={show_graph} id="graphSubmit" type="submit" name="submit" class="icon-btn btn-secondary">Show A Graph of the data</button>
       </label>
