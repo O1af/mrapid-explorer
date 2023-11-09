@@ -11,8 +11,9 @@ export async function searchSensors(query) {
     return results['SensorList'];
 }
 export async function getSensorData(query) {
-    let queries = ""
-    query["sensor"].forEach((element) => queries += ("sensor=" + element["id"] + "&"));
+    let queries = "sensor=";
+    query["sensor"].forEach((element) => queries += (element["id"] + ","));
+    queries += "&";
     query["pollutant"].forEach((element) => queries += ("pollutant=" + element["id"] + "&"));
     query["pollutant"].forEach((element) => queries += ("unit=" + element["name"].split(" ").pop() + "&"));
     queries += ("start=" + query['start'] + "&");
@@ -26,9 +27,9 @@ export async function getSensorData(query) {
     return results;
 }
 
-export const csvDownload = function (data, selectedPollutants) { 
+export const csvDownload = function (data, selectedPollutants, selectedSensors) { 
     let headerObject = ['date', 'time']
-    for (let step = 0; step < selectedPollutants.length; step++) {
+    for (let step = 0; step < selectedSensors.length; step++) {
         headerObject.push("pollutant")
         headerObject.push("value")
     }
@@ -51,7 +52,7 @@ export const csvDownload = function (data, selectedPollutants) {
             csvRows.push(cur_values.join(','))
             previousTime = date
             cur_values = []
-            cur_values = [previousTime.toLocaleString().split(", ")]
+            cur_values = [previousTime.toLocaleString().split(", ") ]
         } 
         // TODO:: CHANGE THIS ONCE WE GET MULTIPLE TYPES OF POLLUTANTS
         cur_values.push(selectedPollutants[0]['name'])
