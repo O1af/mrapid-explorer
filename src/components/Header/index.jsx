@@ -4,7 +4,7 @@ export default function Header() {
   return (
     <header class="header">
       <div class="header-contents">
-        <a href="https://detroitair.umich.edu/" class="header-logo" aria-label="logo">
+        <a href="/map" class="header-logo" aria-label="logo">
           {/*<img src={imgSvg} alt="logo" />*/}
           Detroit Air
         </a>
@@ -19,7 +19,7 @@ export default function Header() {
           <ul class="nav-list">
           <li>
               <a
-                class="nav__item nav__item--active explore-data-tab"
+                class="nav__item nav__item explore-data-tab"
                 href="/about"
               >
                 About Us
@@ -27,7 +27,7 @@ export default function Header() {
             </li>
             <li>
               <a
-                class="nav__item nav__item--active explore-data-tab"
+                class="nav__item nav__item explore-data-tab"
                 href="/map"
               >
                 Pollution Map
@@ -35,7 +35,7 @@ export default function Header() {
             </li>
             <li>
               <a
-                class="nav__item nav__item--active explore-data-tab"
+                class="nav__item nav__item explore-data-tab"
                 href="/data"
               >
                 Data
@@ -43,7 +43,7 @@ export default function Header() {
             </li>
             <li class="dropdown">
               <a
-                class="nav__item nav__item--active"
+                class="nav__item nav__item"
                 href="/faq"
                 aria-haspopup="true"
               >
@@ -55,7 +55,7 @@ export default function Header() {
                     class="nav__item api-overview-nav"
                     href="/faq-o3"
                   >
-                    Ozone FAQs
+                    Ozone FAQ
                   </a>
                 </li>
                 <li class="submenu__item">
@@ -63,7 +63,7 @@ export default function Header() {
                     class="nav__item api-overview-nav"
                     href="/faq-pm25"
                   >
-                    PM2.5 FAQs
+                    PM2.5 FAQ
                   </a>
                 </li>
                 <li class="submenu__item">
@@ -71,7 +71,7 @@ export default function Header() {
                     class="nav__item api-overview-nav"
                     href="/faq-nox"
                   >
-                    NOx FAQs
+                    NOx FAQ
                   </a>
                 </li>
               </ul>
