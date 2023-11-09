@@ -210,7 +210,7 @@ export function AddSensor() {
           isOptionDisabled={(option) => (zipSelectedValues().length != 0) ? zipSelectedValues().includes(option) : false}
         />
       </div>
-      <label>
+      <label htmlFor="zip_select_all">
         <button type="button" onClick={selectZip}>
           Select all zip codes
         </button>
@@ -236,7 +236,7 @@ export function AddSensor() {
           // {...propsType}
         />
       </div>
-      <label>
+      <label htmlFor="monitor_select_all">
         <button type="button" onClick={selectType}>
           Select all monitor types
         </button>
@@ -262,7 +262,7 @@ export function AddSensor() {
           isOptionDisabled={(option) => (pollutantSelectedValues().length != 0) ? pollutantSelectedValues().includes(option) : false}
         />
       </div>
-      <label>
+      <label htmlFor="pollutant_select_all">
         <button type="button" onClick={selectPollutant}>
           Select all pollutants
         </button>
