@@ -75,7 +75,7 @@ export function AddSensor() {
     console.log(date1.getDate())
     console.log(date1.getTime())
 
-    csvDownload(jsondata, pollutantSelectedValues()); 
+    csvDownload(jsondata, pollutantSelectedValues(), sensorSelected()); 
 
     console.log("got to csv download part");
     
