@@ -1,3 +1,3 @@
-import{H as e}from"./HelpContent.e2acccd3.js";import{c as t}from"./index.bb7d824d.js";const o=`<h1>Filters</h1>
+import{H as e}from"./HelpContent.fac3ed97.js";import{c as t}from"./index.aa5d0e6f.js";const o=`<h1>Filters</h1>
 <p>Detroit Air recieves data from sensors originating from multiple organiations, including the Environmental Protection Agency (EPA). Use the checkboxes to filter out the desired sensor sources. The map shows by default sensors that only measure the specified pollutant. To see all sensors, uncheck the 'Exclude inactive monitors' box.</p>
 `;function r(){return t(e,{html:o})}export{r as default};
