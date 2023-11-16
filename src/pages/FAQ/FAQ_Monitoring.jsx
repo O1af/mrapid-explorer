@@ -1,8 +1,8 @@
 
-function FAQ_NOX() {
+function FAQ_MON() {
     return (
         <section class="page-faq">
-            <h1>FAQ NOx</h1>
+            <h1>FAQ Monitor</h1>
 
         </section>
         
@@ -13,4 +13,4 @@ function FAQ_NOX() {
     );
 }
 
-export default FAQ_NOX;
+export default FAQ_MON;

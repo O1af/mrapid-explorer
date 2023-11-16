@@ -1,16 +1,16 @@
-import ImageProf from '../assets/sample-img.jpg';
-import ImageAmelia from '../assets/sample-img.jpg';
-import ImageYash from '../assets/sample-img.jpg';
-import ImageOlaf from '../assets/sample-img.jpg';
-import ImageElla from '../assets/sample-img.jpg';
-import ImageKristine from '../assets/sample-img.jpg';
-import ImageJenny from '../assets/sample-img.jpg';
+import ImageProf from '../../assets/sample-img.jpg';
+import ImageAmelia from '../../assets/amelia.jpeg';
+import ImageYash from '../../assets/yash.jpeg';
+import ImageOlaf from '../../assets/olaf.jpeg';
+import ImageElla from '../../assets/ella.jpeg';
+import ImageKristine from '../../assets/kristine.jpeg';
+import ImageJenny from '../../assets/sample-img.jpg';
 
-function Home() {
+function About_Team() {
     return (
       <section class="page-about">
         <h1 class="meet-team-title__heading1">
-          About Us
+          Meet the Development Team
         </h1>
         <p>We are a research group through the <a href='https://umich.edu/'>University of Michigan</a>'s <a href='https://sph.umich.edu/'>School of Public 
           Health</a> that aims to deliver more transparent air quality data to the citizens of Detroit 
@@ -27,9 +27,6 @@ function Home() {
             <li><a href='https://www.clarity.io/'>Clarity</a></li>
             <li><a href='https://tsi.com/home/'>TSI</a></li>
         </ul>
-        <div class="about-heading-wrap">
-          <h2 class="meet-team-title__heading2">Meet the team</h2>
-        </div>
         <div class='meet-team-grid-prof'>
           <div class='team-member'>
             <img class='team-img' alt="Professor Batterman" src={ImageProf}></img>
@@ -163,4 +160,4 @@ function Home() {
     );
   }
   
-  export default Home;
+  export default About_Team;

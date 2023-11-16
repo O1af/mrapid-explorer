@@ -1,10 +1,11 @@
 
-function FAQ_PM25() {
+function About() {
     return (
         <section class="page-faq">
-            <h1>FAQ PM2.5</h1>
+            <h1>About Main</h1>
 
         </section>
+        
     
     
     
@@ -12,4 +13,4 @@ function FAQ_PM25() {
     );
 }
 
-export default FAQ_PM25;
+export default About;

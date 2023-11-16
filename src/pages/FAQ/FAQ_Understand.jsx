@@ -1,8 +1,8 @@
 
-function FAQ_O3() {
+function FAQ_UND() {
     return (
         <section class="page-faq">
-            <h1>FAQ O3</h1>
+            <h1>Understanding Monitor Info</h1>
 
         </section>
     
@@ -12,4 +12,4 @@ function FAQ_O3() {
     );
 }
 
-export default FAQ_O3;
+export default FAQ_UND;

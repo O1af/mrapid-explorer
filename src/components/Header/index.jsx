@@ -17,13 +17,32 @@ export default function Header() {
             </div>
           </label>
           <ul class="nav-list">
-          <li>
+            <li class="dropdown">
               <a
-                class="nav__item nav__item explore-data-tab"
+                class="nav__item nav__item"
                 href="/about"
+                aria-haspopup="true"
               >
-                About Us
+                About
               </a>
+              <ul class="submenu" aria-label="submenu">
+                <li class="submenu__item">
+                  <a
+                    class="nav__item api-overview-nav"
+                    href="/about/caphe"
+                  >
+                    About Us (CAPHE)
+                  </a>
+                </li>
+                <li class="submenu__item">
+                  <a
+                    class="nav__item api-overview-nav"
+                    href="/about/meet-team"
+                  >
+                    Meet the Development Team
+                  </a>
+                </li>
+              </ul>
             </li>
             <li>
               <a
@@ -38,7 +57,7 @@ export default function Header() {
                 class="nav__item nav__item explore-data-tab"
                 href="/data"
               >
-                Data
+                Download Data
               </a>
             </li>
             <li class="dropdown">
@@ -50,28 +69,44 @@ export default function Header() {
                 FAQs
               </a>
               <ul class="submenu" aria-label="submenu">
+                {/* <li class="submenu__item">
+                  <a
+                    class="nav__item api-overview-nav"
+                    href="/faq/project"
+                  >
+                    About the Project
+                  </a>
+                </li> */}
                 <li class="submenu__item">
                   <a
                     class="nav__item api-overview-nav"
-                    href="/faq-o3"
+                    href="/faq/goals"
                   >
-                    Ozone FAQ
+                    Project Goals
                   </a>
                 </li>
                 <li class="submenu__item">
                   <a
                     class="nav__item api-overview-nav"
-                    href="/faq-pm25"
+                    href="/faq/aq"
                   >
-                    PM2.5 FAQ
+                    Air Quality Science
                   </a>
                 </li>
                 <li class="submenu__item">
                   <a
                     class="nav__item api-overview-nav"
-                    href="/faq-nox"
+                    href="/faq/monitoring"
                   >
-                    NOx FAQ
+                    Air Quality Monitoring
+                  </a>
+                </li>
+                <li class="submenu__item">
+                  <a
+                    class="nav__item api-overview-nav"
+                    href="/faq/understand-info"
+                  >
+                    Understanding Monitors
                   </a>
                 </li>
               </ul>
