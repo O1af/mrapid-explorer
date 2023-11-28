@@ -108,8 +108,11 @@ export function AddSensor() {
   };
 
   const types = [
-    createValue("DST", "dst full name"),
-    createValue("OAQ", "open air quality"),
+    createValue("DST", "DST"),
+    createValue("OAQ", "Open Air"),
+    createValue("PAR", "Purple Air"),
+    createValue("TSI", "TSI"),
+    createValue("CLA", "CLARITY"),
   ];
   // const [typeOptions] = createSignal(types);
   const onChangeType = (selected) => {
