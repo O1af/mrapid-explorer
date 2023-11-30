@@ -817,6 +817,33 @@ export function Map() {
             id: "clarity-locations",
             type: "circle",
             source: "clarityData",
+            layout: {
+              "circle-sort-key": [
+                "case",
+                [
+                  "==",
+                  [
+                    "has",
+                    store.parameters()[store.parameter.id - 1].name,
+                    ["properties"],
+                  ],
+                  true,
+                ],
+                [
+                  "to-number",
+                  [
+                    "get",
+                    "value",
+                    [
+                      "get",
+                      store.parameters()[store.parameter.id - 1].name,
+                      ["properties"],
+                    ],
+                  ],
+                ],
+                0,
+              ],
+            },
             paint: {
               "circle-radius": [
                 "interpolate",
@@ -968,6 +995,7 @@ export function Map() {
               "text-size": 20,
             },
           }}
+          
         />
       </Source>
       <Bounds />
