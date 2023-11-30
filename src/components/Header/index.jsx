@@ -4,7 +4,7 @@ export default function Header() {
   return (
     <header class="header">
       <div class="header-contents">
-        <a href="/map" class="header-logo" aria-label="logo">
+        <a href="/" class="header-logo" aria-label="logo">
           {/*<img src={imgSvg} alt="logo" />*/}
           Detroit Air
         </a>
@@ -47,7 +47,7 @@ export default function Header() {
             <li>
               <a
                 class="nav__item nav__item explore-data-tab"
-                href="/map"
+                href="/"
               >
                 Pollution Map
               </a>
