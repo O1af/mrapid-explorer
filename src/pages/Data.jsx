@@ -2,6 +2,7 @@ import { createSignal } from "solid-js";
 //import { Select, createOptions } from "@thisbeyond/solid-select";
 import "@thisbeyond/solid-select/style.css";
 import './search.scss';
+import DetroitMap from '../assets/detroitmap.jpg';
 //import { MultiSelect } from '@digichanges/solid-multiselect';
 
 //import { BookList } from "./BookList";
@@ -35,7 +36,7 @@ const Data = () => {
       <div class="data-image-container">
         <h3>Map of Detroit Zip Codes</h3>
         <div class="data-image">
-          <img src="/src/assets/detroitmap.jpg" alt="map of detroit zipcodes"/>
+          <img src={DetroitMap} alt="map of detroit zipcodes"/>
         </div>
         For a complete list of MI zip codes, refer to this 
         <a 

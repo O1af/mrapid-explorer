@@ -74,6 +74,11 @@
        }
 }
 
+.caphe-img img {
+    height:200px;
+    width:200px;
+}
+
 @media (max-width: 700px) {
     .meet-team-grid {
         grid-template-columns: 1fr;
@@ -84,5 +89,103 @@
     }
     .meet-team-title__heading2 {
         text-align: center;
+    }
+    .caphe-img-container {
+        display:flex;
+        justify-content: center;
+        width:100%;
+    }
+    .caphe-img img {
+        justify-content: center;
+    }
+}
+
+.caphe-list-container {
+    display:grid;
+    padding-left:0;
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+
+    .caphe-list-item {
+        width:100%;
+        display:grid;
+        margin-bottom:15px;
+        padding-bottom: 20px;
+        padding-top: 20px;
+        border:1px solid black;
+        padding-left:5px;
+        padding-right:5px;
+        border-radius: 16px;
+    }
+    .caphe-list-item:nth-child(1) {
+        background-color: #b2d492;
+    }
+    .caphe-list-item:nth-child(2) {
+        background-color: #97d492;
+    }
+    .caphe-list-item:nth-child(3) {
+        background-color: #92d4c5;
+    }
+    .caphe-list-item:nth-child(4) {
+        background-color: #92cdd4;
+    }
+    .caphe-list-item:nth-child(5) {
+        background-color: #92b5d4;
+    }
+}
+
+@media (max-width: 1000px) {
+    .caphe-list-container {
+        .caphe-list-item {
+            align-content: center;
+            text-align: center;
+        }
+    }
+}
+
+@media (max-width: 700px) {
+    .caphe-list-container {
+        justify-items: center;
+        display:grid;
+        grid-template-columns: 1fr;
+        .caphe-list-item {
+            width:60%;
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .caphe-list-container {
+        .caphe-list-item {
+            width:75%;
+        }
+    }
+}
+
+.sponsor-img-container {
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    .sponsor-img {
+        width:100%;
+    }
+}
+
+@media (max-width: 700px) {
+    .sponsor-img-container {
+        grid-template-columns: 1fr;
+        row-gap: 10px;
+        justify-items: center;
+        .sponsor-img {
+            width:75%;
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .sponsor-img-container {
+        .sponsor-img {
+            width:100%;
+        }
     }
 }
