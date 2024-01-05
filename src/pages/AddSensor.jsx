@@ -213,11 +213,11 @@ export function AddSensor() {
           isOptionDisabled={(option) => (zipSelectedValues().length != 0) ? zipSelectedValues().includes(option) : false}
         />
       </div>
-      <label htmlFor="zip_select_all">
-        <button type="button" onClick={selectZip}>
+      <label htmlFor="zip_select_all" class="filter-button-container">
+        <button type="button" onClick={selectZip} class="filter-button">
           Select all zip codes
         </button>
-        <button type="button" onClick={clearZip}>
+        <button type="button" onClick={clearZip} class="filter-button">
           Clear all selected zip codes
         </button>
       </label>
@@ -239,11 +239,11 @@ export function AddSensor() {
           // {...propsType}
         />
       </div>
-      <label htmlFor="monitor_select_all">
-        <button type="button" onClick={selectType}>
+      <label htmlFor="monitor_select_all" class="filter-button-container">
+        <button type="button" onClick={selectType} class="filter-button">
           Select all monitor types
         </button>
-        <button type="button" onClick={clearType}>
+        <button type="button" onClick={clearType} class="filter-button">
           Clear all selected monitor types
         </button>
       </label>
@@ -265,11 +265,11 @@ export function AddSensor() {
           isOptionDisabled={(option) => (pollutantSelectedValues().length != 0) ? pollutantSelectedValues().includes(option) : false}
         />
       </div>
-      <label htmlFor="pollutant_select_all">
-        <button type="button" onClick={selectPollutant}>
+      <label htmlFor="pollutant_select_all" class="filter-button-container">
+        <button type="button" onClick={selectPollutant} class="filter-button">
           Select all pollutants
         </button>
-        <button type="button" onClick={clearPollutant}>
+        <button type="button" onClick={clearPollutant} class="filter-button">
           Clear all selected pollutants
         </button>
       </label>

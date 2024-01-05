@@ -1,6 +1,19 @@
 import CAPHELogo from '../../assets/caphe-logo.png';
 import NIEHLogo from '../../assets/nieh-logo.png';
 import ERBLogo from '../../assets/erb-logo.png';
+import CAAALogo from '../../assets/caaa-logo.jpg';
+import URCLogo from '../../assets/urc-logo.png';
+import HEPLogo from '../../assets/hep-logo.jpg';
+import DHDCLogo from '../../assets/dhdc-logo.png';
+import DWEJLogo from '../../assets/dwej-logo.png';
+import SWDCBCLogo from '../../assets/swdcbc-logo.jpg';
+import SDEVLogo from '../../assets/sdev-logo.png';
+import DHDLogo from '../../assets/dhd-logo.png';
+import EGLELogo from '../../assets/egle-logo.png';
+import UMLogo from '../../assets/um-logo.jpg';
+import UMDLogo from '../../assets/umd-logo.png';
+import WSULogo from '../../assets/wsu-logo.png';
+
 
 function About_CAPHE() {
     return (
@@ -57,41 +70,151 @@ function About_CAPHE() {
                 the work of three long-standing partnerships, each of which included community-based organizations, 
                 health practice and academic partners: 
             </p>
-            <ul>
-                <li>Community Action Against Asthma</li>
-                <li>Detroit Community-Academic Urban Research Center</li>
-                <li>Healthy Environments Partnership</li>
-            </ul>
-                
+            <div class='partnerships-entire'>
+                <ul class='partnerships-container'>
+                    <li class='partnerships-item'>
+                            <img 
+                                class='partnerships-img' 
+                                src={CAAALogo} 
+                                alt="Community Action Against Asthma Logo">
+                                    CAAA Logo
+                            </img> 
+                            <div class='partnerships-text'>
+                                Community Action Against Asthma
+                            </div>
+                    </li>
+                    <li class='partnerships-item'>
+                            <img 
+                                class='partnerships-img' 
+                                src={URCLogo}
+                                alt='Detroit Community-Academic Urban Research Center Logo'>
+                                    Detroit URC Logo
+                            </img>
+                            <div class='partnerships-text'>
+                                Detroit Community-Academic Urban Research Center
+                            </div>
+                    </li>
+                    <li class='partnerships-item'>
+                            <img 
+                                class='partnerships-img' 
+                                src={HEPLogo}
+                                alt='Healthy Environments Partnership Logo'>
+                                    HEP Logo
+                            </img>
+                            <div class='partnerships-text'>
+                                Healthy Environments Partnership
+                            </div>
+                    </li>
+                </ul>
+            </div>
+
             <p>
                 Over the years, we have built on and extended our membership, now encompassing representatives from 
                 community based organizations, governmental institutions, and academic institutions.
             </p> 
             <h3>Community based organizations</h3>
-            <ul>
-                <li>Detroit Hispanic Development Corporation</li>
-                <li>Detroiters Working for Environmental Justice</li>
-                <li>Southwest Detroit Community Benefits Coalition</li>
-                <li>Southwest Detroit Environmental Vision</li>
-            </ul>
-            <h3>Governmental institutions</h3>
-            <ul>
-                <li>Detroit Health Department</li>
-                <li>Michigan Environment, Great Lakes, and Energy</li>
-            </ul>
-            <h3>Academic institutions</h3>
-            <ul>
-                <li>University of Michigan</li>
-                <ul>
-                    <li>School of Public Health</li>
-                    <li>Michigan Medicine</li>
-                    <li>Taubman College of Architecture and Urban Planning</li>
+            <div class="community-partners-container">
+                <ul class="community-partners-list">
+                    <li class= 'community-partners-item'>
+                        <img 
+                            class='community-partners-img'
+                            src={DHDCLogo}
+                            alt='Detroit Hispanic Development Corporation Logo'>
+                            DHDC Logo
+                        </img>
+                        <div class='community-partners-text'>Detroit Hispanic Development Corporation</div>
+                    </li>
+                    <li class= 'community-partners-item'>
+                        <img 
+                            class='community-partners-img'
+                            src={DWEJLogo}
+                            alt='Detroiters Working for Environmental Justice Logo'>
+                            DWEJ Logo
+                        </img>
+                        <div class='community-partners-text'>Detroiters Working for Environmental Justice</div>
+                    </li>
+                    <li class= 'community-partners-item'>
+                        <img 
+                            class='community-partners-img'
+                            src={SWDCBCLogo}
+                            alt='Southwest Detroit Community Benefits Coalition Logo'>
+                            SDCB Logo
+                        </img>
+                        <div class='community-partners-text'>Southwest Detroit Community Benefits Coalition</div>
+                    </li>
+                    <li class= 'community-partners-item'>
+                        <img 
+                            class='community-partners-img'
+                            src={SDEVLogo}
+                            alt='Southwest Detroit Environmental Vision Logo'>
+                            SDEV Logo
+                        </img>
+                        <div class='community-partners-text'>Southwest Detroit Environmental Vision</div>
+                    </li>
                 </ul>
-                <li>University of Michigan-Dearborn</li>
-                <li>Wayne State University</li>
-                
-            </ul>
+            </div>
 
+                <h3>Governmental institutions</h3>
+                    <div class='gov-partners-container'>
+                    <ul class='gov-partners-list'>
+                        <li class='gov-partners-item'>
+                            <img
+                                class='gov-partners-img'
+                                src={DHDLogo}
+                                alt='Detroit Health Department Logo'>
+                                DHD Logo
+                            </img>
+                            <div class='gov-partners-text'>Detroit Health Department</div>
+                        </li>
+                        <li class='gov-partners-item'>
+                            <img
+                                class='gov-partners-img'
+                                src={EGLELogo}
+                                alt='Michigan Environment, Great Lakes, and Energy Logo'>
+                                EGLE Logo
+                            </img>
+                            <div class='gov-partners-text'>Michigan Environment, Great Lakes, and Energy</div>
+                        </li>
+                    </ul>
+                </div>
+                <h3>Academic institutions</h3>
+                <div class='academic-partners-container'>
+                    <ul class='academic-partners-list'>
+                        <li class='academic-partners-item'>
+                            <div class='academic-partners-text'>University of Michigan</div>
+                            <img
+                                class='academic-partners-img'
+                                src={UMLogo}
+                                alt='University of Michigan Logo'>
+                                U-M Logo
+                            </img>
+                            <ul class='academic-partners-sublist'>
+                                <li class='academic-partners-sublist-item'>School of Public Health</li>
+                                <li class='academic-partners-sublist-item'>Michigan Medicine</li>
+                                <li class='academic-partners-sublist-item'>Taubman College of Architecture and Urban Planning</li>
+                            </ul>
+                        </li>
+                        <li class='academic-partners-item'>
+                            <div class='academic-partners-text'>University of Michigan - Dearborn</div>
+                            <img
+                                class='academic-partners-img'
+                                src={UMDLogo}
+                                alt='University of Michigan Dearborn Logo'>
+                                U-M Dearborn Logo
+                            </img>
+                        </li>
+                        <li class='academic-partners-item'>
+                            <div class='academic-partners-text'>Wayne State University</div>
+                            <img
+                                class='academic-partners-img'
+                                src={WSULogo}
+                                alt='Wayne State University Logo'>
+                                WSU Logo
+                            </img>
+                        </li>
+                    </ul>
+                </div>
+            
             <p> 
                 Representatives from each of these organizations 
                 comprise the CAPHE Steering Committee, with responsibility for overseeing CAPHE’s day-to-day work, 

@@ -79,6 +79,148 @@
     width:200px;
 }
 
+.partnerships-entire {
+    display: grid;
+    grid-template-rows:1fr;
+    margin-top:20px;
+    padding-bottom:20px;
+}
+
+.partnerships-container {
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    list-style-type: none;
+    padding: 0;
+
+    .partnerships-item {
+        padding:10px;
+        max-height:30vw;
+        display:grid;
+        justify-items: center;
+
+        .partnerships-img {
+            width:75%;
+            max-height:20vw;
+        }
+        .partnerships-text {
+            display: grid;
+            align-self: end;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+        }
+    }
+}
+
+.community-partners-container {
+    display: grid;
+    grid-template-rows:1fr;
+    margin-top:20px;
+    padding-bottom:20px;
+
+    .community-partners-list {
+        display:grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        list-style-type: none;
+        padding: 0;
+
+        .community-partners-item {
+            padding:10px;
+            max-height:30vw;
+            display:grid;
+            justify-items: center;
+
+            .community-partners-img {
+                width:75%;
+                max-height:20vw;
+            }
+            .community-partners-text {
+                display: grid;
+                align-self: end;
+                font-weight: bold;
+                text-align: center;
+                margin-top: 20px;
+            }
+        }
+    }
+}
+
+.gov-partners-container {
+    display: grid;
+    grid-template-rows:1fr;
+    margin-top:20px;
+    padding-bottom:20px;
+    margin-left:100px;
+    margin-right:100px;
+
+    .gov-partners-list {
+        display:grid;
+        grid-template-columns: 1fr 1fr;
+        list-style-type: none;
+        padding: 0;
+
+        .gov-partners-item {
+            padding:10px;
+            max-height:30vw;
+            display:grid;
+            justify-items: center;
+
+            .gov-partners-img {
+                width:75%;
+                max-height:20vw;
+            }
+            .gov-partners-text {
+                display: grid;
+                align-self: end;
+                font-weight: bold;
+                text-align: center;
+                margin-top: 20px;
+            }
+        }
+    }
+}
+
+.academic-partners-container {
+    display: grid;
+    margin-top:20px;
+    padding-bottom:20px;
+
+    .academic-partners-list {
+        display:grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        padding: 0;
+
+        .academic-partners-item {
+            padding:10px;
+            max-height:30vw;
+            display:grid;
+            justify-items: center;
+
+            .academic-partners-img {
+                width:75%;
+                max-height:20vw;
+                padding: 10px;
+            }
+            .academic-partners-text {
+                display: grid;
+                font-weight: bold;
+                text-align: center;
+                margin-top: 20px;
+            }
+            .academic-partners-sublist {
+                display: grid;
+                grid-template-rows: 1fr 1fr 1fr;
+                align-self: end;
+                padding: 0;
+                .academic-partners-sublist-item {
+                    display:grid;
+                    text-align: center;
+                }
+            }
+        }
+    }
+}
+
 @media (max-width: 700px) {
     .meet-team-grid {
         grid-template-columns: 1fr;
@@ -143,6 +285,38 @@
     }
 }
 
+@media (max-width:850px) {
+    .academic-partners-container {
+        margin-bottom:30px;
+        .academic-partners-list {
+            .academic-partners-item {
+                .academic-partners-sublist {
+                    display: grid;
+                    grid-template-rows: 1fr 1fr 1fr;
+                    max-height: 12px;
+                    align-self: end;
+                    margin-bottom: 20px;
+                    padding-bottom: 12px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width:800px) {
+    .community-partners-container {
+        .community-partners-list {
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            row-gap: 10px;
+        }
+    }
+    .gov-partners-container {
+        margin-left:0px;
+        margin-right:0px;
+    }
+}
+
 @media (max-width: 700px) {
     .caphe-list-container {
         justify-items: center;
@@ -154,10 +328,26 @@
     }
 }
 
+@media (max-width:650px) {
+    .academic-partners-container {
+        margin-bottom:15vw;
+        .academic-partners-list {
+            margin-bottom: 20px;
+        }
+    }
+}
+
 @media (max-width: 600px) {
     .caphe-list-container {
         .caphe-list-item {
             width:75%;
+        }
+    }
+
+    .academic-partners-container {
+        margin-bottom:20vw;
+        .academic-partners-list {
+            margin-bottom: 20px;
         }
     }
 }
@@ -186,6 +376,99 @@
     .sponsor-img-container {
         .sponsor-img {
             width:100%;
+        }
+    }
+    .partnerships-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        
+    
+        .partnerships-item {
+            padding:10px;
+            max-height:60vw;
+            display:grid;
+            justify-items: center;
+    
+            .partnerships-img {
+                width:50%;
+                height: 100%;
+                max-height:40vw;
+            }
+            .partnerships-text {
+                display: grid;
+                align-self: end;
+                font-weight: bold;
+                text-align: center;
+                margin-top: 5px;
+            }
+        }
+    }
+
+    .community-partners-container {
+        .community-partners-list {
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr 1fr 1fr 1fr;
+            row-gap: 10px;
+            .community-partners-item {
+                padding:10px;
+                max-height:50vw;
+                display:grid;
+                justify-items: center;
+        
+                .community-partners-img {
+                    width:50%;
+                    height: 100%;
+                    max-height:40vw;
+                }
+            }
+        }
+    }
+
+    .gov-partners-container {
+        .gov-partners-list {
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr 1fr;
+            row-gap: 10px;
+            .gov-partners-item {
+                padding:10px;
+                max-height:50vw;
+                display:grid;
+                justify-items: center;
+        
+                .gov-partners-img {
+                    width:75%;
+                    height: 100%;
+                    max-height:40vw;
+                }
+                .gov-partners-text {
+                    margin-top: 5px;
+                }
+            }
+        }
+    }
+
+    .academic-partners-container {
+        margin-bottom:18px;
+        .academic-partners-list {
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr 1fr 1fr;
+            row-gap: 20px;
+            
+            .academic-partners-item {
+                padding:10px;
+                max-height:50vw;
+                display:grid;
+                justify-items: center;
+        
+                .academic-partners-img {
+                    width:60%;
+                    height: 100%;
+                    max-height:40vw;
+                }
+                .academic-partners-text {
+                    margin-top: 5px;
+                }
+            }
         }
     }
 }
