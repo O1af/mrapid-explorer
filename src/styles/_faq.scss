@@ -6,3 +6,56 @@
     opacity: 75%;
     border:0.5px solid rgb(195, 195, 205);
 }
+
+.health-effects-table {
+    border-collapse: separate;
+    border-spacing: 10px;
+    border-bottom:3px solid black;
+    thead {
+        .effect-labels{
+            background-color: #84a4cb;
+            th {
+                border-bottom:3px solid black;
+                border-top: 3px solid black;
+                text-align: left;
+            }
+        }
+        .pollutant-labels {
+            background-color: white;
+            th {
+                background-color: white;
+            }
+            
+        }
+    }
+    tbody {
+        td {
+            text-align: center;
+        }
+        .effect-desc {
+            text-align: left;
+        }
+    }
+}
+.health-effects-table-container {
+    overflow-x: scroll;
+}
+
+.naaqs-table {
+    border-collapse: separate;
+    border-spacing: 10px;
+}
+
+@media (max-width: 550px) {
+    .health-effects-table {
+        border:3px solid black;
+        tbody {
+            td {
+                border-bottom: 1px solid gray;
+            }
+        }
+    }
+}
+.faq-table-toggle {
+    cursor: pointer;
+}
