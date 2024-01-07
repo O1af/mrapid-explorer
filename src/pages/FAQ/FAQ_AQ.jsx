@@ -1,4 +1,5 @@
 import { createSignal } from "solid-js";
+import NAAQSTable from '../../assets/naaqs-table.png';
 
 function FAQ_AQ() {
     const [isHealthTableVisible, setHealthTableVisibility] = createSignal(false);
@@ -12,6 +13,18 @@ function FAQ_AQ() {
     const toggleAQITable = () => {
         setAQITableVisibility(!isAQITableVisible());
     }
+
+    const [isNAAQSTableVisible, setNAAQSTableVisibility] = createSignal(false);
+
+    const toggleNAAQSTable = () => {
+        setNAAQSTableVisibility(!isNAAQSTableVisible());
+    }
+
+    const [isLessSaturated, setLessSaturated] = createSignal(false);
+      
+    const toggleColor = () => {
+        setLessSaturated((prev) => !prev);
+    };
 
     return (
         <section class="page-faq">
@@ -541,7 +554,8 @@ function FAQ_AQ() {
                 <li>EPA typically considers only two pollutants (O<sub>3</sub> and PM<sub>2.5</sub>) and takes the maximum</li>
             </ul>
             <button class='faq-table-toggle' onClick={toggleAQITable} tabIndex={0}>Click to show/hide table</button>
-            <div class='aqi-table-container'>
+            <button id="toggleColorButton" onClick={toggleColor}>Click to toggle row colors</button>
+            <div class={`aqi-table-container ${isLessSaturated() ? 'less-saturated' : ''}`}>
             {isAQITableVisible() && (
                 <table class='aqi-table'>
                     <thead>
@@ -553,52 +567,52 @@ function FAQ_AQ() {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr class='aqi-table-row'>
                             <td>Green</td>
                             <td>Good</td>
                             <td>0 to 50</td>
-                            <td>Air quality is satisfactory, and air pollution poses little or no risk.</td>
+                            <td class='aqi-table-desc'>Air quality is satisfactory, and air pollution poses little or no risk.</td>
                         </tr>
-                        <tr>
+                        <tr class='aqi-table-row'>
                             <td>Yellow</td>
                             <td>Moderate</td>
                             <td>51 to 100</td>
-                            <td>
+                            <td class='aqi-table-desc'>
                                 Air quality is acceptable. However, there may be a risk some people, particularly 
                                 those who are unusually sensitive to air pollution.
                             </td>
                         </tr>
-                        <tr>
+                        <tr class='aqi-table-row'>
                             <td>Orange</td>
                             <td>Unhealthy for Sensitive Groups</td>
                             <td>101 to 150</td>
-                            <td>
+                            <td class='aqi-table-desc'>
                                 Members of sensitive groups may experience health effects. The general public 
                                 is less likely to be affected.
                             </td>
                         </tr>
-                        <tr>
+                        <tr class='aqi-table-row'>
                             <td>Red</td>
                             <td>Unhealthy</td>
                             <td>151 to 200</td>
-                            <td>
+                            <td class='aqi-table-desc'>
                                 Some members of the general public may experience health effects; members of 
                                 sensitive groups may experience more serious health effects.
                             </td>
                         </tr>
-                        <tr>
+                        <tr class='aqi-table-row'>
                             <td>Purple</td>
                             <td>Very Unhealthy</td>
                             <td>201 to 300</td>
-                            <td>
+                            <td class='aqi-table-desc'>
                                 Health alert; The risk of health effects is increased for everyone.
                             </td>
                         </tr>
-                        <tr>
+                        <tr class='aqi-table-row'>
                             <td>Maroon</td>
                             <td>Hazardous</td>
                             <td>301 and higher</td>
-                            <td>
+                            <td class='aqi-table-desc'>
                                 Health warning of emergency conditions: Everyone is more likely to be affected.
                             </td>
                         </tr>
@@ -606,64 +620,24 @@ function FAQ_AQ() {
                 </table>
             )}
             </div>
+            
             <h2 id="faq_naaqs">Air Quality Standards (NAAQS)</h2>
             <p>
                 The National Ambient Air Quality Standards (NAAQS) apply to the six criteria pollutants. 
                 These set maximum short- and long-term level designed to protect health.  Legal requirement, 
                 enforced using monitoring and modeling.  Applies to all locations outside the fence line
             </p>
+            <button class='faq-table-toggle' onClick={toggleNAAQSTable} tabIndex={0}>Click to show/hide table</button>
             <div class='naaqs-table-container'>
-                <table class='naaqs-table'>
-                    <thead>
-                        <tr>
-                            <th>Pollutant</th>
-                            <th>Primary/Secondary</th>
-                            <th>Averaging Time</th>
-                            <th>Level</th>
-                            <th>Form</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Carbon Monoxide (CO)</td>
-                            <td>Primary</td>
-                            <td>
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td>8 hours</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1 hour</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </td>
-                            <td>
-                            <table>
-                                    <tbody>
-                                        <tr>
-                                            <td>9 ppm</td>
-                                        </tr>
-                                        <tr>
-                                            <td>35 ppm</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </td>
-                            <td>Not to be exceeded more than once per year</td>
-                        </tr>
-                        <tr>
-                            <td>Lead (Pb)</td>
-                            <td>Primary and Secondary</td>
-                            <td>Rolling 3 month average</td>
-                            <td>0.15 &microg/m<sup>3</sup></td>
-                            <td>Not to be exceeded</td>
-                        </tr>
-                    </tbody>
-                </table>
+                {isNAAQSTableVisible() && (
+                    <img 
+                        class='naaqs-table' 
+                        alt='national ambient air quality standards table' 
+                        src={NAAQSTable}>
+                            NAAQS Table
+                    </img>
+                )}
             </div>
-            <p><span style={"background-color:yellow"}>[FINISH TABLE]</span></p>
         </section>
     );
 }

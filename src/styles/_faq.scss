@@ -1,3 +1,5 @@
+@use './variables' as variables;
+
 .page-faq {
     margin:20px;
 }
@@ -41,9 +43,76 @@
     overflow-x: scroll;
 }
 
-.naaqs-table {
-    border-collapse: separate;
-    border-spacing: 10px;
+.aqi-table-container {
+    .aqi-table {
+        .aqi-table-desc {
+            max-width: 400px;
+        }
+        border:2px solid black;
+        tbody {
+            .aqi-table-row {
+                &:nth-of-type(odd) {
+                    background-color: variables.$us-epa-green;
+                }
+                &:nth-child(2) {
+                    background-color: variables.$us-epa-yellow;
+                }
+                &:nth-child(3) {
+                    background-color: variables.$us-epa-orange;
+                }
+                &:nth-child(4) {
+                    background-color: variables.$us-epa-red;
+                }
+                &:nth-child(5) {
+                    background-color: variables.$us-epa-purple;
+                    color:white;
+                }
+                &:nth-child(6) {
+                    background-color: variables.$us-epa-maroon;
+                    color:white;
+                }
+                
+            }
+        }
+    }
+    &.less-saturated {
+        .aqi-table {
+            tbody {
+                .aqi-table-row {
+                    background-color: white; // Adjust color as needed
+                    color:black
+                }
+            }
+        }
+    }
+}
+
+.naaqs-table-container {
+    overflow-x: scroll;
+    .naaqs-table {
+        max-width: 100%;
+    }
+}
+@media (max-width: 850px) {
+    .naaqs-table-container {
+        .naaqs-table {
+            max-width: 200%;
+        }
+    }
+}
+
+@media (max-width:600px) {
+    .aqi-table-container {
+        overflow-x: scroll;
+        .aqi-table {
+            td {
+                min-width: 100px; 
+            }
+            .aqi-table-desc {
+                min-width: 400px;
+            }
+        }
+    }
 }
 
 @media (max-width: 550px) {
@@ -53,6 +122,11 @@
             td {
                 border-bottom: 1px solid gray;
             }
+        }
+    }
+    .naaqs-table-container {
+        .naaqs-table {
+            max-width: 300%;
         }
     }
 }
