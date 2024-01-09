@@ -11,7 +11,7 @@
 
 .health-effects-table {
     border-collapse: separate;
-    border-spacing: 10px;
+    border-spacing: 0px;
     border-bottom:3px solid black;
     thead {
         .effect-labels{
@@ -26,6 +26,7 @@
             background-color: white;
             th {
                 background-color: white;
+                min-width: 60px;
             }
             
         }
@@ -33,6 +34,7 @@
     tbody {
         td {
             text-align: center;
+            border-bottom: 1px solid black;
         }
         .effect-desc {
             text-align: left;
@@ -101,6 +103,17 @@
     }
 }
 
+@media (max-width: 800px) {
+    .health-effects-table {
+        border:3px solid black;
+        tbody {
+            .effect-desc {
+                min-width: 400px;
+            }
+        }
+    }
+}
+
 @media (max-width:600px) {
     .aqi-table-container {
         overflow-x: scroll;
@@ -109,21 +122,13 @@
                 min-width: 100px; 
             }
             .aqi-table-desc {
-                min-width: 400px;
+                min-width: 500px;
             }
         }
     }
 }
 
 @media (max-width: 550px) {
-    .health-effects-table {
-        border:3px solid black;
-        tbody {
-            td {
-                border-bottom: 1px solid gray;
-            }
-        }
-    }
     .naaqs-table-container {
         .naaqs-table {
             max-width: 300%;

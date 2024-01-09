@@ -1,11 +1,12 @@
 // import {Link} from 'react-router-dom';
+import Logo from '../../assets/favicon.png';
 
 export default function Header() {
   return (
     <header class="header">
       <div class="header-contents">
         <a href="/" class="header-logo" aria-label="logo">
-          {/*<img src={imgSvg} alt="logo" />*/}
+          <img src={Logo} alt="logo" />
           Detroit Air
         </a>
         <div class="spacer" />

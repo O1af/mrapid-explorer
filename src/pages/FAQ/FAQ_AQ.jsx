@@ -554,7 +554,7 @@ function FAQ_AQ() {
                 <li>EPA typically considers only two pollutants (O<sub>3</sub> and PM<sub>2.5</sub>) and takes the maximum</li>
             </ul>
             <button class='faq-table-toggle' onClick={toggleAQITable} tabIndex={0}>Click to show/hide table</button>
-            <button id="toggleColorButton" onClick={toggleColor}>Click to toggle row colors</button>
+            <button id="toggleColorButton" onClick={toggleColor}>Click to toggle table colors</button>
             <div class={`aqi-table-container ${isLessSaturated() ? 'less-saturated' : ''}`}>
             {isAQITableVisible() && (
                 <table class='aqi-table'>

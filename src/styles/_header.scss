@@ -6,7 +6,8 @@
 .header {
   padding: 0 40px;
   z-index: 1000;
-  background-color: #444;
+  background-color: rgb(0,50,106);
+  opacity: 1;
 }
 .header-contents {
   display: flex;
@@ -19,6 +20,11 @@
 
 .header-contents .header-logo {
   color:white;
+  img {
+    width:20px;
+    margin-right:10px;
+  }
+  
 }
 
 .spacer {
@@ -83,7 +89,7 @@
 .menu-button {
   display: flex;
   align-items: center;
-  background-color: #444;
+  background-color: rgb(0,50,106);
 }
 
 .submenu {
@@ -137,7 +143,7 @@
 }
 
 .nav .dropdown {
-  background-color: #444;
+  background-color: rgb(0,50,106);
 }
 
 //---------------------------------------------------------------------------------------
@@ -157,7 +163,7 @@
   .header-logo {
     order: 2;
     text-decoration: none;
-    //font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    // font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     color: white;
   }
   .nav {

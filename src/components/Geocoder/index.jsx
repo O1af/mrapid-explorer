@@ -15,8 +15,20 @@ const Geocoder = () => {
       marker: false,
       types:
         'country,region,postcode,district,place,locality,neighborhood',
+      NavigationControl: false,
     });
-    map().addControl(geocoder, 'top-left');
+    map().addControl(geocoder, 'bottom-right');
+    const geocoderContainer = document.querySelector('.mapboxgl-ctrl-geocoder');
+    if (geocoderContainer) {
+      geocoderContainer.style.bottom = '100px';
+  
+    }
+    const zoomControlsContainer = document.querySelector('.mapboxgl-ctrl-bottom-left');
+    if (zoomControlsContainer) {
+      // zoomControlsContainer.style.position = 'absolute';
+      zoomControlsContainer.style.bottom = '2px'; // Adjust the desired distance from the bottom
+      zoomControlsContainer.style.left = '0px'; // Adjust the desired distance from the left
+    }
   });
 
   return <></>;

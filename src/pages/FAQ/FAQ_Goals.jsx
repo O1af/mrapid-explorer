@@ -35,7 +35,17 @@ function FAQ_Goals() {
         <h2>Add a Sensor</h2>
         <p>
             Do you currently own a sensor from one of the sources listed above and wish to display it on DetroitAir's map?
-            If so, please contact <b>????</b> or email Professor Stewart Batterman at <b><a href="mailto:stuartb@umich.edu">stuartb@umich.edu</a></b>.
+            If so, please fill out this 
+            <b>
+                <a href='https://forms.gle/e5Qej1MhwPsXnybb6' target='_blank'>
+                Google Form 
+                </a>
+            </b>
+            or email Professor Stuart Batterman at 
+            <b>
+                <a href="mailto:stuartb@umich.edu">stuartb@umich.edu
+                </a>
+            </b>.
         </p>
         </section>
     );

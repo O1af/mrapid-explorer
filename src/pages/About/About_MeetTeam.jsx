@@ -31,7 +31,7 @@ function About_Team() {
           <div class='team-member'>
             <img class='team-img' alt="Professor Batterman" src={ImageProf}></img>
             <div class="member-label">
-              Professor Stewart Batterman 
+              Professor Stuart Batterman 
             </div>
             <div class="member-affiliation">
               Professor
