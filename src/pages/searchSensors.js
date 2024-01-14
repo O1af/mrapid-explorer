@@ -34,6 +34,7 @@ export const csvDownload = function (data, selectedPollutants, selectedSensors) 
     let name = "download.csv";
     let csvRows = []; 
     if (selectedPollutants.length == 1) {
+        console.log(selectedPollutants)
         name = selectedPollutants[0].name + " data.csv"
         let headerObject = ['date', 'time']
         let sensor_values = []

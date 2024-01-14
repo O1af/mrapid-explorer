@@ -1,8 +1,8 @@
-import { createSignal, createResource, Show } from "solid-js";
+import { createSignal, createResource, Show, For } from "solid-js";
 import { searchSensors, getSensorData, csvDownload } from "./searchSensors";
 // import { MultiSelect } from '@digichanges/solid-multiselect';
 import { Select } from "@thisbeyond/solid-select";
-import "@thisbeyond/solid-select/style.css";
+//import "@thisbeyond/solid-select/style.css";
 import './search.scss';
 
 const createValue = (id, name) => {
@@ -49,35 +49,51 @@ export function AddSensor() {
   const [zipSelectedValues, zipSetSelectedValues] = createSignal(initialZip);
   const [typeSelectedValues, typeSetSelectedValues] = createSignal(initialType);
   const [pollutantSelectedValues, pollutantSetSelectedValues] = createSignal(initialPollutant);
+  const [singleSelectedPollutant, setsingleSelectedPolutant] = createSignal([{id: 'pm2.5', name: 'PM 2.5 µg/m³'}]);
   const [sensorSelected, sensorSetSelected] = createSignal([]);
 
   // const [showForm, setShowForm] = createSignal(false);
   // const toggleForm = () => setShowForm(!showForm());
 
-  const [startDate, setStartDate] = createSignal("");
-  const [endDate, setEndDate] = createSignal("");
-  const [timeStep, setTimeStep] = createSignal("");
-  const onChangeTime = (selected) => {
-    setTimeStep(selected.currentTarget.value)
+  let date = new Date();
+  let day = ("0" + date.getDate()).slice(-2); // adjust 0 before single digit date
+  let month = ("0" + (date.getMonth() + 1)).slice(-2); // adjust 0 before single digit month
+  const [startDate, setStartDate] = createSignal("2023-01-01");
+  const [endDate, setEndDate] = createSignal(date.getFullYear() + "-" + month + "-" + day);
+  const [timeStep, setTimeStep] = createSignal("h");
+  const onChangeTime = (event) => {
+    setTimeStep(event.currentTarget.value)
+    console.log(event.currentTarget.value)
+    event.preventDefault();
   };
+  const onChangeSelectedPollutant = (event) => {
+    setsingleSelectedPolutant([{id: event.currentTarget.value, name: event.currentTarget[event.currentTarget.selectedIndex].text}])
+    event.preventDefault();
+  };
+  
 
-  //States for graphs
+  //States for graphs 
+  // and also error messages for csv download and table
   const [err_message, set_err_message] = createSignal("");
 
   const onCsvDownload = (event) => {
     event.preventDefault();
-    console.log("got to csv download part");
+  
     let jsondata = dataJson();
-    console.log(jsondata)
- 
+    if (jsondata.status == "No results") {
+      set_err_message("No data for these parameters")
+      return 0
+    } else if (jsondata.message) {
+      set_err_message("Please check that you've selected sensors")
+      return 0
+    }
+    set_err_message("")
     jsondata = jsondata.results
-    const date1 = new Date(jsondata[0]['time'])
-    console.log(date1.getDate())
-    console.log(date1.getTime())
 
-    csvDownload(jsondata, pollutantSelectedValues(), sensorSelected()); 
-
-    console.log("got to csv download part");
+    // for if/when we do multiple pollutant data downloads, delete singleselectedpollutant and uncomment below
+    //csvDownload(jsondata, pollutantSelectedValues(), sensorSelected());
+    console.log(singleSelectedPollutant()) 
+    csvDownload(jsondata, singleSelectedPollutant(), sensorSelected()); 
     
   }
   // for creating query parameter list for sensors
@@ -92,8 +108,10 @@ export function AddSensor() {
 
   // for creating query parameter list for data json
   const sensorDataParameters = () => {
-    return {pollutant: pollutantSelectedValues(), sensor: sensorSelected(), 
-            start: startDate(), end: endDate(), step: timeStep()}// unit inside the pollutant['name'] (do a .split())
+    // return {pollutant: pollutantSelectedValues(), sensor: sensorSelected(), 
+    //         start: startDate(), end: endDate(), step: timeStep()}// unit inside the pollutant['name'] (do a .split())
+    return {pollutant: singleSelectedPollutant(), sensor: sensorSelected(), 
+      start: startDate(), end: endDate(), step: timeStep()}
   }
   const [dataJson] = createResource(sensorDataParameters, getSensorData)
 
@@ -124,6 +142,9 @@ export function AddSensor() {
   const onChangePollutant = (selected) => {
     pollutantSetSelectedValues(selected);
     pollutantOptions();
+    if (pollutantSelectedValues().length == 1) {
+      setsingleSelectedPolutant(selected)
+    }
 
   };
 
@@ -197,7 +218,8 @@ export function AddSensor() {
       <h3>Filter Sensors</h3>
       <div class="data-form-item">
 
-      <div class="flex flex-1 flex-col max-w-100 gap-3">
+      
+      <div class="flex flex-1 flex-col max-w-100 gap-3" >
         <label htmlFor="zip_code">Filter sensors by zip code</label>
         <Select
           class="search"
@@ -214,14 +236,14 @@ export function AddSensor() {
         />
       </div>
       <label htmlFor="zip_select_all" class="filter-button-container">
-        <button type="button" onClick={selectZip} class="filter-button">
+        <button type="button" onClick={selectZip} class="filter-button" style="border-radius:5px;border:1px solid;">
           Select all zip codes
         </button>
-        <button type="button" onClick={clearZip} class="filter-button">
+        <button type="button" onClick={clearZip} class="filter-button" style="border-radius:5px;border:1px solid;">
           Clear all selected zip codes
         </button>
       </label>
- 
+      
       <div class="flex flex-1 flex-col max-w-100 gap-3">
         <label htmlFor="type">Filter sensors by monitor type</label>
         <Select
@@ -240,16 +262,16 @@ export function AddSensor() {
         />
       </div>
       <label htmlFor="monitor_select_all" class="filter-button-container">
-        <button type="button" onClick={selectType} class="filter-button">
+        <button type="button" onClick={selectType} class="filter-button" style="border-radius:5px;border:1px solid;">
           Select all monitor types
         </button>
-        <button type="button" onClick={clearType} class="filter-button">
+        <button type="button" onClick={clearType} class="filter-button" style="border-radius:5px;border:1px solid;">
           Clear all selected monitor types
         </button>
       </label>
       
       <div class="flex flex-1 flex-col max-w-100 gap-3">
-        <label htmlFor="pollutant">Filter sensors by pollutant</label>
+        <label htmlFor="pollutant">Filter sensors by pollutants</label>
         <Select
           class="search"
           id="pollutant"
@@ -265,11 +287,12 @@ export function AddSensor() {
           isOptionDisabled={(option) => (pollutantSelectedValues().length != 0) ? pollutantSelectedValues().includes(option) : false}
         />
       </div>
+      
       <label htmlFor="pollutant_select_all" class="filter-button-container">
-        <button type="button" onClick={selectPollutant} class="filter-button">
+        <button type="button" onClick={selectPollutant} class="filter-button" style="border-radius:5px;border:1px solid;">
           Select all pollutants
         </button>
-        <button type="button" onClick={clearPollutant} class="filter-button">
+        <button type="button" onClick={clearPollutant} class="filter-button" style="border-radius:5px;border:1px solid;">
           Clear all selected pollutants
         </button>
       </label>
@@ -279,7 +302,7 @@ export function AddSensor() {
       <div class="data-form-item">
       <Show when={!data.loading} fallback={<>Searching...</>}>
         <div class="flex flex-1 flex-col max-w-100 gap-3">
-          <label htmlFor="sensor">Select sensors</label>
+          <label htmlFor="sensor">Select sensors to view their data</label>
             {/* <MultiSelect
                 style={{ chips: { color: "purple", "background-color": "pink" } }}
                 options={data()}
@@ -298,7 +321,7 @@ export function AddSensor() {
             placeholder="Search for specific sensors"
             onChange={onChangeSensors}
             format={format}
-            options={data}
+            options={data()}
             isOptionDisabled={(option) => (sensorSelected().length != 0) ? sensorSelected().includes(option) : false}
           />
         </div>
@@ -322,6 +345,14 @@ export function AddSensor() {
           <option value="y">Yearly</option>
         </select>
       </label>
+      <label class="data-form-item">
+        Choose the pollutant to display
+        <select class="select" value={pollutantSelectedValues().length == 1 ? pollutantSelectedValues()[0].id : "pm2.5"} onChange={onChangeSelectedPollutant}>
+          <For each={pollutantOptions()}>{(val) =>
+             <option value={val.id}>{val.name}</option>
+          }</For>
+        </select>
+      </label>
       </form>
       </div>
 
@@ -334,6 +365,8 @@ export function AddSensor() {
       <label class="data-form-item" htmlFor="downloadSubmit">
           <button onClick={onCsvDownload} id="downloadSubmit" type="submit" name="submit" class="icon-btn btn-secondary">Download A CSV</button>
       </label>
+
+
     </>
   );
 }

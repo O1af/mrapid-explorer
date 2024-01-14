@@ -2,7 +2,7 @@ import { createSignal } from "solid-js";
 //import { Select, createOptions } from "@thisbeyond/solid-select";
 import "@thisbeyond/solid-select/style.css";
 import './search.scss';
-import DetroitMap from '../assets/detroitmap.jpg';
+import DetroitMap from '/src/assets/detroitmap.jpg';
 //import { MultiSelect } from '@digichanges/solid-multiselect';
 
 //import { BookList } from "./BookList";
