@@ -14,3 +14,19 @@
     background-color: white;
     color: black;
   }
+
+.datatable {
+  border: 2px solid #dddddd;
+  border-radius: 10px;
+  width: 100%;
+}
+
+  .datatable td, .datatable th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  .datatable tr:nth-child(1) {
+    background-color: #dddddd;
+  }

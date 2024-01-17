@@ -51,6 +51,7 @@ export function AddSensor() {
   const [pollutantSelectedValues, pollutantSetSelectedValues] = createSignal(initialPollutant);
   const [singleSelectedPollutant, setsingleSelectedPolutant] = createSignal([{id: 'pm2.5', name: 'PM 2.5 µg/m³'}]);
   const [sensorSelected, sensorSetSelected] = createSignal([]);
+  const [displayTable, setDisplayTable] = createSignal(false);
 
   // const [showForm, setShowForm] = createSignal(false);
   // const toggleForm = () => setShowForm(!showForm());
@@ -211,6 +212,67 @@ export function AddSensor() {
     */
   }
 
+  const onTableShow = (event) => {
+    setDisplayTable(false);
+    setDisplayTable(true);
+    event.preventDefault();
+  }
+  
+  function ShowTable() {
+    console.log(sensorSelected())
+    let jsondata = dataJson();
+    if (jsondata.status == "No results") {
+      set_err_message("No data for these parameters")
+      return (<></>)
+    } else if (jsondata.message) {
+      set_err_message("Please check that you've selected sensors")
+      return (<></>)
+    }
+    set_err_message("")
+    jsondata = jsondata.results
+
+    let tableHeader = ['date', 'time']
+    let cellInitializer = []
+    var sensor_map = {}
+    for (let step = 0; step < sensorSelected().length; step++) {
+        tableHeader.push(sensorSelected()[step].name)
+        cellInitializer.push("NA")
+        sensor_map[sensorSelected()[step].id] = cellInitializer.length + 1
+    }
+
+    let cells = [tableHeader]
+    let previousTime = new Date(jsondata[0]['time'])
+    console.log(previousTime.toLocaleString().split(", "))
+    console.log(cellInitializer)
+    let cur_row = [].concat(previousTime.toLocaleString().split(", "),cellInitializer)
+    console.log('hhhhhhh')
+    for (const item of jsondata) { 
+        let date = new Date(item['time'])
+        if (date.getTime() != previousTime.getTime()) {
+            cells.push(cur_row)
+            previousTime = date
+            cur_row = [].concat(previousTime.toLocaleString().split(", "),cellInitializer)
+        } 
+        cur_row[sensor_map[item['sensor_id']]] = item['value']
+    } 
+    cells.push(cur_row)
+
+    return (
+      <div>
+        <h3 style="padding:auto;">{singleSelectedPollutant()[0].name} Data</h3>
+        <table class="datatable">
+          <For each={cells}>{(row) =>
+            <tr>
+              <For each={row}>{(cell) =>
+                <th>{cell}</th>
+              }</For>
+            </tr>
+          }</For>
+        </table>
+      </div>
+    );
+  }
+
   return (
     <>
       <div class="data-container">
@@ -366,6 +428,13 @@ export function AddSensor() {
           <button onClick={onCsvDownload} id="downloadSubmit" type="submit" name="submit" class="icon-btn btn-secondary">Download A CSV</button>
       </label>
 
+      <label class="data-form-item" htmlFor="tableSubmit">
+          <button onClick={onTableShow} id="tableSubmit" type="submit" name="submit" class="icon-btn btn-secondary">Show A Table</button>
+      </label>
+      <Show when={displayTable()}>
+        <ShowTable/>
+      </Show>
+      
 
     </>
   );
