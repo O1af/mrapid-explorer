@@ -1,3 +1,8 @@
+import OAQLogo from '../../assets/openaq-logo.webp';
+import PAirLogo from '../../assets/purpleair-logo.webp';
+import DSTLogo from '../../assets/dst-logo.webp';
+import ClarLogo from '../../assets/clarity-logo.png';
+import TSILogo from '../../assets/tsi-logo.jpeg';
 
 function FAQ_Goals() {
     return (
@@ -11,13 +16,30 @@ function FAQ_Goals() {
                 Currently, we source our air quality data from 6 different platforms - from both regulatory monitoring 
                 networks and sensor networks:
             </p>
-            <ul>
-            <li><a href='https://openaq.org/'>OpenAQ</a> (provides us EPA data)</li>
-            <li><a href='https://www2.purpleair.com/'>PurpleAir</a></li>
-            <li><a href='https://www.dstech.io/'>Distributed Sensing Technologies</a> (DST)</li>
-            <li><a href='https://www.clarity.io/'>Clarity</a></li>
-            <li><a href='https://tsi.com/home/'>TSI</a></li>
-        </ul>
+            <div class='provider-table-container'>
+                <ul class='provider-table'>
+                    <li class='provider-item'>
+                        <a href='https://openaq.org/'><img src={OAQLogo} alt="Open AQ Logo">OpenAQ Logo</img></a>
+                        OpenAQ
+                    </li>
+                    <li class='provider-item'>
+                        <a href='https://www2.purpleair.com/'><img src={PAirLogo} alt='Purple Air Logo'>PurpleAir</img></a>
+                        PurpleAir
+                    </li>
+                    <li class='provider-item'>
+                        <a href='https://www.dstech.io/'><img src={DSTLogo} alt='Distributed Sensing Technologies Logo'>DST Logo</img></a>
+                        Distributed Sensing Technologies (DST)
+                    </li>
+                    <li class='provider-item'>
+                        <a href='https://www.clarity.io/'><img src={ClarLogo} alt='Clarity Logo'>Clarity Logo</img></a>
+                        Clarity
+                    </li>
+                    <li class='provider-item'>
+                        <a href='https://tsi.com/home/'><img src={TSILogo} alt='TSI Logo'>TSI Logo</img></a>
+                        TSI
+                    </li>
+                </ul>
+            </div>
         <p>
             We also aim to do the following:
         </p>

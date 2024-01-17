@@ -1,4 +1,4 @@
-import ImageProf from '../../assets/sample-img.jpg';
+import ImageProf from '../../assets/batterman.jpg';
 import ImageAmelia from '../../assets/amelia.jpeg';
 import ImageYash from '../../assets/yash.jpeg';
 import ImageOlaf from '../../assets/olaf.jpeg';
@@ -27,27 +27,9 @@ function About_Team() {
             <li><a href='https://www.clarity.io/'>Clarity</a></li>
             <li><a href='https://tsi.com/home/'>TSI</a></li>
         </ul>
-        <div class='meet-team-grid-prof'>
-          <div class='team-member'>
-            <img class='team-img' alt="Professor Batterman" src={ImageProf}></img>
-            <div class="member-label">
-              Professor Stuart Batterman 
-            </div>
-            <div class="member-affiliation">
-              Professor
-            </div>
-            <div class="member-desc">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris efficitur, urna eu pharetra porta, 
-            augue ligula ornare nisl, id vehicula nulla neque vel massa. Nam nec elit odio. Duis auctor egestas 
-            dolor, ultricies aliquet tortor pellentesque sed. Sed eleifend dolor nec lectus feugiat, ut hendrerit 
-            ante vulputate.
-            </div>
-          </div>
-        </div>
-        <hr class='meet-team-line'></hr>
         <div class='meet-team-grid'>
           <div class='team-member'>
-            <img class='team-img' alt="Yash" src={ImageYash}></img>
+            <img class='team-img' alt="Yash" src={ImageYash}>image of Yash</img>
             <div class="member-label">
               Yashoditya (Yash) Watal
             </div>
@@ -55,15 +37,16 @@ function About_Team() {
               Student
             </div>
             <div class="member-desc">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris efficitur, urna eu pharetra porta, 
-            augue ligula ornare nisl, id vehicula nulla neque vel massa. Nam nec elit odio. Duis auctor egestas 
-            dolor, ultricies aliquet tortor pellentesque sed. Sed eleifend dolor nec lectus feugiat, ut hendrerit 
-            ante vulputate.
+            Yash is the back-end development lead for Detroit Air, and is a student at the 
+            University of Michigan persuing a Bachelor's in Computer Science with a minor
+            in Electrical Engineering. Yash works on developing the database and API of 
+            Detroit Air, and also is looking into using machine learning and spacial 
+            interpolation.
             </div>
           </div>
 
           <div class='team-member'>
-            <img class='team-img' alt="Amelia" src={ImageAmelia}></img>
+            <img class='team-img' alt="Amelia" src={ImageAmelia}>image of Amelia</img>
             <div class="member-label">
               Amelia Francisco
             </div>
@@ -71,15 +54,16 @@ function About_Team() {
               Student
             </div>
             <div class="member-desc">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris efficitur, urna eu pharetra porta, 
-              augue ligula ornare nisl, id vehicula nulla neque vel massa. Nam nec elit odio. Duis auctor egestas 
-              dolor, ultricies aliquet tortor pellentesque sed. Sed eleifend dolor nec lectus feugiat, ut hendrerit 
-              ante vulputate.
+              Amelia is the front-end development lead for Detroit Air, and is a student at the 
+              University of Michigan pursuing a dual Bachelor's in Electrical Engineering
+              and Environmental Engineering. In addition to developing the overall layout and 
+              website aesthetics, she is also in charge of meeting and collaboration
+              logistics to ensure consistent communication amongst team members.
             </div>            
           </div>
 
           <div class='team-member'>
-            <img class='team-img'alt="Olaf" src={ImageOlaf}></img>
+            <img class='team-img'alt="Olaf" src={ImageOlaf}>image of Olaf</img>
             <div class="member-label">
               Olaf Dsouza 
             </div>
@@ -87,15 +71,13 @@ function About_Team() {
               Student
             </div>
             <div class="member-desc">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris efficitur, urna eu pharetra porta, 
-              augue ligula ornare nisl, id vehicula nulla neque vel massa. Nam nec elit odio. Duis auctor egestas 
-              dolor, ultricies aliquet tortor pellentesque sed. Sed eleifend dolor nec lectus feugiat, ut hendrerit 
-              ante vulputate.
+              Olaf is on the Map subteam for Detroit Air, and is a student at the 
+              University of Michigan persuing a Bachelor's in Computer Science.
             </div>            
           </div>
 
           <div class='team-member'>
-            <img class='team-img' alt="Ella" src={ImageElla}></img>
+            <img class='team-img' alt="Ella" src={ImageElla}>image of Ella</img>
             <div class="member-label">
               Ella Zhang
             </div>
@@ -103,15 +85,13 @@ function About_Team() {
               Student
             </div>
             <div class="member-desc">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris efficitur, urna eu pharetra porta, 
-              augue ligula ornare nisl, id vehicula nulla neque vel massa. Nam nec elit odio. Duis auctor egestas 
-              dolor, ultricies aliquet tortor pellentesque sed. Sed eleifend dolor nec lectus feugiat, ut hendrerit 
-              ante vulputate.
+              Ella is on the API subteam for Detroit Air, and is a student at the 
+              University of Michigan persuing a Bachelor's in Computer Science.
             </div>            
           </div>
 
           <div class='team-member'>
-            <img class='team-img' alt="Kristine" src={ImageKristine}></img>
+            <img class='team-img' alt="Kristine" src={ImageKristine}>image of Kristine</img>
             <div class="member-label">
               Kristine McLaughlin
             </div>
@@ -119,15 +99,13 @@ function About_Team() {
               Student
             </div>
             <div class="member-desc">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris efficitur, urna eu pharetra porta, 
-              augue ligula ornare nisl, id vehicula nulla neque vel massa. Nam nec elit odio. Duis auctor egestas 
-              dolor, ultricies aliquet tortor pellentesque sed. Sed eleifend dolor nec lectus feugiat, ut hendrerit 
-              ante vulputate.
+              Kristine is on the API subteam for Detroit Air, and is a student at the 
+              University of Michigan persuing a Bachelor's in Computer Science.
             </div>            
           </div>
 
           <div class='team-member'>
-            <img class='team-img' alt="Jenny" src={ImageJenny}></img>
+            <img class='team-img' alt="Jenny" src={ImageJenny}>image of Jenny</img>
             <div class="member-label">
               Jenny Xu
             </div>
@@ -135,27 +113,31 @@ function About_Team() {
               Student
             </div>
             <div class="member-desc">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris efficitur, urna eu pharetra porta, 
-              augue ligula ornare nisl, id vehicula nulla neque vel massa. Nam nec elit odio. Duis auctor egestas 
-              dolor, ultricies aliquet tortor pellentesque sed. Sed eleifend dolor nec lectus feugiat, ut hendrerit 
-              ante vulputate.
+              Jenny is on the API subteam for Detroit Air, and is a student at the 
+              University of Michigan persuing a Bachelor's in Computer Science.
             </div>            
           </div>
         </div>
-        <div class="data-image-container">
-        <h3>Map of Detroit Zip Codes</h3>
-        <div class="data-image">
-          <img src="/src/assets/detroitmap.jpg" alt="map of detroit zipcodes"/>
+
+        <hr class='meet-team-line'> </hr>
+
+        <div class='meet-team-grid-prof'>
+          <div class='team-member'>
+            <img class='team-img' alt="Professor Batterman" src={ImageProf}>image of Professor Batterman</img>
+            <div class="member-label">
+              Professor Stuart Batterman 
+            </div>
+            <div class="member-affiliation">
+              Professor
+            </div>
+            <div class="member-desc">
+              Dr. Batterman is the leader of this research group and is a professor at the University of Michigan
+              under the School of Public Health. He serves as inspiration and guidance for 
+              the development team, providing detailed feedback and objectives for the Detroit Air website. Dr. 
+              Batterman facilitates operations of website development.
+            </div>
+          </div>
         </div>
-        For a complete list of MI zip codes, refer to this 
-        <a 
-          href="https://www.michigan.gov/dtmb/-/media/Project/Websites/dtmb/Services/GIS/Static-Maps/Boundaries/ZIPCodeMap_LP102209.pdf?rev=ef32903cd06c47688b6f3978263a40f4&hash=FB40296EEACD32BC792E28F054C0E47D"
-          target="_blank" 
-          rel="noopener noreferrer"
-        >
-          document
-        </a>.
-      </div>
       </section>
     );
   }

@@ -58,6 +58,10 @@
  @extend .meet-team-grid;
  grid-template-columns: 1fr;
  margin-bottom: 20px;
+
+ .team-member {
+    max-width: 500px;
+ }
 }
 
 
