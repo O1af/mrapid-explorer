@@ -1,37 +1,37 @@
 /* eslint-disable solid/style-prop */
-import MapGL, { Source, Layer, Control, useMap } from 'solid-map-gl';
-import Geocoder from '../Geocoder';
-import { createEffect, createSignal, on } from 'solid-js';
-import { useStore } from '../../stores';
-import { selectedValue } from '../MapCards/Accordion';
+import MapGL, { Source, Layer, Control, useMap } from "solid-map-gl";
+import Geocoder from "../Geocoder";
+import { createEffect, createSignal, on } from "solid-js";
+import { useStore } from "../../stores";
+import { selectedValue } from "../MapCards/Accordion";
 
 function calculateFlyToDuration(zoom) {
   return 2500 / (zoom / 5);
 }
 export const hexValues = [
-  '#00e400',
-  '#ffff00',
-  '#ff7e00',
-  '#ff0000',
-  '#8f3f97',
-  '#7e0023',
+  "#00e400",
+  "#ffff00",
+  "#ff7e00",
+  "#ff0000",
+  "#8f3f97",
+  "#7e0023",
 ];
 
 export const percentHexValues = [
-  '#e8b0e5',
-  '#db85cd',
-  '#c23fb5',
-  '#a333a1',
-  '#4F1048',
+  "#e8b0e5",
+  "#db85cd",
+  "#c23fb5",
+  "#a333a1",
+  "#4F1048",
 ];
 
 export const aqiHexValues = [
-  '#00e400',
-  '#ffff00',
-  '#ff7e00',
-  '#ff0000',
-  '#8f3f97',
-  '#7e0023',
+  "#00e400",
+  "#ffff00",
+  "#ff7e00",
+  "#ff0000",
+  "#8f3f97",
+  "#7e0023",
 ];
 
 export const percentBins = [0, 20, 40, 60, 80];
@@ -51,7 +51,7 @@ export const parametersBins = {
   11: [0, 5.5, 15.5, 25.5, 35.5, 42.5], // um10 (particles/cm3) * PM10 / 10
   12: [0, 5, 12.8, 19.5, 51.2, 84.5], // um5 (particles/cm3) * (PM2.5 / 3) + 1
   13: [0, 8000, 8001, 8002, 8003, 8004], // um100 (particles/cm3) * not enough data
-  14: [0, .09, 0.25, 0.4, 1.1, 1.8], // um25 (particles/cm3) * PM1 / 100
+  14: [0, 0.09, 0.25, 0.4, 1.1, 1.8], // um25 (particles/cm3) * PM1 / 100
   15: [0, 8000, 8001, 8002, 8003, 8004], // um50 (particles/cm3) * not enough data
   16: [0, 1, 3, 7, 12, 16], // BC (µg/m³) kinda guessed on the maroon one since I only could find 1 source
   17: [0, 12.1, 35.5, 55.5, 150.5, 250.5], // PM4 (µg/m³) openAQ's
@@ -98,17 +98,11 @@ export const parametersBinsAQI = {
 // }
 
 function colorScale(parameter) {
-  if(selectedValue() == 'AQI'){
-    const bins = aqiHexValues.map((c, i) => [
-      parametersBinsAQI[50][i],
-     c,
-    ]);
+  if (selectedValue() == "AQI") {
+    const bins = aqiHexValues.map((c, i) => [parametersBinsAQI[50][i], c]);
     return bins;
-   }
-  const bins = hexValues.map((c, i) => [
-    parametersBinsAQI[parameter][i],
-    c,
-  ]);
+  }
+  const bins = hexValues.map((c, i) => [parametersBinsAQI[parameter][i], c]);
   return bins;
 }
 
@@ -220,16 +214,10 @@ function Bounds() {
   return <></>;
 }
 
-
 export function Map() {
   const [
     store,
-    {
-      setViewport,
-      loadLocation,
-      loadRecentMeasurements,
-      setMeasurements,
-    },
+    { setViewport, loadLocation, loadRecentMeasurements, setMeasurements },
   ] = useStore();
   const [cursorStyle, setCursorStyle] = createSignal();
 
@@ -239,9 +227,7 @@ export function Map() {
       () => {
         if (store.location) {
           const dateTo = new Date();
-          const dateFrom = new Date(
-            Date.now() - 86400 * 1000
-          ).toISOString();
+          const dateFrom = new Date(Date.now() - 86400 * 1000).toISOString();
           setMeasurements(
             store.location.id,
             store.location.sensors[0].parameter.id,
@@ -263,42 +249,41 @@ export function Map() {
   }
   console.log(store.mapFilters.purpleair);
 
-//   async function getClarityData() {
-//     let res = await fetch(URL, {
-//       method: 'GET',
-//       headers: {
-//         'x-api-key': APIkey,
-//       },
-//     })
-//     let data = await res.json();
-//     return data;
-//   }
-//   function getAllCoordinatesAsGeoJSON(jsonArray) {
-//     let geojson = {
-//         "type": "FeatureCollection",
-//         "features": []
-//     };
-//     for (let i = 0; i < jsonArray.length; i++) {
-//         let jsonObject = jsonArray[i];
-//         if (jsonObject && jsonObject.location && jsonObject.location.coordinates) {
-//             let feature = {
-//                 "type": "Feature",
-//                 "geometry": {
-//                     "type": "Point",
-//                     "coordinates": jsonObject.location.coordinates
-//                 },
-//                 "properties": {
-//                   "characteristics" : jsonObject.characteristics,
-//                   "id" : jsonObject._id,
-//                 }
-//             };
-//             geojson.features.push(feature);
-//         }
-//     }
-//     return geojson;
-// }
+  //   async function getClarityData() {
+  //     let res = await fetch(URL, {
+  //       method: 'GET',
+  //       headers: {
+  //         'x-api-key': APIkey,
+  //       },
+  //     })
+  //     let data = await res.json();
+  //     return data;
+  //   }
+  //   function getAllCoordinatesAsGeoJSON(jsonArray) {
+  //     let geojson = {
+  //         "type": "FeatureCollection",
+  //         "features": []
+  //     };
+  //     for (let i = 0; i < jsonArray.length; i++) {
+  //         let jsonObject = jsonArray[i];
+  //         if (jsonObject && jsonObject.location && jsonObject.location.coordinates) {
+  //             let feature = {
+  //                 "type": "Feature",
+  //                 "geometry": {
+  //                     "type": "Point",
+  //                     "coordinates": jsonObject.location.coordinates
+  //                 },
+  //                 "properties": {
+  //                   "characteristics" : jsonObject.characteristics,
+  //                   "id" : jsonObject._id,
+  //                 }
+  //             };
+  //             geojson.features.push(feature);
+  //         }
+  //     }
+  //     return geojson;
+  // }
 
-  
   return (
     <MapGL
       class="map"
@@ -567,10 +552,9 @@ export function Map() {
           type: "geojson",
           data: "https://mrapid-api3-r2oaltsiuq-uc.a.run.app/mapData",
         }}
-        
       >
         <Layer
-        visible={selectedValue() != 'AQI'}
+          visible={selectedValue() != "AQI"}
           onClick={(e) => {
             const coordinates = getFeature(e);
             e.target.flyTo({
@@ -585,12 +569,20 @@ export function Map() {
             [
               "any",
               ["!", !store.mapFilters.purpleair],
-              ["!=", ["get", "source", ["get", "info", ["properties"]]], "PURPLEAIR"],
+              [
+                "!=",
+                ["get", "source", ["get", "info", ["properties"]]],
+                "PURPLEAIR",
+              ],
             ],
             [
               "any",
               ["!", !store.mapFilters.monitor],
-              ["!=", ["get", "source", ["get", "info", ["properties"]]], "OPENAQ"],
+              [
+                "!=",
+                ["get", "source", ["get", "info", ["properties"]]],
+                "OPENAQ",
+              ],
             ],
             [
               "any",
@@ -600,13 +592,21 @@ export function Map() {
             [
               "any",
               ["!", !store.mapFilters.tsi],
-              ["!=", ["get", "source", ["get", "info", ["properties"]]], "BLUESKY TSI"],
+              [
+                "!=",
+                ["get", "source", ["get", "info", ["properties"]]],
+                "BLUESKY TSI",
+              ],
             ],
             [
               "any",
               ["!", !store.mapFilters.clarity],
-              ["!=", ["get", "source", ["get", "info", ["properties"]]], "CLARITY"],
-            ]
+              [
+                "!=",
+                ["get", "source", ["get", "info", ["properties"]]],
+                "CLARITY",
+              ],
+            ],
           ]}
           style={{
             id: "clarity-locations",
@@ -716,18 +716,26 @@ export function Map() {
           }}
         />
         <Layer
-        visible={selectedValue() != 'AQI'}
+          visible={selectedValue() != "AQI"}
           filter={[
             "all",
             [
               "any",
               ["!", !store.mapFilters.purpleair],
-              ["!=", ["get", "source", ["get", "info", ["properties"]]], "PURPLEAIR"],
+              [
+                "!=",
+                ["get", "source", ["get", "info", ["properties"]]],
+                "PURPLEAIR",
+              ],
             ],
             [
               "any",
               ["!", !store.mapFilters.monitor],
-              ["!=", ["get", "source", ["get", "info", ["properties"]]], "OPENAQ"],
+              [
+                "!=",
+                ["get", "source", ["get", "info", ["properties"]]],
+                "OPENAQ",
+              ],
             ],
             [
               "any",
@@ -737,13 +745,21 @@ export function Map() {
             [
               "any",
               ["!", !store.mapFilters.tsi],
-              ["!=", ["get", "source", ["get", "info", ["properties"]]], "BLUESKY TSI"],
+              [
+                "!=",
+                ["get", "source", ["get", "info", ["properties"]]],
+                "BLUESKY TSI",
+              ],
             ],
             [
               "any",
               ["!", !store.mapFilters.clarity],
-              ["!=", ["get", "source", ["get", "info", ["properties"]]], "CLARITY"],
-            ]
+              [
+                "!=",
+                ["get", "source", ["get", "info", ["properties"]]],
+                "CLARITY",
+              ],
+            ],
           ]}
           style={{
             id: "clarity-text",
@@ -772,10 +788,9 @@ export function Map() {
           type: "geojson",
           data: "https://mrapid-api3-r2oaltsiuq-uc.a.run.app/mapAQIData",
         }}
-        
       >
         <Layer
-        visible={selectedValue() == 'AQI'}
+          visible={selectedValue() == "AQI"}
           onClick={(e) => {
             const coordinates = getFeature(e);
             e.target.flyTo({
@@ -790,12 +805,20 @@ export function Map() {
             [
               "any",
               ["!", !store.mapFilters.purpleair],
-              ["!=", ["get", "source", ["get", "info", ["properties"]]], "PURPLEAIR"],
+              [
+                "!=",
+                ["get", "source", ["get", "info", ["properties"]]],
+                "PURPLEAIR",
+              ],
             ],
             [
               "any",
               ["!", !store.mapFilters.monitor],
-              ["!=", ["get", "source", ["get", "info", ["properties"]]], "OPENAQ"],
+              [
+                "!=",
+                ["get", "source", ["get", "info", ["properties"]]],
+                "OPENAQ",
+              ],
             ],
             [
               "any",
@@ -805,13 +828,21 @@ export function Map() {
             [
               "any",
               ["!", !store.mapFilters.tsi],
-              ["!=", ["get", "source", ["get", "info", ["properties"]]], "BLUESKY TSI"],
+              [
+                "!=",
+                ["get", "source", ["get", "info", ["properties"]]],
+                "BLUESKY TSI",
+              ],
             ],
             [
               "any",
               ["!", !store.mapFilters.clarity],
-              ["!=", ["get", "source", ["get", "info", ["properties"]]], "CLARITY"],
-            ]
+              [
+                "!=",
+                ["get", "source", ["get", "info", ["properties"]]],
+                "CLARITY",
+              ],
+            ],
           ]}
           style={{
             id: "clarity-locations",
@@ -948,18 +979,26 @@ export function Map() {
           }}
         />
         <Layer
-        visible={selectedValue() == 'AQI'}
+          visible={selectedValue() == "AQI"}
           filter={[
             "all",
             [
               "any",
               ["!", !store.mapFilters.purpleair],
-              ["!=", ["get", "source", ["get", "info", ["properties"]]], "PURPLEAIR"],
+              [
+                "!=",
+                ["get", "source", ["get", "info", ["properties"]]],
+                "PURPLEAIR",
+              ],
             ],
             [
               "any",
               ["!", !store.mapFilters.monitor],
-              ["!=", ["get", "source", ["get", "info", ["properties"]]], "OPENAQ"],
+              [
+                "!=",
+                ["get", "source", ["get", "info", ["properties"]]],
+                "OPENAQ",
+              ],
             ],
             [
               "any",
@@ -969,13 +1008,21 @@ export function Map() {
             [
               "any",
               ["!", !store.mapFilters.tsi],
-              ["!=", ["get", "source", ["get", "info", ["properties"]]], "BLUESKY TSI"],
+              [
+                "!=",
+                ["get", "source", ["get", "info", ["properties"]]],
+                "BLUESKY TSI",
+              ],
             ],
             [
               "any",
               ["!", !store.mapFilters.clarity],
-              ["!=", ["get", "source", ["get", "info", ["properties"]]], "CLARITY"],
-            ]
+              [
+                "!=",
+                ["get", "source", ["get", "info", ["properties"]]],
+                "CLARITY",
+              ],
+            ],
           ]}
           style={{
             id: "clarity-text",
@@ -983,19 +1030,28 @@ export function Map() {
             source: "clarityData",
             layout: {
               "text-field": [
-                "get",
-                "value",
+                "to-string",
                 [
-                  "get",
-                  store.parameters()[store.parameter.id - 1].name,
-                  ["properties"],
+                  "min",
+                  [
+                    "to-number",
+                    [
+                      "get",
+                      "value",
+                      [
+                        "get",
+                        store.parameters()[store.parameter.id - 1].name,
+                        ["properties"],
+                      ],
+                    ],
+                  ],
+                  500,
                 ],
               ],
               "text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
               "text-size": 20,
             },
           }}
-          
         />
       </Source>
       <Bounds />
