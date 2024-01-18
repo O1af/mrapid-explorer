@@ -1,4 +1,4 @@
-import{H as n}from"./HelpContent.e088f8fe.js";import{c as e}from"./index.69f21e15.js";const o=`<h1>Air Quality Index (AQI)</h1>
+import{H as n}from"./HelpContent.a0da99d1.js";import{c as e}from"./index.f88e3ad4.js";const o=`<h1>Air Quality Index (AQI)</h1>
 <p>Air Quality Index or AQI is a system used to understand the levels of air pollution in a given area. The higher the AQI value, the greater the level of air pollution and the greater the health concern. Below are different ranges of AQI values and their meanings.
 \xA0<br>
 <br>

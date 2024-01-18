@@ -1,0 +1,1 @@
+import{d as n,t as o}from"./index.f88e3ad4.js";const r=o('<section class="help-panel"></section>',2);function c(t){return(()=>{const e=r.cloneNode(!0);return n(()=>e.innerHTML=t.html),e})()}export{c as H};
