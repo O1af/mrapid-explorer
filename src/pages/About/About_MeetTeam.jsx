@@ -4,7 +4,7 @@ import ImageYash from '../../assets/yash.jpeg';
 import ImageOlaf from '../../assets/olaf.jpeg';
 import ImageElla from '../../assets/ella.jpeg';
 import ImageKristine from '../../assets/kristine.jpeg';
-import ImageJenny from '../../assets/sample-img.jpg';
+import ImageJenny from '../../assets/jenny.jpg';
 
 function About_Team() {
     return (
@@ -39,9 +39,7 @@ function About_Team() {
             <div class="member-desc">
             Yash is the back-end development lead for Detroit Air, and is a student at the 
             University of Michigan persuing a Bachelor's in Computer Science with a minor
-            in Electrical Engineering. Yash works on developing the database and API of 
-            Detroit Air, and also is looking into using machine learning and spacial 
-            interpolation.
+            in Electrical Engineering.
             </div>
           </div>
 
@@ -56,9 +54,7 @@ function About_Team() {
             <div class="member-desc">
               Amelia is the front-end development lead for Detroit Air, and is a student at the 
               University of Michigan pursuing a dual Bachelor's in Electrical Engineering
-              and Environmental Engineering. In addition to developing the overall layout and 
-              website aesthetics, she is also in charge of meeting and collaboration
-              logistics to ensure consistent communication amongst team members.
+              and Environmental Engineering.
             </div>            
           </div>
 
@@ -85,7 +81,7 @@ function About_Team() {
               Student
             </div>
             <div class="member-desc">
-              Ella is on the API subteam for Detroit Air, and is a student at the 
+              Ella is on the API and Data subteam for Detroit Air, and is a student at the 
               University of Michigan persuing a Bachelor's in Computer Science.
             </div>            
           </div>
@@ -113,7 +109,7 @@ function About_Team() {
               Student
             </div>
             <div class="member-desc">
-              Jenny is on the API subteam for Detroit Air, and is a student at the 
+              Jenny is on the API and Data subteam for Detroit Air, and is a student at the 
               University of Michigan persuing a Bachelor's in Computer Science.
             </div>            
           </div>
