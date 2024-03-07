@@ -1,5 +1,7 @@
-import { createSignal, createResource, Show, For } from "solid-js";
+import { createSignal, createResource, Show, For, onMount } from "solid-js";
 import { searchSensors, getSensorData, csvDownload } from "./searchSensors";
+import { Chart } from 'chart.js/auto';
+import 'chartjs-adapter-moment';
 // import { MultiSelect } from '@digichanges/solid-multiselect';
 import { Select } from "@thisbeyond/solid-select";
 //import "@thisbeyond/solid-select/style.css";
@@ -39,10 +41,6 @@ export async function getPollutants() {
 }
 
 export function AddSensor() {
-  // const temp1 = []
-  // const temp2 = []
-  // const temp3 = []
-  // const temp4 = []
   const initialZip = []
   const initialType = []
   const initialPollutant = []
@@ -52,6 +50,8 @@ export function AddSensor() {
   const [singleSelectedPollutant, setsingleSelectedPolutant] = createSignal([{id: 'pm2.5', name: 'PM 2.5 µg/m³'}]);
   const [sensorSelected, sensorSetSelected] = createSignal([]);
   const [displayTable, setDisplayTable] = createSignal(false);
+  const [displayGraph, setDisplayGraph] = createSignal(false);
+  const [graphData, setGraphData] = createSignal(null);
 
   // const [showForm, setShowForm] = createSignal(false);
   // const toggleForm = () => setShowForm(!showForm());
@@ -73,8 +73,7 @@ export function AddSensor() {
   };
   
 
-  //States for graphs 
-  // and also error messages for csv download and table
+  // error messages
   const [err_message, set_err_message] = createSignal("");
 
   const onCsvDownload = (event) => {
@@ -128,7 +127,7 @@ export function AddSensor() {
 
   const types = [
     createValue("DST", "DST"),
-    createValue("OAQ", "Open Air"),
+    createValue("EPA", "EPA"),
     createValue("PAR", "Purple Air"),
     createValue("TSI", "TSI"),
     createValue("CLA", "CLARITY"),
@@ -177,39 +176,132 @@ export function AddSensor() {
     pollutantOptions();
   }
 
-  //Show the graph of the data that was collected 
-  const show_graph = (event) => {
+  // //Show the graph of the data that was collected 
+  // const show_graph = (event) => {
 
-    //getting values
-    let sensor_data = sensorDataParameters()
-    let select_sensors = sensorListParameters()
-    event.preventDefault();
+  //   //getting values
+  //   let sensor_data = sensorDataParameters()
+  //   let select_sensors = sensorListParameters()
+  //   event.preventDefault();
 
-    //err checking and err message
-    if(sensor_data['start'].length === 0){set_err_message('Please provide a start time for the graph'); return}
-    else if(sensor_data['end'].length === 0){set_err_message('Please provide an end time for the graph'); return}
-    else if(sensor_data['step'].length === 0){set_err_message('Please provide a time step for the graph'); return}
-    else if(select_sensors['zip_code'].length === 0){set_err_message('Please provide at least one zip code for the graph'); return}
-    else if(select_sensors['pollutant'].length === 0){set_err_message('Please provide at least one pollutant for the graph'); return}
+  //   //err checking and err message
+  //   if(sensor_data['start'].length === 0){set_err_message('Please provide a start time for the graph'); return}
+  //   else if(sensor_data['end'].length === 0){set_err_message('Please provide an end time for the graph'); return}
+  //   else if(sensor_data['step'].length === 0){set_err_message('Please provide a time step for the graph'); return}
+  //   else if(select_sensors['zip_code'].length === 0){set_err_message('Please provide at least one zip code for the graph'); return}
+  //   else if(select_sensors['pollutant'].length === 0){set_err_message('Please provide at least one pollutant for the graph'); return}
 
-    let start_date = new Date(sensor_data['start']);
-    let end_date = new Date(sensor_data['end']);
+  //   let start_date = new Date(sensor_data['start']);
+  //   let end_date = new Date(sensor_data['end']);
 
-    if(start_date > end_date){set_err_message('Please provide a start date that is before the end date, or the same as the end date'); return}
-    set_err_message("")
-    //err checking and err message
+  //   if(start_date > end_date){set_err_message('Please provide a start date that is before the end date, or the same as the end date'); return}
+  //   set_err_message("")
+  //   //err checking and err message
     
-    //let sensor_list = data();
+  //   //let sensor_list = data();
 
-    let jsondata = dataJson();
-    console.log(jsondata)
+  //   let jsondata = dataJson();
+  //   console.log(jsondata)
  
+  //   jsondata = jsondata.results
+  //   /*
+  //   sensor_data.sensor = sensor_list
+  //   let results = getSensorData(sensor_data)
+  //   console.log(results)
+  //   */
+  // }
+
+  const onGraphShow = (event) => {
+    setDisplayGraph(false);
+    setDisplayGraph(true);
+    event.preventDefault();
+  }
+
+  function ShowGraph() {
+    let chartRef;
+    let jsondata = dataJson();
+
+    if (jsondata.status == "No results") {
+      set_err_message("No data for these parameters")
+      return (<></>)
+    } else if (jsondata.message) {
+      set_err_message("Please check that you've selected sensors")
+      return (<></>)
+    }
+    set_err_message("")
     jsondata = jsondata.results
-    /*
-    sensor_data.sensor = sensor_list
-    let results = getSensorData(sensor_data)
-    console.log(results)
-    */
+
+    onMount(() => {
+      let dataSensors = []
+      let sensorMapper = {}
+
+      for (let step = 0; step < sensorSelected().length; step++) {
+        sensorMapper[sensorSelected()[step].id] = step;
+        dataSensors.push({label: sensorSelected()[step].name, fill: false, data : []});
+      }
+
+      for (const item of jsondata) {
+        dataSensors[sensorMapper[item['sensor_id']]]['data'].push({x: item['time'], y: item['value']})
+      }
+
+      let tUnit = 'hour';
+      let tFormat = {hour: 'MMM D, hA'}
+
+      if (timeStep() == 'd') {
+        tUnit =  'day';
+        tFormat =  {day: 'MMM D'};
+      } else if (timeStep() == 'm') {
+        tUnit =  'month';
+        tFormat =  {day: 'MMM YYYY'};
+      } else if (timeStep() == 'y') {
+        tUnit =  'year';
+        tFormat =  {day: 'MMM YYYY'};
+      }
+
+      setGraphData({
+        type: 'line',
+        data: {datasets: dataSensors},
+        options: {
+          plugins: {
+            title: {
+              text: singleSelectedPollutant()[0].name + " Data",
+              display: true
+            }
+          },
+          scales: {
+            x: {
+              type: 'time',
+              time: {
+                unit: tUnit,
+                displayFormats: tFormat
+              },
+              title: {
+                display: true,
+                text: 'Date'
+              }
+            },
+            y: {
+              title: {
+                display: true,
+                text: singleSelectedPollutant()[0].name + ' Values'
+              }
+            }
+          },
+        },
+      });
+
+      if (graphData()) {
+        const ctx = chartRef.getContext('2d');
+        new Chart(ctx, graphData());
+      }
+    });
+
+  
+    return (
+      <div>
+        <canvas ref={chartRef} />
+      </div>
+    );  
   }
 
   const onTableShow = (event) => {
@@ -219,7 +311,6 @@ export function AddSensor() {
   }
   
   function ShowTable() {
-    console.log(sensorSelected())
     let jsondata = dataJson();
     if (jsondata.status == "No results") {
       set_err_message("No data for these parameters")
@@ -242,10 +333,9 @@ export function AddSensor() {
 
     let cells = [tableHeader]
     let previousTime = new Date(jsondata[0]['time'])
-    console.log(previousTime.toLocaleString().split(", "))
-    console.log(cellInitializer)
+
     let cur_row = [].concat(previousTime.toLocaleString().split(", "),cellInitializer)
-    console.log('hhhhhhh')
+
     for (const item of jsondata) { 
         let date = new Date(item['time'])
         if (date.getTime() != previousTime.getTime()) {
@@ -421,7 +511,7 @@ export function AddSensor() {
 
       <h6>{err_message}</h6>
       <label class="data-form-item" htmlFor="graphSubmit">
-          <button onClick={show_graph} id="graphSubmit" type="submit" name="submit" class="icon-btn btn-secondary">Show A Graph of the data</button>
+          <button onClick={onGraphShow} id="graphSubmit" type="submit" name="submit" class="icon-btn btn-secondary">Show A Graph of the data</button>
       </label>
       
       <label class="data-form-item" htmlFor="downloadSubmit">
@@ -434,9 +524,13 @@ export function AddSensor() {
       <Show when={displayTable()}>
         <ShowTable/>
       </Show>
+      <Show when={displayGraph()}>
+        <ShowGraph/>
+      </Show>
       
 
     </>
   );
 }
+
 
