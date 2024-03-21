@@ -109,9 +109,38 @@
             display:grid;
             justify-content: center;
             justify-items: center;
+            width:100%;
+            display:grid;
+            margin-bottom:15px;
+            padding-bottom: 20px;
+            padding-top: 20px;
+            border:1px solid black;
+            padding-left:5px;
+            padding-right:5px;
+            border-radius: 16px;
+            color:navy;
+            font-weight: bold;
             img {
                 max-width: 300px;
             }
+        }
+        a:hover .provider-item {
+            color: grey;
+        }
+        a:nth-child(1) .provider-item {
+            background-color: #b2d492;
+        }
+        a:nth-child(2) .provider-item {
+            background-color: #97d492;
+        }
+        a:nth-child(3) .provider-item {
+            background-color: #92d4c5;
+        }
+        a:nth-child(4) .provider-item {
+            background-color: #92cdd4;
+        }
+        a:nth-child(5) .provider-item {
+            background-color: #92b5d4;
         }
     }
 }

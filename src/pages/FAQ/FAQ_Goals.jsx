@@ -1,8 +1,8 @@
-import OAQLogo from '../../assets/openaq-logo.webp';
-import PAirLogo from '../../assets/purpleair-logo.webp';
-import DSTLogo from '../../assets/dst-logo.webp';
-import ClarLogo from '../../assets/clarity-logo.png';
-import TSILogo from '../../assets/tsi-logo.jpeg';
+// import OAQLogo from '../../assets/openaq-logo.webp';
+// import PAirLogo from '../../assets/purpleair-logo.webp';
+// import DSTLogo from '../../assets/dst-logo.webp';
+// import ClarLogo from '../../assets/clarity-logo.png';
+// import TSILogo from '../../assets/tsi-logo.jpeg';
 
 function FAQ_Goals() {
     return (
@@ -18,26 +18,31 @@ function FAQ_Goals() {
             </p>
             <div class='provider-table-container'>
                 <ul class='provider-table'>
-                    <li class='provider-item'>
-                        <a href='https://openaq.org/'><img src={OAQLogo} alt="Open AQ Logo">OpenAQ Logo</img></a>
-                        OpenAQ
-                    </li>
-                    <li class='provider-item'>
-                        <a href='https://www2.purpleair.com/'><img src={PAirLogo} alt='Purple Air Logo'>PurpleAir</img></a>
-                        PurpleAir
-                    </li>
-                    <li class='provider-item'>
-                        <a href='https://www.dstech.io/'><img src={DSTLogo} alt='Distributed Sensing Technologies Logo'>DST Logo</img></a>
-                        Distributed Sensing Technologies (DST)
-                    </li>
-                    <li class='provider-item'>
-                        <a href='https://www.clarity.io/'><img src={ClarLogo} alt='Clarity Logo'>Clarity Logo</img></a>
-                        Clarity
-                    </li>
-                    <li class='provider-item'>
-                        <a href='https://tsi.com/home/'><img src={TSILogo} alt='TSI Logo'>TSI Logo</img></a>
-                        TSI
-                    </li>
+                    <a href='https://openaq.org/'>
+                        <li class='provider-item'>
+                            OpenAQ
+                        </li>
+                    </a>
+                    <a href='https://www2.purpleair.com/'>
+                        <li class='provider-item'>
+                            PurpleAir
+                        </li>
+                    </a>
+                    <a href='https://www.dstech.io/'>
+                        <li class='provider-item'>
+                            Distributed Sensing Technologies (DST)
+                        </li>
+                    </a>
+                    <a href='https://www.clarity.io/'>
+                        <li class='provider-item'>
+                            Clarity
+                        </li>
+                    </a>
+                    <a href='https://tsi.com/home/'>
+                        <li class='provider-item'>
+                            TSI
+                        </li>
+                    </a>
                 </ul>
             </div>
         <p>
