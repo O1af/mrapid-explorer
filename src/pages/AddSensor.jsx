@@ -59,8 +59,11 @@ export function AddSensor() {
   let date = new Date();
   let day = ("0" + date.getDate()).slice(-2); // adjust 0 before single digit date
   let month = ("0" + (date.getMonth() + 1)).slice(-2); // adjust 0 before single digit month
-  const [startDate, setStartDate] = createSignal("2023-01-01");
   const [endDate, setEndDate] = createSignal(date.getFullYear() + "-" + month + "-" + day);
+  date.setDate(date.getDate() - 2);
+  day = ("0" + date.getDate()).slice(-2); // adjust 0 before single digit date
+  month = ("0" + (date.getMonth() + 1)).slice(-2); // adjust 0 before single digit month
+  const [startDate, setStartDate] = createSignal(date.getFullYear() + "-" + month + "-" + day);
   const [timeStep, setTimeStep] = createSignal("h");
   const onChangeTime = (event) => {
     setTimeStep(event.currentTarget.value)
@@ -343,22 +346,24 @@ export function AddSensor() {
             previousTime = date
             cur_row = [].concat(previousTime.toLocaleString().split(", "),cellInitializer)
         } 
-        cur_row[sensor_map[item['sensor_id']]] = item['value']
+        cur_row[sensor_map[item['sensor_id']]] = +parseFloat(item['value']).toFixed(2); // item['value']
     } 
     cells.push(cur_row)
 
     return (
-      <div>
-        <h3 style="padding:auto;">{singleSelectedPollutant()[0].name} Data</h3>
-        <table class="datatable">
-          <For each={cells}>{(row) =>
-            <tr>
-              <For each={row}>{(cell) =>
-                <th>{cell}</th>
-              }</For>
-            </tr>
-          }</For>
-        </table>
+      <div style={"margin: 0 auto;"}>
+        <h3 style="margin: 0 auto;">{singleSelectedPollutant()[0].name} Data</h3>
+        <div class="data-table-container">
+          <table class="datatable">
+            <For each={cells}>{(row) =>
+              <tr>
+                <For each={row}>{(cell) =>
+                  <th>{cell}</th>
+                }</For>
+              </tr>
+            }</For>
+          </table>
+        </div>
       </div>
     );
   }

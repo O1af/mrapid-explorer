@@ -15,10 +15,17 @@
     color: black;
   }
 
+.data-table-container {
+  max-width: 800px;
+  overflow-x: auto; 
+  margin: 0 auto;
+}
 .datatable {
   border: 2px solid #dddddd;
   border-radius: 10px;
-  width: 100%;
+  max-width: 800px;
+  table-layout:fixed;
+  overflow-x: auto;  
 }
 
   .datatable td, .datatable th {
