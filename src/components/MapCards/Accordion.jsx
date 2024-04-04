@@ -1,25 +1,20 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import {
-  createContext,
-  useContext,
-  For,
-  createSignal
-} from 'solid-js';
-import { createStore } from 'solid-js/store';
-import { useStore } from '../../stores';
+import { createContext, useContext, For, createSignal } from "solid-js";
+import { createStore } from "solid-js/store";
+import { useStore } from "../../stores";
 //import { ExpandableCard } from './ExpandableCard';
-import { ClarityMarker } from '../LocationMarker';
-import { TSIMarker } from '../LocationMarker';
-import { DSTMarker } from '../LocationMarker';
-import { PurpleAirMarker } from '../LocationMarker';
-import { NoRecentUpdateMarker } from '../LocationMarker';
-import { ReferenceGradeMarker } from '../LocationMarker';
+import { ClarityMarker } from "../LocationMarker";
+import { TSIMarker } from "../LocationMarker";
+import { DSTMarker } from "../LocationMarker";
+import { PurpleAirMarker } from "../LocationMarker";
+import { NoRecentUpdateMarker } from "../LocationMarker";
+import { ReferenceGradeMarker } from "../LocationMarker";
 
 const AccordionContext = createContext();
 
 function AccordionProvider(props) {
   const [activePanel, setActivePanel] = createStore({
-      name: '', //uncomment to make this open by default
+      name: "", //uncomment to make this open by default
     }),
     accordion = [
       activePanel,
@@ -53,10 +48,8 @@ function AccordionHelp(props) {
   return (
     <button class="button-reset" onClick={(e) => showHelp(e)}>
       <span
-        class={`${
-          props.contentKey
-        }-help-btn material-symbols-outlined ${
-          props.open() ? 'white' : 'grey'
+        class={`${props.contentKey}-help-btn material-symbols-outlined ${
+          props.open() ? "white" : "grey"
         }`}
       >
         help
@@ -72,21 +65,18 @@ function AccordionPanel(props) {
 
   const toggleAndClose = () => {
     if (open()) {
-      togglePanel('');
-    }
-    else {
+      togglePanel("");
+    } else {
       togglePanel(props.name);
     }
-  }
+  };
 
   return (
     <section class="accordion">
       <header
-        class={`accordion__header ${
-          open() ? 'accordion__header--open' : ''
-        }`}
+        class={`accordion__header ${open() ? "accordion__header--open" : ""}`}
         onClick={toggleAndClose}
-        onKeyDown={() => console.log('keydown')}
+        onKeyDown={() => console.log("keydown")}
       >
         <div class="header-section">
           <h3 class="accordion__header-title">{props.title}</h3>
@@ -111,59 +101,53 @@ function AccordionPanel(props) {
           )} */}
         </div>
       </header>
-      <div
-        class={`accordion__body ${
-          open() ? 'accordion__body--open' : ''
-        }`}
-      >
+      <div class={`accordion__body ${open() ? "accordion__body--open" : ""}`}>
         {props.children}
       </div>
     </section>
   );
 }
-export const [selectedValue, setSelectedValue] = createSignal('AQI');
+export const [selectedValue, setSelectedValue] = createSignal("AQI");
 
 export default function Accordion() {
- 
+  const [
+    store,
+    {
+      // toggleProviderList,
+      toggleMonitor,
+      // toggleText, // new
+      toggleDST,
+      toggleTSI,
+      toggleClarity,
+      toggleInactive,
+      togglePurpleAir,
+      loadParameter,
+    },
+  ] = useStore();
 
-    const [
-      store,
-      {
-        // toggleProviderList,
-        toggleMonitor,
-        // toggleText, // new
-        toggleDST,
-        toggleTSI,
-        toggleClarity,
-        toggleInactive,
-        togglePurpleAir,
-        loadParameter
-      },
-    ] = useStore();
-  
-    const monitorCheck = (e) => {
-      toggleMonitor(e.target.checked);
-    };
-  
-    const clarityCheck = (e) => {
-      toggleClarity(e.target.checked);
-    };
-    const dstCheck = (e) => {
-      toggleDST(e.target.checked);
-    };
-    const tsiCheck = (e) => {
-      toggleTSI(e.target.checked);
-    };
-    const purpleairCheck = (e) => {
-      togglePurpleAir(e.target.checked);
-    };
-  
-    const noRecentUpdatesCheck = (e) => {
-      toggleInactive(e.target.checked);
-    };
+  const monitorCheck = (e) => {
+    toggleMonitor(e.target.checked);
+  };
+
+  const clarityCheck = (e) => {
+    toggleClarity(e.target.checked);
+  };
+  const dstCheck = (e) => {
+    toggleDST(e.target.checked);
+  };
+  const tsiCheck = (e) => {
+    toggleTSI(e.target.checked);
+  };
+  const purpleairCheck = (e) => {
+    togglePurpleAir(e.target.checked);
+  };
+
+  const noRecentUpdatesCheck = (e) => {
+    toggleInactive(e.target.checked);
+  };
 
   //on load get aqi value from openweathermap api and store
-  // const [aqi, setAqi] = createSignal(0); 
+  // const [aqi, setAqi] = createSignal(0);
   // const api_key = '69c74c1baa5a315002de22b050a3f4f6';
   // onMount(async () => {
   //   const lat = 0;
@@ -178,8 +162,6 @@ export default function Accordion() {
   //   setAqi(aqi1);
   // });
 
-  
-  
   return (
     <AccordionProvider>
       <AccordionPanel
@@ -189,19 +171,32 @@ export default function Accordion() {
         active={store.mapThreshold.active}
       >
         <h1>Select the unit and pollutant</h1>
-        <div onChange={(e) => {setSelectedValue(e.target.value)
-        }}>
-      <label>
-        <input type="radio" name="group" value="AQI" checked={selectedValue() === 'AQI'} />
-        AQI
-      </label>
-      <label>
-        <input type="radio" name="group" value="Concentration" checked={selectedValue() === 'Concentration'} />
-        Concentration
-      </label>
-    </div>
+        <div
+          onChange={(e) => {
+            setSelectedValue(e.target.value);
+            //add points to store
+          }}
+        >
+          <label>
+            <input
+              type="radio"
+              name="group"
+              value="AQI"
+              checked={selectedValue() === "AQI"}
+            />
+            AQI
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="group"
+              value="Concentration"
+              checked={selectedValue() === "Concentration"}
+            />
+            Concentration
+          </label>
+        </div>
 
-        
         <select
           name=""
           id=""
@@ -229,9 +224,9 @@ export default function Accordion() {
         contentKey="filters"
         active={store.mapThreshold.active}
       >
-        <div style={{ margin: '16px 15px' }}>
+        <div style={{ margin: "16px 15px" }}>
           <div class="filters-section__body">
-        <NoRecentUpdateMarker />
+            <NoRecentUpdateMarker />
             <label class="marker-legend-item" for="recent-updates">
               <span>Exclude inactive monitors</span>
               <input
@@ -244,33 +239,33 @@ export default function Accordion() {
               />
             </label>
 
-        <ReferenceGradeMarker />
-        <label class="marker-legend-item" for="reference-grade">
-          <span>EPA monitor locations</span>
-          <input
-            type="checkbox"
-            name="reference-grade"
-            id="reference-grade"
-            class="checkbox"
-            checked={store.mapFilters.monitor}
-            onChange={monitorCheck}
-          />
-        </label>
+            <ReferenceGradeMarker />
+            <label class="marker-legend-item" for="reference-grade">
+              <span>EPA monitor locations</span>
+              <input
+                type="checkbox"
+                name="reference-grade"
+                id="reference-grade"
+                class="checkbox"
+                checked={store.mapFilters.monitor}
+                onChange={monitorCheck}
+              />
+            </label>
 
-        <PurpleAirMarker />
-        <label class="marker-legend-item" for="purple-air">
-          PurpleAir locations
-          <input
-            type="checkbox"
-            name="low-cost-sensor"
-            id="low-cost-sensor"
-            class="checkbox"
-            checked={store.mapFilters.purpleair}
-            onChange={purpleairCheck}
-          />
-        </label>
+            <PurpleAirMarker />
+            <label class="marker-legend-item" for="purple-air">
+              PurpleAir locations
+              <input
+                type="checkbox"
+                name="low-cost-sensor"
+                id="low-cost-sensor"
+                class="checkbox"
+                checked={store.mapFilters.purpleair}
+                onChange={purpleairCheck}
+              />
+            </label>
 
-        <DSTMarker />
+            <DSTMarker />
             <label class="marker-legend-item" for="low-cost-sensor">
               DST locations
               <input
@@ -283,8 +278,8 @@ export default function Accordion() {
               />
             </label>
 
-        <ClarityMarker />
-        <label class="marker-legend-item" for="low-cost-sensor">
+            <ClarityMarker />
+            <label class="marker-legend-item" for="low-cost-sensor">
               Clarity locations
               <input
                 type="checkbox"
@@ -296,19 +291,19 @@ export default function Accordion() {
               />
             </label>
 
-        <TSIMarker />
-        <label class="marker-legend-item" for="low-cost-sensor">
-          TSI locations
-          <input
-            type="checkbox"
-            name="low-cost-sensor"
-            id="low-cost-sensor"
-            class="checkbox"
-            checked={store.mapFilters.tsi}
-            onChange={tsiCheck}
-          />
-        </label>
-        </div>
+            <TSIMarker />
+            <label class="marker-legend-item" for="low-cost-sensor">
+              TSI locations
+              <input
+                type="checkbox"
+                name="low-cost-sensor"
+                id="low-cost-sensor"
+                class="checkbox"
+                checked={store.mapFilters.tsi}
+                onChange={tsiCheck}
+              />
+            </label>
+          </div>
         </div>
       </AccordionPanel>
     </AccordionProvider>
