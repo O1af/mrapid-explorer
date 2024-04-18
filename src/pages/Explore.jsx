@@ -10,8 +10,8 @@ export default function Explore() {
       <Map />
       <MapLegend />
       <MapCards />
-      <LocationDetailCard />
       <HelpCard />
+      <LocationDetailCard />
     </>
   );
 }

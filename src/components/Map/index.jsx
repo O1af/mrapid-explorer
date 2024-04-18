@@ -4,6 +4,8 @@ import Geocoder from "../Geocoder";
 import { createEffect, createSignal, on } from "solid-js";
 import { useStore } from "../../stores";
 import { selectedValue } from "../MapCards/Accordion";
+import LocationDetailCard from '../MapCards/LocationDetailCard';
+import {Show} from "solid-js"
 
 function calculateFlyToDuration(zoom) {
   return 2500 / (zoom / 5);
@@ -144,6 +146,9 @@ export function Map() {
   ] = useStore();
   const [cursorStyle, setCursorStyle] = createSignal();
   ///create a store for points
+
+  const [clickedPoint, setClickedPoint] = createSignal(null);
+  
   const [points, setPoints] = createSignal();
   const addPoints = (url) => {
     fetch(url)
@@ -185,8 +190,11 @@ export function Map() {
     loadLocation(locationId);
     loadRecentMeasurements(locationId);
 
+    setClickedPoint(features[0].properties);
+
     return features[0].geometry.coordinates;
   }
+  console.log(store.clickedPoint);
   console.log(store.mapFilters.purpleair);
 
   return (
@@ -221,7 +229,6 @@ export function Map() {
         options={{ showCompass: false, showZoom: true }}
       />
       <Geocoder />
-
       <Source
         id="AQI" //idk if this needs to be here. trying to add an id to this source layer
         source={{
@@ -494,6 +501,9 @@ export function Map() {
           }}
         />
       </Source>
+      <Show when={clickedPoint()}>
+        <LocationDetailCard/>
+      </Show>
       <Bounds />
     </MapGL>
   );

@@ -7,7 +7,6 @@ import { group } from 'd3';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { For, Show } from 'solid-js';
 import {
-  LowCostSensorMarker,
   ReferenceGradeMarker,
 } from '../LocationMarker';
 
@@ -99,7 +98,7 @@ export default function LocationDetailCard() {
                 {store.location?.isMonitor ? 'Monitor' : 'Air sensor'}{' '}
                 <Show
                   when={store.location?.isMonitor}
-                  fallback={<LowCostSensorMarker />}
+                  fallback={<ReferenceGradeMarker />}
                 >
                   <ReferenceGradeMarker />
                 </Show>{' '}
