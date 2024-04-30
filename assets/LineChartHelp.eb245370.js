@@ -1,4 +1,4 @@
-import{H as e}from"./HelpContent.a0da99d1.js";import{c as t}from"./index.f88e3ad4.js";const a=`<h1>Latest Readings Chart</h1>
+import{H as e}from"./HelpContent.c11659f0.js";import{c as t}from"./index.ea8e6c6e.js";const a=`<h1>Latest Readings Chart</h1>
 <p>The latest readings chart shows hourly measurements from the last 24 hours, 48 hours, 72 hours, 1 week or 30 days, starting from the current moment in time. Time values on the x-axis are shown in the location\u2019s local time.</p>
 <p>For sensors that report measurements at sub-hour intervals, an average (mean) of the hour is calculated. The hourly averages represent the time-ending values (\u201Cceiling\u201D), e.g., 10:00 represents the average value of measurements from 09:01 to 10:00.</p>
 <h3>Logarithmic scale vs linear scale</h3>
