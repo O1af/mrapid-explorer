@@ -4,8 +4,8 @@ import Geocoder from "../Geocoder";
 import { createEffect, createSignal, on } from "solid-js";
 import { useStore } from "../../stores";
 import { selectedValue } from "../MapCards/Accordion";
-import LocationDetailCard from '../MapCards/LocationDetailCard';
-import {Show} from "solid-js"
+import LocationDetailCard from "../MapCards/LocationDetailCard";
+import { Show } from "solid-js";
 
 function calculateFlyToDuration(zoom) {
   return 2500 / (zoom / 5);
@@ -148,7 +148,7 @@ export function Map() {
   ///create a store for points
 
   const [clickedPoint, setClickedPoint] = createSignal(null);
-  
+
   const [points, setPoints] = createSignal();
   const addPoints = (url) => {
     fetch(url)
@@ -237,7 +237,6 @@ export function Map() {
         }}
       >
         <Layer
-          visible={selectedValue() == "AQI"}
           onClick={(e) => {
             const coordinates = getFeature(e);
             e.target.flyTo({
@@ -426,7 +425,6 @@ export function Map() {
           }}
         />
         <Layer
-          visible={selectedValue() == "AQI"}
           filter={[
             "all",
             [
@@ -502,7 +500,7 @@ export function Map() {
         />
       </Source>
       <Show when={clickedPoint()}>
-        <LocationDetailCard/>
+        <LocationDetailCard />
       </Show>
       <Bounds />
     </MapGL>
