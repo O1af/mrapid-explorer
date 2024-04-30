@@ -1,14 +1,12 @@
-import { Link } from '@solidjs/router';
-import Sparkline from '../Charts/Sparkline';
-import { useStore } from '../../stores';
-import dayjs from 'dayjs/esm/index.js';
-import { group } from 'd3';
+import { Link } from "@solidjs/router";
+import Sparkline from "../Charts/Sparkline";
+import { useStore } from "../../stores";
+import dayjs from "dayjs/esm/index.js";
+import { group } from "d3";
 
-import relativeTime from 'dayjs/plugin/relativeTime';
-import { For, Show } from 'solid-js';
-import {
-  ReferenceGradeMarker,
-} from '../LocationMarker';
+import relativeTime from "dayjs/plugin/relativeTime";
+import { For, Show } from "solid-js";
+import { ReferenceGradeMarker } from "../LocationMarker";
 
 dayjs.extend(relativeTime);
 
@@ -20,19 +18,16 @@ export default function LocationDetailCard() {
   }
 
   function since(lastUpdated) {
-    return `Since ${dayjs(lastUpdated).format('DD/MM/YYYY')}`;
+    return `Since ${dayjs(lastUpdated).format("DD/MM/YYYY")}`;
   }
 
   function latestMeasurementTime(lastUpdated) {
-    return dayjs(lastUpdated).format('HH:mm');
+    return dayjs(lastUpdated).format("HH:mm");
   }
 
   const seriesData = () => {
     if (store.recentMeasurements()) {
-      const groups = group(
-        store.recentMeasurements(),
-        (d) => d.parameter.name
-      );
+      const groups = group(store.recentMeasurements(), (d) => d.parameter.name);
       const values = Array.from(groups, (item) => {
         return { key: item[0], values: item[1] };
       });
@@ -49,17 +44,15 @@ export default function LocationDetailCard() {
   return (
     <article
       class={`dismissable-card location-detail-card ${
-        !store.id || store.help.active
-          ? 'dismissable-card--translate'
-          : ''
+        !store.id || store.help.active ? "dismissable-card--translate" : ""
       }`}
     >
       <header class="location-detail-card__header">
         <h3 class="map-card-title">
-          {store.location ? store.location?.name : 'Loading...'}
+          {store.location ? store.location?.name : "Loading..."}
         </h3>
         <button class="close-btn" onClick={() => clearLocation()}>
-          <span class="material-symbols-outlined clickable-icon white">
+          <span class="material-symbols-outlined clickable-icon black">
             close
           </span>
         </button>
@@ -69,39 +62,37 @@ export default function LocationDetailCard() {
           <span class="type-body-2">
             {store.location?.locality
               ? store.location?.locality
-              : 'No city listed'}
+              : "No city listed"}
             ,
-          </span>{' '}
-          <span class="type-body-3">
-            {store.location?.country.name}
-          </span>
+          </span>{" "}
+          <span class="type-body-3">{store.location?.country.name}</span>
         </section>
         <hr class="hr" />
         <section class="map-card-section">
           <div
             style={{
-              display: 'grid',
-              'row-gap': '10px',
-              'column-gap': '10px',
-              'grid-template-columns': '1fr 2fr',
+              display: "grid",
+              "row-gap": "10px",
+              "column-gap": "10px",
+              "grid-template-columns": "1fr 2fr",
             }}
           >
             <div>Type:</div>
             <div>
               <div
                 style={{
-                  display: 'flex',
-                  gap: '15px',
-                  'align-items': 'center',
+                  display: "flex",
+                  gap: "15px",
+                  "align-items": "center",
                 }}
               >
-                {store.location?.isMonitor ? 'Monitor' : 'Air sensor'}{' '}
+                {store.location?.isMonitor ? "Monitor" : "Air sensor"}{" "}
                 <Show
                   when={store.location?.isMonitor}
                   fallback={<ReferenceGradeMarker />}
                 >
                   <ReferenceGradeMarker />
-                </Show>{' '}
+                </Show>{" "}
               </div>
             </div>
             <div>Measures:</div>
@@ -121,13 +112,13 @@ export default function LocationDetailCard() {
         <section class="map-card-section">
           <div
             style={{
-              display: 'grid',
-              'row-gap': '10px',
-              'column-gap': '10px',
-              'grid-template-columns': '1fr 2fr',
+              display: "grid",
+              "row-gap": "10px",
+              "column-gap": "10px",
+              "grid-template-columns": "1fr 2fr",
             }}
           >
-            <div>Provider:</div>{' '}
+            <div>Provider:</div>{" "}
             <div>
               {store.location?.provider.url ? (
                 <a
@@ -168,12 +159,10 @@ export default function LocationDetailCard() {
               {(parameter) => {
                 return (
                   <>
-                    <span class="type-subtitle-3">
-                      {parameter.key}
-                    </span>
+                    <span class="type-subtitle-3">{parameter.key}</span>
                     <div>
                       <span class="type-body-3 text-lavender-100">
-                        {parameter.values[0].value}{' '}
+                        {parameter.values[0].value}{" "}
                       </span>
                       <span class="type-body-1">
                         {parameter.values[0].unit}
@@ -190,9 +179,9 @@ export default function LocationDetailCard() {
                         left: 1,
                       }}
                       style={{
-                        color: 'black', //changes plot color?
-                        width: '3',
-                        fill: 'none',
+                        color: "black", //changes plot color?
+                        width: "3",
+                        fill: "none",
                       }}
                     />
                   </>
@@ -206,16 +195,12 @@ export default function LocationDetailCard() {
         <Link
           disabled
           class={`icon-btn btn-primary ${
-            store.location ? '' : ' btn-primary--disabled'
+            store.location ? "" : " btn-primary--disabled"
           }`}
-          href={
-            store.location ? `/locations/${store.location.id}` : ''
-          }
+          href={store.location ? `/locations/${store.location.id}` : ""}
         >
           Show Details
-          <span class="material-symbols-outlined white">
-            arrow_right_alt
-          </span>
+          <span class="material-symbols-outlined white">arrow_right_alt</span>
         </Link>
       </footer>
     </article>

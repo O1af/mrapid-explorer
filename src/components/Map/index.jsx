@@ -179,6 +179,7 @@ export function Map() {
             dateFrom,
             dateTo
           );
+          console.log(store.location.id);
         }
       }
     )
@@ -186,9 +187,14 @@ export function Map() {
 
   function getFeature(e) {
     const features = e.target.queryRenderedFeatures(e.point);
-    const locationId = features[0].properties.sensor_nodes_id;
-    loadLocation(locationId);
-    loadRecentMeasurements(locationId);
+    const locationId = features[0].properties.info;
+    // Parse the JSON string to an object
+    const locationInfo = JSON.parse(locationId);
+    // Set locationId to the sensorID
+    const sensorId = locationInfo.sensorID;
+
+    loadLocation(sensorId);
+    //loadRecentMeasurements(locationId);
 
     setClickedPoint(features[0].properties);
 
@@ -239,6 +245,7 @@ export function Map() {
         <Layer
           onClick={(e) => {
             const coordinates = getFeature(e);
+            console.log(coordinates);
             e.target.flyTo({
               center: coordinates,
               zoom: e.target.getZoom() > 12 ? e.target.getZoom() : 12,
@@ -499,9 +506,6 @@ export function Map() {
           }}
         />
       </Source>
-      <Show when={clickedPoint()}>
-        <LocationDetailCard />
-      </Show>
       <Bounds />
     </MapGL>
   );
