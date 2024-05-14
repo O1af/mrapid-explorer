@@ -4,8 +4,6 @@ import Geocoder from "../Geocoder";
 import { createEffect, createSignal, on } from "solid-js";
 import { useStore } from "../../stores";
 import { selectedValue } from "../MapCards/Accordion";
-import LocationDetailCard from "../MapCards/LocationDetailCard";
-import { Show } from "solid-js";
 
 function calculateFlyToDuration(zoom) {
   return 2500 / (zoom / 5);
@@ -142,12 +140,12 @@ function Bounds() {
 export function Map() {
   const [
     store,
-    { setViewport, loadLocation, loadRecentMeasurements, setMeasurements },
+    { setViewport, loadLocation, setMeasurements, setClickedPoint },
   ] = useStore();
   const [cursorStyle, setCursorStyle] = createSignal();
   ///create a store for points
 
-  const [clickedPoint, setClickedPoint] = createSignal(null);
+  //const [clickedPoint, setClickedPoint] = createSignal(null);
 
   const [points, setPoints] = createSignal();
   const addPoints = (url) => {

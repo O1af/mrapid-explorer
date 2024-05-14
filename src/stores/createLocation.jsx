@@ -11,7 +11,7 @@ export default function createLocations(client, actions, state, setState) {
     loadLocation(id) {
       //mutate(null);
       setState({ id });
-      //setLocationSource([id]);
+      setLocationSource([id]);
     },
     checkForUpdate() {
       refetch();
