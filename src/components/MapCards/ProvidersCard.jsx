@@ -1,4 +1,4 @@
-import { createEffect, createSignal, For, Show } from "solid-js";
+import { createSignal, For, Show } from "solid-js";
 import { createStore, produce } from "solid-js/store";
 import { useStore } from "../../stores";
 import MiniSearch from "minisearch";
@@ -10,7 +10,7 @@ export default function ProvidersCard() {
     { toggleProviderList, updateProviders, setBounds, setViewport },
   ] = useStore();
 
-  const [count, setCount] = createSignal();
+  const [count] = createSignal();
   const [providers, setProviders] = createStore([]);
   const [activeProviders, setActiveProviders] = createSignal([]);
 
@@ -38,27 +38,27 @@ export default function ProvidersCard() {
     }, 500);
   };
 
-  createEffect(() => {
-    if (store.providers.state == "ready") {
-      setCount(store.providers().length);
-      setProviders(
-        store
-          .providers()
-          .map((o) => {
-            return {
-              name: o.sourceName,
-              locationsCount: o.locationsCount,
-              id: o.id,
-              checked: true,
-              matchesQuery: true,
-              bbox: o.bbox,
-            };
-          })
-          .sort((a, b) => (a.name < b.name ? -1 : 1))
-      );
-      miniSearch.addAll(providers);
-    }
-  });
+  // createEffect(() => {
+  //   if (store.providers.state == "ready") {
+  //     setCount(store.providers().length);
+  //     setProviders(
+  //       store
+  //         .providers()
+  //         .map((o) => {
+  //           return {
+  //             name: o.sourceName,
+  //             locationsCount: o.locationsCount,
+  //             id: o.id,
+  //             checked: true,
+  //             matchesQuery: true,
+  //             bbox: o.bbox,
+  //           };
+  //         })
+  //         .sort((a, b) => (a.name < b.name ? -1 : 1))
+  //     );
+  //     miniSearch.addAll(providers);
+  //   }
+  // });
 
   function zoomToExtent() {
     const providerBounds = providers
