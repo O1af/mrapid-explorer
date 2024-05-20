@@ -48,9 +48,7 @@ export default function LocationDetailCard() {
       }`}
     >
       <header class="location-detail-card__header">
-        <h3 class="map-card-title">
-          {store.location ? store.location?.name : "Loading..."}
-        </h3>
+        <h3 class="map-card-title">{store.id ? store.id : "Loading..."}</h3>
         <button class="close-btn" onClick={() => clearLocation()}>
           <span class="material-symbols-outlined clickable-icon black">
             close

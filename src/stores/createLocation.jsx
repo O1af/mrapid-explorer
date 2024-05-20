@@ -12,6 +12,7 @@ export default function createLocations(client, actions, state, setState) {
       //mutate(null);
       setState({ id });
       setLocationSource([id]);
+      console.log(state);
     },
     checkForUpdate() {
       refetch();

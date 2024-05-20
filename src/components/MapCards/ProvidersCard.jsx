@@ -1,8 +1,8 @@
-import { createEffect, createSignal, For, Show } from 'solid-js';
-import { createStore, produce } from 'solid-js/store';
-import { useStore } from '../../stores';
-import MiniSearch from 'minisearch';
-import bbox from '@turf/bbox';
+import { createEffect, createSignal, For, Show } from "solid-js";
+import { createStore, produce } from "solid-js/store";
+import { useStore } from "../../stores";
+import MiniSearch from "minisearch";
+import bbox from "@turf/bbox";
 
 export default function ProvidersCard() {
   const [
@@ -15,8 +15,8 @@ export default function ProvidersCard() {
   const [activeProviders, setActiveProviders] = createSignal([]);
 
   const miniSearch = new MiniSearch({
-    fields: ['name'],
-    storeFields: ['name'],
+    fields: ["name"],
+    storeFields: ["name"],
   });
 
   let timeout;
@@ -29,7 +29,7 @@ export default function ProvidersCard() {
       setProviders(
         () => true,
         produce((provider) =>
-          value != ''
+          value != ""
             ? (provider.matchesQuery =
                 res.map((o) => o.id).indexOf(provider.id) != -1)
             : (provider.matchesQuery = true)
@@ -39,7 +39,7 @@ export default function ProvidersCard() {
   };
 
   createEffect(() => {
-    if (store.providers.state == 'ready') {
+    if (store.providers.state == "ready") {
       setCount(store.providers().length);
       setProviders(
         store
@@ -86,11 +86,9 @@ export default function ProvidersCard() {
   }
 
   return (
-    <article
-      class={`card map-card ${store.providerListActive ? '' : ''}`}
-    >
+    <article class={`card map-card ${store.providerListActive ? "" : ""}`}>
       <header class="map-card__header">
-        <div style={{ display: 'flex' }}>
+        <div style={{ display: "flex" }}>
           <button
             class="close-btn"
             aria-label="close"
@@ -108,9 +106,7 @@ export default function ProvidersCard() {
           <div class="providers-list-subtitle">
             <button
               class="button-reset type-link-1 providers-list-select-all"
-              onClick={() =>
-                setProviders(() => true, 'checked', true)
-              }
+              onClick={() => setProviders(() => true, "checked", true)}
             >
               Select All
             </button>
@@ -118,15 +114,14 @@ export default function ProvidersCard() {
             <button
               class="button-reset type-link-1 providers-list-select-none"
               onClick={() => {
-                setProviders(() => true, 'checked', false);
+                setProviders(() => true, "checked", false);
               }}
             >
               Select None
             </button>
           </div>
           <span>
-            {providers.filter((o) => o.checked).length} providers
-            selected
+            {providers.filter((o) => o.checked).length} providers selected
           </span>
           <Show
             when={
@@ -145,14 +140,9 @@ export default function ProvidersCard() {
         </section>
         <section class="map-card-section">
           <div>
-            <input
-              type="text"
-              class="search-input"
-              onInput={onSearchInput}
-            />
+            <input type="text" class="search-input" onInput={onSearchInput} />
             <span>
-              {providers.filter((o) => o.matchesQuery).length ==
-              count()
+              {providers.filter((o) => o.matchesQuery).length == count()
                 ? `Listing all ${count()} providers`
                 : `Listing ${
                     providers.filter((o) => o.matchesQuery).length
@@ -165,9 +155,7 @@ export default function ProvidersCard() {
                 if (provider.matchesQuery) {
                   return (
                     <li class="providers-list__item">
-                      <span class="provider-name">
-                        {provider.name}
-                      </span>
+                      <span class="provider-name">{provider.name}</span>
                       <input
                         type="checkbox"
                         name={`source-${provider.id}`}
@@ -178,7 +166,7 @@ export default function ProvidersCard() {
                         onChange={(e) => {
                           setProviders(
                             (p) => p.id == provider.id,
-                            'checked',
+                            "checked",
                             e.target.checked
                           );
                         }}
@@ -195,13 +183,11 @@ export default function ProvidersCard() {
         <button
           class={`update-providers-btn btn btn-primary ${
             providers.filter((o) => o.checked).length > 0
-              ? ''
-              : 'btn-primary--disabled'
+              ? ""
+              : "btn-primary--disabled"
           }`}
           disabled={providers.filter((o) => o.checked).length == 0}
-          onClick={() =>
-            onClickUpdate(providers.filter((o) => o.checked))
-          }
+          onClick={() => onClickUpdate(providers.filter((o) => o.checked))}
         >
           Update
         </button>

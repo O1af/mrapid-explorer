@@ -107,7 +107,7 @@ function AccordionPanel(props) {
     </section>
   );
 }
-export const [selectedValue, setSelectedValue] = createSignal("AQI");
+export const [selectedValue, setSelectedValue] = createSignal("Concentration");
 
 export default function Accordion() {
   const [
