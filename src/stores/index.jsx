@@ -8,7 +8,7 @@ import createViewport from "./createViewport";
 import createHelp from "./createHelp";
 import createParameter from "./createParameter";
 import createParameters from "./createParameters";
-import createProviders from "./createProviders";
+//import createProviders from "./createProviders";
 import createMeasurements from "./createMeasurements";
 import createMapFilters from "./createMapFilters";
 import createDownload from "./createDownload";
