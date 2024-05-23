@@ -1,8 +1,8 @@
 import { Link } from "@solidjs/router";
-import Sparkline from "../Charts/Sparkline";
+//import Sparkline from "../Charts/Sparkline";
 import { useStore } from "../../stores";
 import dayjs from "dayjs/esm/index.js";
-import { group } from "d3";
+//import { group } from "d3";
 
 import relativeTime from "dayjs/plugin/relativeTime";
 import { For, Show } from "solid-js";
@@ -25,16 +25,6 @@ export default function LocationDetailCard() {
     return dayjs(lastUpdated).format("HH:mm");
   }
 
-  const seriesData = () => {
-    if (store.recentMeasurements()) {
-      const groups = group(store.recentMeasurements(), (d) => d.parameter.name);
-      const values = Array.from(groups, (item) => {
-        return { key: item[0], values: item[1] };
-      });
-      return values;
-    }
-  };
-
   store.recentMeasurements()?.reduce((r, a) => {
     r[a.parameter] = r[a.parameter] || [];
     r[a.parameter].push(a);
@@ -48,7 +38,11 @@ export default function LocationDetailCard() {
       }`}
     >
       <header class="location-detail-card__header">
-        <h3 class="map-card-title">{store.id ? store.id : "Loading..."}</h3>
+        <h3 class="map-card-title">
+          {store.location?.sensor_name
+            ? store.location.sensor_name
+            : "Loading..."}
+        </h3>
         <button class="close-btn" onClick={() => clearLocation()}>
           <span class="material-symbols-outlined clickable-icon black">
             close
@@ -58,12 +52,10 @@ export default function LocationDetailCard() {
       <div class={`map-card__body`}>
         <section class="map-card-section">
           <span class="type-body-2">
-            {store.location?.locality
-              ? store.location?.locality
-              : "No city listed"}
-            ,
-          </span>{" "}
-          <span class="type-body-3">{store.location?.country.name}</span>
+            {store.location?.location?.region
+              ? store.location.location.region
+              : "Loading..."}
+          </span>
         </section>
         <hr class="hr" />
         <section class="map-card-section">
@@ -95,13 +87,18 @@ export default function LocationDetailCard() {
             </div>
             <div>Measures:</div>
             <div>
-              <For each={store.location?.sensors}>
-                {(sensor) => (
-                  <span class="parameter-label type-body-1">
-                    {sensor.parameter.name} ({sensor.parameter.units}
-                    ),
-                  </span>
-                )}
+              {/* iterate over store.location.measurements array and rerender when it changes */}
+              <For each={store.location?.measurements}>
+                {(measurement) => {
+                  return (
+                    <div>
+                      <span class="type-body-3 text-lavender-100">
+                        {measurement.parameter}
+                      </span>
+                      <span class="type-body-1">{measurement.unit}</span>
+                    </div>
+                  );
+                }}
               </For>
             </div>
           </div>
@@ -116,26 +113,18 @@ export default function LocationDetailCard() {
               "grid-template-columns": "1fr 2fr",
             }}
           >
-            <div>Provider:</div>{" "}
-            <div>
-              {store.location?.provider.url ? (
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href={store.location?.provider.url}
-                >
-                  {store.location?.provider.name}
-                </a>
-              ) : (
-                <span>{store.location?.provider.name}</span>
-              )}
-            </div>
+            <div>Provider:</div>
+            <div>{store.location?.source}</div>
             <div>Reporting: </div>
             <div>
-              {timeFromNow(store.location?.datetimeLast.local)}
+              {timeFromNow(store.location?.measurements[0]?.time)}
               <div>
                 <span class="body4 smoke120">
-                  {since(store.location?.datetimeFirst.local)}
+                  {since(
+                    store.location?.measurements[
+                      store.location.measurements.length - 1
+                    ]?.time
+                  )}
                 </span>
               </div>
             </div>
@@ -148,41 +137,23 @@ export default function LocationDetailCard() {
             <span class="type-subtitle-3">Latest Readings </span>
             <span class="type-body-2 text-smoke-100">
               {`${latestMeasurementTime(
-                store.location?.datetimeLast.local
+                store.location?.measurements[0]?.time
               )} (local time)`}
             </span>
           </header>
           <div class="recent-readings__body">
-            <For each={seriesData()}>
-              {(parameter) => {
+            <For each={store.location?.measurements}>
+              {(measurement) => {
                 return (
-                  <>
-                    <span class="type-subtitle-3">{parameter.key}</span>
+                  <div>
+                    <span class="type-subtitle-3">{measurement.parameter}</span>
                     <div>
                       <span class="type-body-3 text-lavender-100">
-                        {parameter.values[0].value}{" "}
+                        {measurement.value}{" "}
                       </span>
-                      <span class="type-body-1">
-                        {parameter.values[0].unit}
-                      </span>
+                      <span class="type-body-1">{measurement.unit}</span>
                     </div>
-                    <Sparkline
-                      series={parameter.values.slice(-24)}
-                      width={78}
-                      height={14}
-                      margin={{
-                        top: 1,
-                        right: 1,
-                        bottom: 1,
-                        left: 1,
-                      }}
-                      style={{
-                        color: "black", //changes plot color?
-                        width: "3",
-                        fill: "none",
-                      }}
-                    />
-                  </>
+                  </div>
                 );
               }}
             </For>
@@ -195,7 +166,7 @@ export default function LocationDetailCard() {
           class={`icon-btn btn-primary ${
             store.location ? "" : " btn-primary--disabled"
           }`}
-          href={store.location ? `/locations/${store.location.id}` : ""}
+          href={store.location ? `/locations/${store.location.sensor_id}` : ""}
         >
           Show Details
           <span class="material-symbols-outlined white">arrow_right_alt</span>

@@ -4,15 +4,14 @@ export default function createLocations(client, actions, state, setState) {
   const [locationSource, setLocationSource] = createSignal();
   let [location, { mutate, refetch }] = createResource(
     locationSource,
-    client.Locations
+    client.Locations.get
   );
 
   Object.assign(actions, {
     loadLocation(id) {
-      //mutate(null);
+      mutate(null);
       setState({ id });
       setLocationSource([id]);
-      console.log(state);
     },
     checkForUpdate() {
       refetch();

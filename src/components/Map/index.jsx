@@ -138,10 +138,7 @@ function Bounds() {
 }
 
 export function Map() {
-  const [
-    store,
-    { setViewport, loadLocation, setMeasurements, setClickedPoint },
-  ] = useStore();
+  const [store, { setViewport, loadLocation, setMeasurements }] = useStore();
   const [cursorStyle, setCursorStyle] = createSignal();
   ///create a store for points
 
@@ -177,6 +174,7 @@ export function Map() {
             dateFrom,
             dateTo
           );
+
           console.log(store.location.id);
         }
       }
@@ -194,12 +192,8 @@ export function Map() {
     loadLocation(sensorId);
     //loadRecentMeasurements(locationId);
 
-    setClickedPoint(features[0].properties);
-
     return features[0].geometry.coordinates;
   }
-  console.log(store.clickedPoint);
-  console.log(store.mapFilters.purpleair);
 
   return (
     <MapGL
@@ -243,7 +237,6 @@ export function Map() {
         <Layer
           onClick={(e) => {
             const coordinates = getFeature(e);
-            console.log(coordinates);
             e.target.flyTo({
               center: coordinates,
               zoom: e.target.getZoom() > 12 ? e.target.getZoom() : 12,
