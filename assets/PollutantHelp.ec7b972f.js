@@ -1,4 +1,4 @@
-import{H as n}from"./HelpContent.1189d3c5.js";import{c as l}from"./index.e3d906d7.js";const e=`<h1>Pollutants</h1>
+import{H as n}from"./HelpContent.e80c9aa0.js";import{c as l}from"./index.6f42b707.js";const e=`<h1>Pollutants</h1>
 <p>The Detroit Air database currently has data sensor data for the following pollutants. Note that we calculate the AQI values shown.</p>
 <h2>Criteria Pollutants:</h2>
 <ul>
