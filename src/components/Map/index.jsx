@@ -143,8 +143,11 @@ export function Map() {
   ///create a store for points
 
   //const [clickedPoint, setClickedPoint] = createSignal(null);
-
-  const [points, setPoints] = createSignal();
+  //set points to initially a blank geogson object
+  const [points, setPoints] = createSignal({
+    type: "FeatureCollection",
+    features: [],
+  });
   const addPoints = (url) => {
     fetch(url)
       .then((res) => res.json())
