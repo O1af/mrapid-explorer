@@ -506,6 +506,31 @@ export function Map() {
           }}
         />
       </Source>
+      <Source   // hardcoded interpolation for pm 2.5 with ug/m3
+        id="interp"
+        source={{
+          type: "geojson",
+          //data: `https://mrapid-api3-r2oaltsiuq-uc.a.run.app/interpolatedMap?pollutant=${store.parameter.parameterName}&unit=${store.parameter.unit}`,
+          data: "https://mrapid-api3-r2oaltsiuq-uc.a.run.app/interpolatedMap?pollutant=pm2.5&unit=ug/m3",
+        }}
+      >
+        <Layer
+          style={{
+            id: 'pm-inter',
+            type: 'fill',
+            source: 'interp',
+            paint: {
+              "fill-color": [
+                "interpolate",
+                ["linear"],
+                ['get', 'pollutant'],
+                //...getColorScale(store),
+                0, "#00e400", 12.1, "#ffff00", 35.5, "#ff7e00", 55.5, "#ff0000", 150.5, "#8f3f97", 250.5, "#7e0023"
+              ],
+              'fill-opacity': 0.25
+            }
+          }}/>
+      </Source>
       <Bounds />
     </MapGL>
   );
