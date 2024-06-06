@@ -165,6 +165,7 @@ export function Map() {
   createEffect(() => {
     if (selectedValue() == "AQI") {
       addPoints("https://mrapid-api3-r2oaltsiuq-uc.a.run.app/mapAQIData");
+      console.log(`https://mrapid-api3-r2oaltsiuq-uc.a.run.app/interpolatedMap?pollutant=${store.parameters()[store.parameter.id - 1].name}&unit=${store.parameters()[store.parameter.id - 1].units}`)
     } else {
       addPoints("https://mrapid-api3-r2oaltsiuq-uc.a.run.app/mapData");
     }
@@ -506,12 +507,12 @@ export function Map() {
           }}
         />
       </Source>
-      <Source   // hardcoded interpolation for pm 2.5 with ug/m3
+      <Source   // interpolation using color scale for pm 2.5 with ug/m3. change when scales are fixed
         id="interp"
         source={{
           type: "geojson",
-          //data: `https://mrapid-api3-r2oaltsiuq-uc.a.run.app/interpolatedMap?pollutant=${store.parameter.parameterName}&unit=${store.parameter.unit}`,
-          data: "https://mrapid-api3-r2oaltsiuq-uc.a.run.app/interpolatedMap?pollutant=pm2.5&unit=ug/m3",
+          data: `https://mrapid-api3-r2oaltsiuq-uc.a.run.app/interpolatedMap?pollutant=${store.parameters()[store.parameter.id - 1].name}&unit=${store.parameters()[store.parameter.id - 1].units}`,
+          //data: "https://mrapid-api3-r2oaltsiuq-uc.a.run.app/interpolatedMap?pollutant=pm2.5&unit=ug/m3",
         }}
       >
         <Layer
