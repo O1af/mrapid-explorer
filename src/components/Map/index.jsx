@@ -165,7 +165,7 @@ export function Map() {
   createEffect(() => {
     if (selectedValue() == "AQI") {
       addPoints("https://mrapid-api3-r2oaltsiuq-uc.a.run.app/mapAQIData");
-      console.log(`https://mrapid-api3-r2oaltsiuq-uc.a.run.app/interpolatedMap?pollutant=${store.parameters()[store.parameter.id - 1].name}&unit=${store.parameters()[store.parameter.id - 1].units}`)
+      //console.log(`https://mrapid-api3-r2oaltsiuq-uc.a.run.app/interpolatedMap?pollutant=${store.parameters()[store.parameter.id - 1].name}&unit=${store.parameters()[store.parameter.id - 1].units}`)
     } else {
       addPoints("https://mrapid-api3-r2oaltsiuq-uc.a.run.app/mapData");
     }
@@ -511,7 +511,8 @@ export function Map() {
         id="interp"
         source={{
           type: "geojson",
-          data: `https://mrapid-api3-r2oaltsiuq-uc.a.run.app/interpolatedMap?pollutant=${store.parameters()[store.parameter.id - 1].name}&unit=${store.parameters()[store.parameter.id - 1].units}`,
+          data: `https://mrapid-api3-r2oaltsiuq-uc.a.run.app/interpolatedMap?pollutant=${store.parameters()[store.parameter.id - 1].name}&unit=${store.parameters()[store.parameter.id - 1].units}&type=${selectedValue()}`,
+          //data: `http://localhost:8080/interpolatedMap?pollutant=${store.parameters()[store.parameter.id - 1].name}&unit=${store.parameters()[store.parameter.id - 1].units}`,
           //data: "https://mrapid-api3-r2oaltsiuq-uc.a.run.app/interpolatedMap?pollutant=pm2.5&unit=ug/m3",
         }}
       >
@@ -525,8 +526,8 @@ export function Map() {
                 "interpolate",
                 ["linear"],
                 ['get', 'pollutant'],
-                //...getColorScale(store),
-                0, "#00e400", 12.1, "#ffff00", 35.5, "#ff7e00", 55.5, "#ff0000", 150.5, "#8f3f97", 250.5, "#7e0023"
+                ...getColorScale(store),
+                //0, "#00e400", 12.1, "#ffff00", 35.5, "#ff7e00", 55.5, "#ff0000", 150.5, "#8f3f97", 250.5, "#7e0023"
               ],
               'fill-opacity': 0.25
             }
