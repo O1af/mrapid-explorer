@@ -138,8 +138,7 @@ function Bounds() {
 }
 
 export function Map() {
-  const [store, { setViewport, loadLocation, setMeasurements, loadParameter }] =
-    useStore();
+  const [store, { setViewport, loadLocation, setMeasurements }] = useStore();
   const [cursorStyle, setCursorStyle] = createSignal();
   ///create a store for points
 
@@ -154,11 +153,6 @@ export function Map() {
       .then((res) => res.json())
       .then((data) => {
         setPoints(data);
-      })
-      .then(() => {
-        //find which parameter is pm 2.5 and set id to that
-        const pm25 = store.parameters().find((x) => x.displayName === "PM 2.5");
-        loadParameter(pm25.id);
       });
   };
   //when selectedValue() changes call addpoints with the appropriate url

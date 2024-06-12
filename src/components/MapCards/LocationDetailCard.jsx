@@ -1,4 +1,4 @@
-import { Link } from "@solidjs/router";
+//import { Link } from "@solidjs/router";
 //import Sparkline from "../Charts/Sparkline";
 import { useStore } from "../../stores";
 import dayjs from "dayjs/esm/index.js";
@@ -160,7 +160,7 @@ export default function LocationDetailCard() {
           </div>
         </section>
       </div>
-      <footer class="location-detail-card__footer">
+      {/* <footer class="location-detail-card__footer">
         <Link
           disabled
           class={`icon-btn btn-primary ${
@@ -171,7 +171,7 @@ export default function LocationDetailCard() {
           Show Details
           <span class="material-symbols-outlined white">arrow_right_alt</span>
         </Link>
-      </footer>
+      </footer> */}
     </article>
   );
 }
