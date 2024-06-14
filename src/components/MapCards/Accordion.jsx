@@ -220,7 +220,7 @@ export default function Accordion() {
       </AccordionPanel>
       <AccordionPanel
         name="filters"
-        title="Filters"
+        title="Options"
         contentKey="filters"
         active={store.mapThreshold.active}
       >
