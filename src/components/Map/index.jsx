@@ -506,8 +506,9 @@ export function Map() {
         source={{
           type: "geojson",
           data: `https://mrapid-api3-r2oaltsiuq-uc.a.run.app/interpolatedMap?pollutant=${store.parameters()[store.parameter.id - 1].name}&unit=${store.parameters()[store.parameter.id - 1].units}&type=${selectedValue()}`,
-          //data: `http://localhost:8080/interpolatedMap?pollutant=${store.parameters()[store.parameter.id - 1].name}&unit=${store.parameters()[store.parameter.id - 1].units}`,
+          //data: `http://localhost:8080/interpolatedMap?pollutant=${store.parameters()[store.parameter.id - 1].name}&unit=${store.parameters()[store.parameter.id - 1].units}&type=${selectedValue()}`,
           //data: "https://mrapid-api3-r2oaltsiuq-uc.a.run.app/interpolatedMap?pollutant=pm2.5&unit=ug/m3",
+          //data: "http://localhost:8080/interpolatedMap?pollutant=pm2.5&unit=ug/m3&type=Concentration",
         }}
       >
         <Layer
