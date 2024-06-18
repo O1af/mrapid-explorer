@@ -39,29 +39,29 @@ export const percentBins = [0, 20, 40, 60, 80];
 
 //used EPA, OpenAQ, or my own calcs for these
 export const parametersBins = {
-  1: [0, 1, 3, 7, 12, 16], // Black C (µg/m³) kinda guessed on the maroon one since I only could find 1 source
-  2: [0, 4500, 9500, 12500, 15500, 30500], // CO (ppb)
-  3: [0, 400, 1000, 2000, 3000, 4000], // CO₂ (ppm) openAQ's
-  4: [0, 54, 101, 361, 650, 1250], // NO (ppb)
-  5: [0, 54, 101, 361, 650, 1250], // NO₂ (ppb)
-  6: [0, 54, 101, 361, 650, 1250], // NOx (ppb)
-  7: [0, 55, 71, 86, 106, 200], // O₃ (ppb)
-  8: [0, 10.6, 31.1, 48.7, 132, 219.7], // PM0.5 (particles/cm3) * PM2.5 / 1.14
-  9: [0, 8.5, 25, 39.1, 106, 176.4], // PM1 count (particles/cm³) * PM10 / 1.42
-  10: [0, 8.5, 25, 39.1, 106, 176.4], // PM1 (particles/cm3) * reads the same vals as PM1 in ug/m3
-  11: [0, 55, 155, 255, 355, 425], // PM10 (particles/cm3) * reads the same vals as PM10 in ug/m3
-  12: [0, 55, 155, 255, 355, 425], // PM10 (µg/m³)
-  13: [0, 12.1, 35.5, 55.5, 150.5, 250.5], // PM2.5 (particles/cm3) * reads the same vals as PM2.5 in ug/m3
-  14: [0, 12.1, 35.5, 55.5, 150.5, 250.5], // PM2.5 (µg/m³)
-  15: [0, 12.1, 35.5, 55.5, 150.5, 250.5], // PM4 (particles/cm3) * reads the same vals as PM4 in ug/m3
-  16: [0, 12.1, 35.5, 55.5, 150.5, 250.5], // PM4 (µg/m³) openAQ's
-  17: [0, 36, 76, 186, 305, 605], // SO₂ (ppb)
-  18: [0, 5.5, 15.5, 25.5, 35.5, 42.5], // um10 (particles/cm3) * PM10 / 10
-  19: [0, 8000, 8001, 8002, 8003, 8004], // um100 (particles/cm3) * not enough data
-  20: [0, 0.09, 0.25, 0.4, 1.1, 1.8], // um25 (particles/cm3) * PM1 / 100
-  21: [0, 500, 501, 502, 503, 504], // um3 (particles/cm3)
-  22: [0, 5, 12.8, 19.5, 51.2, 84.5], // um5 (particles/cm3) * (PM2.5 / 3) + 1
-  23: [0, 8000, 8001, 8002, 8003, 8004], // um50 (particles/cm3) * not enough data
+  1: [0, 12.1, 35.5, 55.5, 150.5, 250.5], // PM2.5 (particles/cm3) * reads the same vals as PM2.5 in ug/m3
+  2: [0, 1, 3, 7, 12, 16], // Black C (µg/m³) kinda guessed on the maroon one since I only could find 1 source
+  3: [0, 4500, 9500, 12500, 15500, 30500], // CO (ppb)
+  4: [0, 400, 1000, 2000, 3000, 4000], // CO₂ (ppm) openAQ's
+  5: [0, 54, 101, 361, 650, 1250], // NO (ppb)
+  6: [0, 54, 101, 361, 650, 1250], // NO₂ (ppb)
+  7: [0, 54, 101, 361, 650, 1250], // NOx (ppb)
+  8: [0, 55, 71, 86, 106, 200], // O₃ (ppb)
+  9: [0, 10.6, 31.1, 48.7, 132, 219.7], // PM0.5 (particles/cm3) * PM2.5 / 1.14
+  10: [0, 8.5, 25, 39.1, 106, 176.4], // PM1 count (particles/cm³) * PM10 / 1.42
+  11: [0, 8.5, 25, 39.1, 106, 176.4], // PM1 (particles/cm3) * reads the same vals as PM1 in ug/m3
+  12: [0, 55, 155, 255, 355, 425], // PM10 (particles/cm3) * reads the same vals as PM10 in ug/m3
+  13: [0, 55, 155, 255, 355, 425], // PM10 (µg/m³)
+  // 14: [0, 12.1, 35.5, 55.5, 150.5, 250.5], // PM2.5 (µg/m³)
+  14: [0, 12.1, 35.5, 55.5, 150.5, 250.5], // PM4 (particles/cm3) * reads the same vals as PM4 in ug/m3
+  15: [0, 12.1, 35.5, 55.5, 150.5, 250.5], // PM4 (µg/m³) openAQ's
+  16: [0, 36, 76, 186, 305, 605], // SO₂ (ppb)
+  // 18: [0, 5.5, 15.5, 25.5, 35.5, 42.5], // um10 (particles/cm3) * PM10 / 10
+  // 19: [0, 8000, 8001, 8002, 8003, 8004], // um100 (particles/cm3) * not enough data
+  // 20: [0, 0.09, 0.25, 0.4, 1.1, 1.8], // um25 (particles/cm3) * PM1 / 100
+  // 21: [0, 500, 501, 502, 503, 504], // um3 (particles/cm3)
+  // 22: [0, 5, 12.8, 19.5, 51.2, 84.5], // um5 (particles/cm3) * (PM2.5 / 3) + 1
+  // 23: [0, 8000, 8001, 8002, 8003, 8004], // um50 (particles/cm3) * not enough data
   50: [0, 50, 100, 150, 200, 300, 500], // AQI
 };
 
