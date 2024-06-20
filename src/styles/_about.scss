@@ -13,6 +13,7 @@
     }
     &__heading2 {
         font-size: 30px;
+        text-align: center;
     }
 }
 
@@ -25,7 +26,7 @@
 .meet-team-grid {
     margin-top: 30px;
     display:grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     justify-items: center;
     grid-auto-rows: 1fr;
     row-gap: 30px;
@@ -62,6 +63,12 @@
  .team-member {
     max-width: 500px;
  }
+}
+
+.meet-team-grid-former {
+    @extend .meet-team-grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 25%;
 }
 
 

@@ -40,16 +40,17 @@ function About_Team() {
         </li>
       </ul>
       <div class="meet-team-grid">
-        <div class="team-member">
-          <img class="team-img" alt="Yash" src={ImageYash}>
-            image of Yash
+
+      <div class="team-member">
+          <img class="team-img" alt="Amelia" src={ImageAmelia}>
+            image of Amelia
           </img>
-          <div class="member-label">Yashoditya (Yash) Watal</div>
-          <div class="member-affiliation">Former Student</div>
+          <div class="member-label">Amelia Francisco</div>
+          <div class="member-affiliation">Student</div>
           <div class="member-desc">
-            Yash was the previous back-end development lead for Detroit Air, and
-            is a student at the University of Michigan persuing a Bachelor's in
-            Computer Science with a minor in Electrical Engineering.
+            Amelia is the project lead/front-end development lead for Detroit Air, and is a
+            student at the University of Michigan pursuing a dual Bachelor's in
+            Electrical Engineering and Environmental Engineering.
           </div>
         </div>
 
@@ -66,19 +67,6 @@ function About_Team() {
         </div>
 
         <div class="team-member">
-          <img class="team-img" alt="Amelia" src={ImageAmelia}>
-            image of Amelia
-          </img>
-          <div class="member-label">Amelia Francisco</div>
-          <div class="member-affiliation">Student</div>
-          <div class="member-desc">
-            Amelia is the front-end development lead for Detroit Air, and is a
-            student at the University of Michigan pursuing a dual Bachelor's in
-            Electrical Engineering and Environmental Engineering.
-          </div>
-        </div>
-
-        <div class="team-member">
           <img class="team-img" alt="Ella" src={ImageElla}>
             image of Ella
           </img>
@@ -86,20 +74,7 @@ function About_Team() {
           <div class="member-affiliation">Student</div>
           <div class="member-desc">
             Ella is on the API and Data subteam for Detroit Air, and is a
-            student at the University of Michigan persuing a Bachelor's in
-            Computer Science.
-          </div>
-        </div>
-
-        <div class="team-member">
-          <img class="team-img" alt="Kristine" src={ImageKristine}>
-            image of Kristine
-          </img>
-          <div class="member-label">Kristine McLaughlin</div>
-          <div class="member-affiliation">Former Student</div>
-          <div class="member-desc">
-            Kristine was previously on the API subteam for Detroit Air, and is a
-            student at the University of Michigan persuing a Bachelor's in
+            alumni at the University of Michigan with a Bachelor's in
             Computer Science.
           </div>
         </div>
@@ -119,7 +94,7 @@ function About_Team() {
       </div>
 
       <hr class="meet-team-line"> </hr>
-
+      <h2 class="meet-team-title__heading2">Professor</h2>
       <div class="meet-team-grid-prof">
         <div class="team-member">
           <img class="team-img" alt="Professor Batterman" src={ImageProf}>
@@ -137,6 +112,37 @@ function About_Team() {
           </div>
         </div>
       </div>
+
+      <hr class="meet-team-line"> </hr>
+      <h2 class="meet-team-title__heading2">Former Members</h2>
+      <div class="meet-team-grid-former">
+        <div class="team-member">
+            <img class="team-img" alt="Yash" src={ImageYash}>
+              image of Yash
+            </img>
+            <div class="member-label">Yashoditya (Yash) Watal</div>
+            <div class="member-affiliation">Former Student</div>
+            <div class="member-desc">
+              Yash was the previous back-end development lead for Detroit Air, and
+              is a student at the University of Michigan persuing a Bachelor's in
+              Computer Science with a minor in Electrical Engineering.
+            </div>
+          </div>
+
+          <div class="team-member">
+            <img class="team-img" alt="Kristine" src={ImageKristine}>
+              image of Kristine
+            </img>
+            <div class="member-label">Kristine McLaughlin</div>
+            <div class="member-affiliation">Former Student</div>
+            <div class="member-desc">
+              Kristine was previously on the API subteam for Detroit Air, and is a
+              student at the University of Michigan persuing a Bachelor's in
+              Computer Science.
+            </div>
+          </div>
+        </div>
+
     </section>
   );
 }
