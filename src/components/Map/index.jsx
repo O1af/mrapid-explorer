@@ -204,7 +204,7 @@ export function Map() {
       options={{
         accessToken: import.meta.env.VITE_MAPBOX_ACCESS_TOKEN,
         style: import.meta.env.VITE_MAPBOX_STYLE,
-        touchZoomRotate: false,
+        touchZoomRotate: true,
         dragRotate: false,
         minZoom: 9,
         maxZoom: 14,
