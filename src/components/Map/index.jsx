@@ -231,6 +231,33 @@ export function Map() {
         options={{ showCompass: false, showZoom: true }}
       />
       <Geocoder />
+      <Source   // interpolation using color scale for pm 2.5 with ug/m3. change when scales are fixed
+        id="interp"
+        source={{
+          type: "geojson",
+          data: `https://mrapid-api3-r2oaltsiuq-uc.a.run.app/interpolatedMap?pollutant=${store.parameters()[store.parameter.id - 1].name}&unit=${store.parameters()[store.parameter.id - 1].units}&type=${selectedValue()}`,
+          //data: `http://localhost:8080/interpolatedMap?pollutant=${store.parameters()[store.parameter.id - 1].name}&unit=${store.parameters()[store.parameter.id - 1].units}&type=${selectedValue()}`,
+          //data: "https://mrapid-api3-r2oaltsiuq-uc.a.run.app/interpolatedMap?pollutant=pm2.5&unit=ug/m3",
+          //data: "http://localhost:8080/interpolatedMap?pollutant=pm2.5&unit=ug/m3&type=Concentration",
+        }}
+      >
+        <Layer
+          style={{
+            id: 'pm-inter',
+            type: 'fill',
+            source: 'interp',
+            paint: {
+              "fill-color": [
+                "interpolate",
+                ["linear"],
+                ['get', 'pollutant'],
+                ...getColorScale(store),
+                //0, "#00e400", 12.1, "#ffff00", 35.5, "#ff7e00", 55.5, "#ff0000", 150.5, "#8f3f97", 250.5, "#7e0023"
+              ],
+              'fill-opacity': 0.25
+            }
+          }}/>
+      </Source>
       <Source
         id="AQI" //idk if this needs to be here. trying to add an id to this source layer
         source={{
@@ -500,33 +527,6 @@ export function Map() {
             },
           }}
         />
-      </Source>
-      <Source   // interpolation using color scale for pm 2.5 with ug/m3. change when scales are fixed
-        id="interp"
-        source={{
-          type: "geojson",
-          data: `https://mrapid-api3-r2oaltsiuq-uc.a.run.app/interpolatedMap?pollutant=${store.parameters()[store.parameter.id - 1].name}&unit=${store.parameters()[store.parameter.id - 1].units}&type=${selectedValue()}`,
-          //data: `http://localhost:8080/interpolatedMap?pollutant=${store.parameters()[store.parameter.id - 1].name}&unit=${store.parameters()[store.parameter.id - 1].units}&type=${selectedValue()}`,
-          //data: "https://mrapid-api3-r2oaltsiuq-uc.a.run.app/interpolatedMap?pollutant=pm2.5&unit=ug/m3",
-          //data: "http://localhost:8080/interpolatedMap?pollutant=pm2.5&unit=ug/m3&type=Concentration",
-        }}
-      >
-        <Layer
-          style={{
-            id: 'pm-inter',
-            type: 'fill',
-            source: 'interp',
-            paint: {
-              "fill-color": [
-                "interpolate",
-                ["linear"],
-                ['get', 'pollutant'],
-                ...getColorScale(store),
-                //0, "#00e400", 12.1, "#ffff00", 35.5, "#ff7e00", 55.5, "#ff0000", 150.5, "#8f3f97", 250.5, "#7e0023"
-              ],
-              'fill-opacity': 0.25
-            }
-          }}/>
       </Source>
       <Bounds />
     </MapGL>
