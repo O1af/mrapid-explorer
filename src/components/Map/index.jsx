@@ -155,13 +155,26 @@ export function Map() {
         setPoints(data);
       });
   };
+  const [interpol, setInterpol] = createSignal({
+    type: "FeatureCollection",
+    features: [],
+  });
+  const addInterpolation = (url) => {
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        setInterpol(data);
+      });
+  };
   //when selectedValue() changes call addpoints with the appropriate url
   createEffect(() => {
     if (selectedValue() == "AQI") {
       addPoints("https://mrapid-api3-r2oaltsiuq-uc.a.run.app/mapAQIData");
       //console.log(`https://mrapid-api3-r2oaltsiuq-uc.a.run.app/interpolatedMap?pollutant=${store.parameters()[store.parameter.id - 1].name}&unit=${store.parameters()[store.parameter.id - 1].units}`)
+      addInterpolation(`https://mrapid-api3-r2oaltsiuq-uc.a.run.app/interpolatedMap?pollutant=${store.parameters()[store.parameter.id - 1].name}&unit=${store.parameters()[store.parameter.id - 1].units}&type=aqi`);
     } else {
       addPoints("https://mrapid-api3-r2oaltsiuq-uc.a.run.app/mapData");
+      addInterpolation(`https://mrapid-api3-r2oaltsiuq-uc.a.run.app/interpolatedMap?pollutant=${store.parameters()[store.parameter.id - 1].name}&unit=${store.parameters()[store.parameter.id - 1].units}&type=Concentration`);
     }
   });
 
@@ -235,7 +248,8 @@ export function Map() {
         id="interp"
         source={{
           type: "geojson",
-          data: `https://mrapid-api3-r2oaltsiuq-uc.a.run.app/interpolatedMap?pollutant=${store.parameters()[store.parameter.id - 1].name}&unit=${store.parameters()[store.parameter.id - 1].units}&type=${selectedValue()}`,
+          data: interpol(),
+          //data: `https://mrapid-api3-r2oaltsiuq-uc.a.run.app/interpolatedMap?pollutant=${store.parameters()[store.parameter.id - 1].name}&unit=${store.parameters()[store.parameter.id - 1].units}&type=${selectedValue()}`,
           //data: `http://localhost:8080/interpolatedMap?pollutant=${store.parameters()[store.parameter.id - 1].name}&unit=${store.parameters()[store.parameter.id - 1].units}&type=${selectedValue()}`,
           //data: "https://mrapid-api3-r2oaltsiuq-uc.a.run.app/interpolatedMap?pollutant=pm2.5&unit=ug/m3",
           //data: "http://localhost:8080/interpolatedMap?pollutant=pm2.5&unit=ug/m3&type=Concentration",
