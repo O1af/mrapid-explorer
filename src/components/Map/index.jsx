@@ -1,6 +1,6 @@
 /* eslint-disable solid/style-prop */
 import MapGL, { Source, Layer, Control, useMap } from "solid-map-gl";
-import Geocoder from "../Geocoder";
+// import Geocoder from "../Geocoder";
 import { createEffect, createSignal, on } from "solid-js";
 import { useStore } from "../../stores";
 import { selectedValue } from "../MapCards/Accordion";
@@ -229,7 +229,7 @@ export function Map() {
         position="bottom-left"
         options={{ showCompass: false, showZoom: true }}
       />
-      <Geocoder />
+      {/* <Geocoder /> */}
       <Source
         id="AQI" //idk if this needs to be here. trying to add an id to this source layer
         source={{
