@@ -39,7 +39,7 @@ export const percentBins = [0, 20, 40, 60, 80];
 
 //used EPA, OpenAQ, or my own calcs for these
 export const parametersBins = {
-  1: [0, 12.1, 35.5, 55.5, 150.5, 250.5], // PM2.5 (particles/cm3) * reads the same vals as PM2.5 in ug/m3
+  1: [0, 9.1, 35.5, 55.5, 125.5, 225.5], // PM2.5 (particles/cm3) * reads the same vals as PM2.5 in ug/m3
   2: [0, 1, 3, 7, 12, 16], // Black C (µg/m³) kinda guessed on the maroon one since I only could find 1 source
   3: [0, 4500, 9500, 12500, 15500, 30500], // CO (ppb)
   4: [0, 400, 1000, 2000, 3000, 4000], // CO₂ (ppm) openAQ's
@@ -52,7 +52,7 @@ export const parametersBins = {
   11: [0, 8.5, 25, 39.1, 106, 176.4], // PM1 (particles/cm3) * reads the same vals as PM1 in ug/m3
   12: [0, 55, 155, 255, 355, 425], // PM10 (particles/cm3) * reads the same vals as PM10 in ug/m3
   13: [0, 55, 155, 255, 355, 425], // PM10 (µg/m³)
-  // 14: [0, 12.1, 35.5, 55.5, 150.5, 250.5], // PM2.5 (µg/m³)
+  // 14: [0, 9.1, 35.5, 55.5, 125.5, 225.5], // PM2.5 (µg/m³)
   14: [0, 12.1, 35.5, 55.5, 150.5, 250.5], // PM4 (particles/cm3) * reads the same vals as PM4 in ug/m3
   15: [0, 12.1, 35.5, 55.5, 150.5, 250.5], // PM4 (µg/m³) openAQ's
   16: [0, 36, 76, 186, 305, 605], // SO₂ (ppb)
