@@ -51,6 +51,9 @@ export function AddSensor() {
   const [sensorSelected, sensorSetSelected] = createSignal([]);
   const [displayTable, setDisplayTable] = createSignal(false);
   const [displayGraph, setDisplayGraph] = createSignal(false);
+  const [displayHelpFilterSensor, setDisplayHelpFilterSensor] = createSignal(false);
+  const [displayHelpSelectSensor, setDisplayHelpSelectSensor] = createSignal(false);
+  const [displayHelpFilterData, setDisplayHelpFilterData] = createSignal(false);
   const [graphData, setGraphData] = createSignal(null);
 
   // const [showForm, setShowForm] = createSignal(false);
@@ -130,7 +133,7 @@ export function AddSensor() {
 
   const types = [
     createValue("DST", "DST"),
-    createValue("EPA", "EPA"),
+    createValue("OAQ", "EPA"),
     createValue("PAR", "Purple Air"),
     createValue("TSI", "TSI"),
     createValue("CLA", "CLARITY"),
@@ -138,7 +141,6 @@ export function AddSensor() {
   // const [typeOptions] = createSignal(types);
   const onChangeType = (selected) => {
     typeSetSelectedValues(selected);
-    
   };
 
   const [pollutantOptions] = createResource(getPollutants)
@@ -368,11 +370,48 @@ export function AddSensor() {
     );
   }
 
+  const  onShowHelpFilterSensor = (event) => {
+    if (displayHelpFilterSensor()) {
+      setDisplayHelpFilterSensor(false);
+    } else {
+      setDisplayHelpFilterSensor(true);
+    }
+    event.preventDefault();
+  }
+
+  const  onShowHelpSelectSensor = (event) => {
+    if (displayHelpSelectSensor()) {
+      setDisplayHelpSelectSensor(false);
+    } else {
+      setDisplayHelpSelectSensor(true);
+    }
+    event.preventDefault();
+  }
+
+  const  onShowHelpFilterData = (event) => {
+    if (displayHelpFilterData()) {
+      setDisplayHelpFilterData(false);
+    } else {
+      setDisplayHelpFilterData(true);
+    }
+    event.preventDefault();
+  }
   return (
     <>
       <div class="data-container">
       <form>
-      <h3>Filter Sensors</h3>
+        <div style="display: flex;justify-content: start;">
+          <h3>Filter Sensors</h3>
+          <button class="help material-symbols-outlined" 
+            onClick={onShowHelpFilterSensor}
+            type="button"> 
+            help
+          </button>
+        </div>
+        <Show when={displayHelpFilterSensor()}>
+          <div class="help-content">Use these filters if you want to limit the list of available sensors under Select Sensors by zipcode, sensor type, and/or pollutant measured.</div>
+        </Show>
+      
       <div class="data-form-item">
 
       
@@ -402,7 +441,7 @@ export function AddSensor() {
       </label>
       
       <div class="flex flex-1 flex-col max-w-100 gap-3">
-        <label htmlFor="type">Filter sensors by monitor type</label>
+        <label htmlFor="type">Filter sensors by sensor type</label>
         <Select
           class="search"
           id="type"
@@ -455,27 +494,28 @@ export function AddSensor() {
       </label>
 
       </div>
-      <h3>Select Sensors</h3>
+      <div style="display: flex;justify-content: start;">
+          <h3>Select Sensors</h3>
+          <button class="help material-symbols-outlined" 
+            onClick={onShowHelpSelectSensor}
+            type="button"> 
+            help
+          </button>
+      </div>
+      <Show when={displayHelpSelectSensor()}>
+        <div class="help-content">You must choose at least one sensor in order to see any data. You can choose multiple sensors, though they might not all have data for the same parameters.</div>
+      </Show>
       <div class="data-form-item">
       <Show when={!data.loading} fallback={<>Searching...</>}>
         <div class="flex flex-1 flex-col max-w-100 gap-3">
-          <label htmlFor="sensor">Select sensors to view their data</label>
-            {/* <MultiSelect
-                style={{ chips: { color: "purple", "background-color": "pink" } }}
-                options={data()}
-                onSelect={console.log}
-                onRemove={console.log}
-                class="search"
-                //selectedValues={["yellow"]}
-                //selectionLimit={2}
-            /> */}
+        <label htmlFor="type">Select Sensors to see their data</label>
           <Select
             class="search"
             id="sensor"
             //value={input().zip_code}
             multiple
             label="sensor selector"
-            placeholder="Search for specific sensors"
+            placeholder="Search for sensors"
             onChange={onChangeSensors}
             format={format}
             options={data()}
@@ -484,7 +524,26 @@ export function AddSensor() {
         </div>
       </Show>
       </div>
-      <h3>Filter Sensor Data </h3>
+
+      <div style="display: flex;justify-content: start;">
+          <h3>Filter Sensor Data</h3>
+          <button class="help material-symbols-outlined" 
+            onClick={onShowHelpFilterData}
+            type="button"> 
+            help
+          </button>
+      </div>
+      <Show when={displayHelpFilterData()}>
+        <div class="help-content">Specify what data you wish to see from the sensors selected above. Select which pollutant you are interested in viewing, as well as the time frame and granularity of the data.</div>
+      </Show>
+      <label class="data-form-item">
+        Choose the pollutant to display
+        <select class="select" value={pollutantSelectedValues().length == 1 ? pollutantSelectedValues()[0].id : "pm2.5"} onChange={onChangeSelectedPollutant}>
+          <For each={pollutantOptions()}>{(val) =>
+             <option value={val.id}>{val.name}</option>
+          }</For>
+        </select>
+      </label>
       <label class="data-form-item">
         Start time/date
         <input type="date" value={startDate()} onChange={(e) => setStartDate(e.currentTarget.value)} name="start-time" class="text-input"></input>
@@ -500,14 +559,6 @@ export function AddSensor() {
           <option value="d">Daily</option>
           <option value="m">Monthly</option>
           <option value="y">Yearly</option>
-        </select>
-      </label>
-      <label class="data-form-item">
-        Choose the pollutant to display
-        <select class="select" value={pollutantSelectedValues().length == 1 ? pollutantSelectedValues()[0].id : "pm2.5"} onChange={onChangeSelectedPollutant}>
-          <For each={pollutantOptions()}>{(val) =>
-             <option value={val.id}>{val.name}</option>
-          }</For>
         </select>
       </label>
       </form>

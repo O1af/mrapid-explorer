@@ -37,3 +37,22 @@
   .datatable tr:nth-child(1) {
     background-color: #dddddd;
   }
+
+.help {
+  margin-top:auto;
+  margin-bottom:auto;
+  border:none;
+  background: none;
+  color:rgb(77, 77, 77) 
+}
+  .help:hover{
+    cursor: pointer;
+  }
+
+.help-content {
+  border:solid;
+  color:black;
+  background:rgb(184, 217, 255);
+  border-radius: 8px;
+  padding: 10px;
+}
