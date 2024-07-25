@@ -133,10 +133,10 @@ export function AddSensor() {
 
   const types = [
     createValue("DST", "DST"),
-    createValue("OAQ", "EPA"),
-    createValue("PAR", "Purple Air"),
-    createValue("TSI", "TSI"),
-    createValue("CLA", "CLARITY"),
+    createValue("OPENAQ", "EPA"),
+    createValue("PURPLEAIR", "Purple Air"),
+    createValue("BLUESKY TSI", "TSI"),
+    createValue("CLARITY", "CLARITY"),
   ];
   // const [typeOptions] = createSignal(types);
   const onChangeType = (selected) => {
