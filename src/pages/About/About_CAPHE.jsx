@@ -17,19 +17,23 @@ import WSULogo from '../../assets/wsu-logo.png';
 
 function About_CAPHE() {
     return (
-        <section class="page-faq">
-            <h1>Who we Are</h1>
-            <p>
-                <b>C</b>ommunity <b>A</b>ction to <b>P</b>romote <b>H</b>ealthy <b>E</b>nvironments (<b>CAPHE</b>) 
-                is a partnership among community based organizations, community residents, health service providers 
-                and public health researchers.
-            </p>
-            <div class='caphe-img-container'>
-                <div class='caphe-img'>
-                    <img src={CAPHELogo} alt="CAPHE Logo"> </img>
+        <section class="page-about">
+            <div class="about-who-we-are">         
+                <h1 class="meet-team-title__heading1">Who we Are</h1>
+                <p class="caphe-acronym">
+                    <b>C</b>ommunity <b>A</b>ction to <b>P</b>romote <b>H</b>ealthy <b>E</b>nvironments
+                </p>
+                <div class='caphe-img-container'>
+                    <div class='caphe-img'>
+                        <img src={CAPHELogo} alt="CAPHE Logo"> </img>
+                    </div>
                 </div>
-            </div>
-            <h2>Our Goal</h2>
+                <p>
+                    CAPHE is a partnership among community based organizations, community residents, health service 
+                    providers and public health researchers.
+                </p>
+            </div>   
+            <h1 class="meet-team-title__heading1">Our Goal</h1>
             <p>
                 Our goal is to develop and implement components of a scientifically-based, community-led public 
                 health action plan to reduce air pollution and associated adverse health effects in Detroit and 

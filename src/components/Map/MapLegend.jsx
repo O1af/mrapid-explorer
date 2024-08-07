@@ -12,8 +12,8 @@ export default function MapLegend() {
   const [store, { toggleHelp, loadContent }] = useStore();
   
   const legendTitle = () =>
-    store.mapThreshold.active
-      ? '% Measurements exceeding threshold'
+    (selectedValue() == 'AQI')
+      ? 'Based on past averages'
       : 'Most recent measurements';
 
   const colors = () =>

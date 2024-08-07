@@ -18,6 +18,11 @@
     }
 }
 
+.data-tab-input-label {
+    display: flex;
+    justify-content: start;
+}
+
 .data-form .data-form-item {
     display: grid;
     grid-template-columns: 2fr 2fr;
@@ -96,6 +101,7 @@
         .data-form-item {
             grid-template-columns: 1fr;
             row-gap: 10px;
+            justify-items: center;
         }
     }
 }
@@ -125,6 +131,9 @@
         width:50%;
         overflow-x: scroll;
         text-align: center;
+        justify-content: center;
+    }
+    .data-tab-input-label {
         justify-content: center;
     }
 }

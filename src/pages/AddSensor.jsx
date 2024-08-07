@@ -400,7 +400,7 @@ export function AddSensor() {
     <>
       <div class="data-container">
       <form>
-        <div style="display: flex;justify-content: start;">
+        <div class="data-tab-input-label">
           <h3>Filter Sensors</h3>
           <button class="help material-symbols-outlined" 
             onClick={onShowHelpFilterSensor}
@@ -432,10 +432,10 @@ export function AddSensor() {
         />
       </div>
       <label htmlFor="zip_select_all" class="filter-button-container">
-        <button type="button" onClick={selectZip} class="filter-button" style="border-radius:5px;border:1px solid;">
+        <button type="button" onClick={selectZip} class="icon-btn btn-secondary">
           Select all zip codes
         </button>
-        <button type="button" onClick={clearZip} class="filter-button" style="border-radius:5px;border:1px solid;">
+        <button type="button" onClick={clearZip} class="icon-btn btn-secondary">
           Clear all selected zip codes
         </button>
       </label>
@@ -458,10 +458,10 @@ export function AddSensor() {
         />
       </div>
       <label htmlFor="monitor_select_all" class="filter-button-container">
-        <button type="button" onClick={selectType} class="filter-button" style="border-radius:5px;border:1px solid;">
+        <button type="button" onClick={selectType} class="icon-btn btn-secondary">
           Select all monitor types
         </button>
-        <button type="button" onClick={clearType} class="filter-button" style="border-radius:5px;border:1px solid;">
+        <button type="button" onClick={clearType} class="icon-btn btn-secondary">
           Clear all selected monitor types
         </button>
       </label>
@@ -485,16 +485,16 @@ export function AddSensor() {
       </div>
       
       <label htmlFor="pollutant_select_all" class="filter-button-container">
-        <button type="button" onClick={selectPollutant} class="filter-button" style="border-radius:5px;border:1px solid;">
+        <button type="button" onClick={selectPollutant} class="icon-btn btn-secondary">
           Select all pollutants
         </button>
-        <button type="button" onClick={clearPollutant} class="filter-button" style="border-radius:5px;border:1px solid;">
+        <button type="button" onClick={clearPollutant} class="icon-btn btn-secondary">
           Clear all selected pollutants
         </button>
       </label>
 
       </div>
-      <div style="display: flex;justify-content: start;">
+      <div class="data-tab-input-label">
           <h3>Select Sensors</h3>
           <button class="help material-symbols-outlined" 
             onClick={onShowHelpSelectSensor}
@@ -525,7 +525,7 @@ export function AddSensor() {
       </Show>
       </div>
 
-      <div style="display: flex;justify-content: start;">
+      <div class="data-tab-input-label">
           <h3>Filter Sensor Data</h3>
           <button class="help material-symbols-outlined" 
             onClick={onShowHelpFilterData}

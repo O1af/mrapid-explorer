@@ -39,8 +39,8 @@ function About_Team() {
           <a href="https://tsi.com/home/">TSI</a>
         </li>
       </ul>
+      <h2 class="meet-team-title__heading2">The Students</h2>
       <div class="meet-team-grid">
-
       <div class="team-member">
           <img class="team-img" alt="Amelia" src={ImageAmelia}>
             image of Amelia
@@ -71,7 +71,7 @@ function About_Team() {
             image of Ella
           </img>
           <div class="member-label">Ella Zhang</div>
-          <div class="member-affiliation">Student</div>
+          <div class="member-affiliation">Alumni</div>
           <div class="member-desc">
             Ella is on the API and Data subteam for Detroit Air, and is a
             alumni at the University of Michigan with a Bachelor's in
@@ -94,7 +94,7 @@ function About_Team() {
       </div>
 
       <hr class="meet-team-line"> </hr>
-      <h2 class="meet-team-title__heading2">Professor</h2>
+      <h2 class="meet-team-title__heading2">The Professor</h2>
       <div class="meet-team-grid-prof">
         <div class="team-member">
           <img class="team-img" alt="Professor Batterman" src={ImageProf}>
@@ -114,7 +114,7 @@ function About_Team() {
       </div>
 
       <hr class="meet-team-line"> </hr>
-      <h2 class="meet-team-title__heading2">Former Members</h2>
+      <h2 class="meet-team-title__heading2">Former Developers</h2>
       <div class="meet-team-grid-former">
         <div class="team-member">
             <img class="team-img" alt="Yash" src={ImageYash}>
